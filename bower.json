@@ -1,0 +1,19 @@
+{
+  "name": "validator-web",
+  "version": "0.0.0",
+  "homepage": "https://github.com/pasties/validator-web",
+  "authors": [
+    "sverosak <sveinung.rosaker@finn.no>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-theme-cirrus": "~0.3.0"
+  }
+}

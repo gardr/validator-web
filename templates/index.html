@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>{{pack.name}} {{pack.version}}</title>
+      <link href="/components/bootstrap-theme-cirrus/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <style>
+        div.pasties {
+            border: 1px solid #ccc;
+        }
+        iframe {
+          width: 100%;
+        }
+      </style>
+    </head>
+    <body>
+        <div class="container">
+          <h1>{{pack.name}} {{pack.version}}</h1>
+          <div class="form-group">
+            <label>URL</label>
+            <input id="urlInput" type="text" name="url" class="form-control" value="" placeholder="http://" />
+          </div>
+          <button class="btn btn-primary" id="render">Render</button>
+          <br />
+          <br />
+          <div class="alert alert-info" id="container">
+            
+          </div>
+        </div>
+        <script src="/preview/js/pasties/mobile.js"></script>
+        <script>
+          var button = document.getElementById('render');
+          var input = document.getElementById('urlInput');
+          var manager = getManager({iframeUrl: '/preview/html/pasties/mobile.htm'});
+
+          var counter = 0;
+
+          function handler(event) {
+              var name = 'example_' + (counter++);
+              console.log(name);
+              manager.queue({
+                  name: name,
+                  url: input.value,
+                  container: 'container'
+              });
+              manager.render(name, function(err, res){
+                console.log('done', name, err, res);
+              });
+          }
+
+          button.addEventListener('click', handler, false);
+        </script>
+    </body>
+</html>
