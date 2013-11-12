@@ -2,25 +2,12 @@ var buster = require('buster-assertions');
 var assert = buster.assert;
 var refute = buster.refute;
 
-var hooks  = require('../../lib/hook/timers.js');
-var timers = require('../../lib/validator/timers.js');
-var validate = require('pasties-validator/lib/validate.js');
-var HOOKS = require('pasties-validator/lib/phantom/createHooks.js').HOOKS;
+var help    = require('../lib/validateHelpers.js');
 
-function getTraceObject(name) {
-    return {
-        name: name+'',
-        time: Date.now(),
-        trace: {
-            sourceURL: 'http://dummyfile.js',
-            line: '123'
-        }
-    };
-}
+var HOOKS   = require('pasties-validator/lib/phantom/createHooks.js').HOOKS;
+var hooks   = require('../../lib/hook/timers.js');
+var timers  = require('../../lib/validator/timers.js');
 
-function createReporter(){
-    return validate.createReportHelper({})(this.test.title);
-}
 
 describe('timers hooks', function(){
 
@@ -42,12 +29,12 @@ describe('timers validator', function () {
         var harvested = {
             'timers': {
                 setTimeout: [
-                    [getTraceObject(1)]
+                    [help.getTraceObject(1)]
                 ]
             }
         };
 
-        var reporter = createReporter.call(this);
+        var reporter = help.createReporter.call(this);
 
         timers.validate(harvested, reporter, function () {
             assert(reporter.getResult().error.length === 0);
@@ -60,12 +47,12 @@ describe('timers validator', function () {
         var harvested = {
             'timers': {
                 setTimeout: [
-                    [getTraceObject(1), getTraceObject(2), getTraceObject(3), getTraceObject(4)]
+                    [help.getTraceObject(1), help.getTraceObject(2), help.getTraceObject(3), help.getTraceObject(4)]
                 ]
             }
         };
 
-        var reporter = createReporter.call(this);
+        var reporter = help.createReporter.call(this);
 
         timers.validate(harvested, reporter, function () {
             var result = reporter.getResult();
@@ -81,15 +68,15 @@ describe('timers validator', function () {
         var harvested = {
             'timers': {
                 setTimeout: [
-                    [getTraceObject(1), getTraceObject(2), getTraceObject(3), getTraceObject(4)]
+                    [help.getTraceObject(1), help.getTraceObject(2), help.getTraceObject(3), help.getTraceObject(4)]
                 ],
                 setInterval: [
-                    [getTraceObject(5), getTraceObject(6), getTraceObject(7), getTraceObject(8)]
+                    [help.getTraceObject(5), help.getTraceObject(6), help.getTraceObject(7), help.getTraceObject(8)]
                 ]
             }
         };
 
-        var reporter = createReporter.call(this);
+        var reporter = help.createReporter.call(this);
 
         timers.validate(harvested, reporter, function () {
             assert(reporter.getResult().error.length === 2);

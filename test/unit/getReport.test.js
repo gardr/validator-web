@@ -1,4 +1,7 @@
-require('../lib/helpers.js');
+var buster = require('buster-assertions');
+var assert = buster.assert;
+var refute = buster.refute;
+
 var proxyquire = require('proxyquire');
 
 // phantom smoke test
