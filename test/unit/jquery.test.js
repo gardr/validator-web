@@ -115,8 +115,6 @@ describe('jQuery validator', function () {
 
         var report = help.createReporter.call(this);
 
-
-
         // TODO this is doing actual request, neeed to unit test instead
         validator.validate(harvested, report, function () {
             var result = report.getResult();

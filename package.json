@@ -25,7 +25,8 @@
     "hoek": "~1.1.1",
     "readline": "0.0.3",
     "request": "~2.27.0",
-    "handlebars": "~1.1.2"
+    "handlebars": "~1.1.2",
+    "pasties-validator": "0.0.1"
   },
   "devDependencies": {
     "proxyquire": "~0.5.1",

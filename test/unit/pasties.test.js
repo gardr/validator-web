@@ -12,7 +12,6 @@ describe('Pasties hooks', function () {
         var options = {
             'key': Math.random() * 1000 * Date.now()
         };
-        var str_options = JSON.stringify(options);
         var calls = 0;
         var arg;
         var injected = [];
@@ -41,7 +40,7 @@ describe('Pasties hooks', function () {
 
         assert.equals(calls, 2);
         assert(arg, 'should have collected initManager argument');
-        assert.equals(arg, str_options);
+        assert.equals(arg, JSON.stringify(options));
     });
 
 });
