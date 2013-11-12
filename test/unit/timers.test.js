@@ -4,8 +4,8 @@ var refute = buster.refute;
 
 var hooks  = require('../../lib/hook/timers.js');
 var timers = require('../../lib/validator/timers.js');
-var validate = require('../../../validator/lib/validate.js');
-var HOOKS = require('../../../validator/lib/phantom/createHooks.js').HOOKS;
+var validate = require('pasties-validator/lib/validate.js');
+var HOOKS = require('pasties-validator/lib/phantom/createHooks.js').HOOKS;
 
 function getTraceObject(name) {
     return {

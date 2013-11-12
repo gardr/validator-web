@@ -1,6 +1,6 @@
 {
-  "name": "validator-web",
-  "version": "0.0.0",
+  "name": "pasties-validator-web",
+  "version": "0.0.1",
   "homepage": "https://github.com/pasties/validator-web",
   "authors": [
     "sverosak <sveinung.rosaker@finn.no>"
