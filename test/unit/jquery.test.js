@@ -78,9 +78,18 @@ describe('jQuery hook', function () {
 });
 
 describe('jQuery validator', function () {
+    function shimLatest(cb) {
+        cb([{ major: 1, minor: 10, patch: 2, sortKey: 11002},
+            { major: 2, minor: 0,  patch: 3, sortKey: 20003}
+           ]);
+    }
+    var validator = proxyquire('../../lib/validator/jquery.js', {
+        './getLatestJquery.js': {
+            'getLatest': shimLatest
+        }
+    });
 
     it('should report error if animate called', function (done) {
-        var validator = require('../../lib/validator/jquery.js');
 
         var harvested = {
             jquery_animate: [
@@ -99,12 +108,6 @@ describe('jQuery validator', function () {
 
     });
 
-    function shimLatest(cb) {
-        cb([{ major: 1, minor: 10, patch: 2, sortKey: 11002},
-            { major: 2, minor: 0,  patch: 3, sortKey: 20003}
-           ]);
-    }
-
     it('should report error when version doesnt match latest', function (done) {
         var harvested = {
             jquery_version: "1.10.1"
@@ -112,11 +115,7 @@ describe('jQuery validator', function () {
 
         var report = help.createReporter.call(this);
 
-        var validator = proxyquire('../../lib/validator/jquery.js', {
-            './getLatestJquery.js': {
-                'getLatest': shimLatest
-            }
-        });
+
 
         // TODO this is doing actual request, neeed to unit test instead
         validator.validate(harvested, report, function () {
