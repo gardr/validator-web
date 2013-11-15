@@ -14,4 +14,8 @@ window.onload = function () {
 setTimeout(interval1, 1);
 function interval1() { setTimeout(interval2, 10);}
 function interval2() { setTimeout(interval3, 100);}
-function interval3() {}
+function interval3() {
+    var div = document.createElement('div');
+    document.body.appendChild(div);
+    div.setAttribute('style', 'width:100%;height:225px;background:red;');
+}

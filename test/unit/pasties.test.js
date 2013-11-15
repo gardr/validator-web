@@ -48,6 +48,10 @@ describe('Pasties hooks', function () {
 var validator = require('../../lib/validator/pasties.js');
 describe('Pasties validator', function () {
 
+    it.skip('should evaluate client total size and report', function(){});
+    it.skip('should evaluate responsive position', function(){});
+    it.skip('should evaluate css position', function(){});
+
     it('should call next', function (done) {
         validator.validate(null, null, done);
     });

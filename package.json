@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/grunt subgrunt && node server.js",
-    "test": "./node_modules/.bin/mocha test/**/*.test.js"
+    "test": "./node_modules/.bin/grunt subgrunt && ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
   },
   "repository": {
     "type": "git",
