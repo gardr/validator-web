@@ -26,7 +26,7 @@
     "readline": "0.0.3",
     "request": "~2.27.0",
     "handlebars": "~1.1.2",
-    "pasties-validator": "0.0.1",
+    "pasties-validator": "0.0.2",
     "browserify": "~2.35.4",
     "domready": "~0.2.13",
     "dom-events": "~0.1.1",
