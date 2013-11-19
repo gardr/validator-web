@@ -1,3 +1,4 @@
+var development = process.env.NODE_ENV !== 'production';
 var bunyan = require('bunyan');
 var Hapi = require('hapi');
 var run = require('./lib/getReport.js');
@@ -15,16 +16,15 @@ var options = {
     },
     cache: {
         engine: 'memory'
-    }
+    },
+    labels: ['web']
 };
 
 var server = Hapi.createServer('0.0.0.0', PORT, options);
 
-
 var config = {
     'handler': function (request, response) {
-        console.log('handling', request.query.url);
-        run(request.query.url, function (err, harvest, report) {
+        run(request.query.url, id, function (err, harvest, report) {
             if (err) {
                 return this.reply({
                     error: true,
@@ -52,29 +52,37 @@ server.route({
 });
 
 // report json endpoint
+var uuid = require('node-uuid');
+
+var simple = {};
+
 server.route({
     method: 'GET',
     path: '/validate',
     config: {
-        handler: function(request, response){
-            run(request.query.url, function (err, harvest, report) {
+        handler: function (request, response) {
+            var id = uuid.v4();
+
+            simple[id] = {time: new Date()};
+
+            this.reply.redirect('/result?id=' + id + '&url=' + encodeURIComponent(request.query.url));
+
+            //var options = {};
+            run(request.query.url, id, function (err, harvest, report) {
                 if (err) {
-                    return this.reply.view('index.html', {
+                    console.log('Error:', err);
+                    return simple[id].error = {
                         url: request.query.url,
                         error: true,
-                        err: err,
-                        debugInfo: JSON.stringify(err, null, 4)
-                    });
+                        err: err
+                    };
                 }
-                var viewData = {
-                    'url': request.query.url,
+                simple[id].data = {
                     'harvest': harvest,
-                    'report': report,
-                    'success': report.error.length === 0,
-                    'debugInfo': JSON.stringify({ harvest: harvest, report: report }, null, 4)
+                    'report': report
                 };
-                this.reply.view('index.html', viewData);
-            }.bind(this));
+                console.log('done', id);
+            });
         },
         validate: {
             query: {
@@ -83,6 +91,57 @@ server.route({
         }
     }
 });
+
+var moment = require('moment');
+
+server.route({
+    method: 'GET',
+    path: '/result',
+    config: {
+        handler: function (request, response) {
+            var id = request.query.id;
+
+            var harvest;
+            var report;
+            if (simple[id] && simple[id].data){
+                harvest = simple[id].data.harvest;
+                report = simple[id].data.report;
+            }
+
+
+            var view = {
+                url: request.query.url,
+                id: request.query.id,
+                hasId: !!simple[id],
+                harvest: harvest,
+                report: report,
+                runtime: simple[id] && (moment().diff(simple[id].time) +'ms'),
+                reloadIn: simple[id] && (15000 - moment().diff(simple[id].time)),
+                showStatus: simple[id] && (!simple[id].data && !simple[id].error),
+                error: simple[id] && simple[id].error,
+                showResultTable: simple[id] && !!simple[id].data && (report.error.length > 0||report.warn.length > 0||report.info.length > 0)
+            };
+
+            if (!simple[id]){
+                view.error = true;
+                view.err = {message: 'ID has expired'};
+            }
+
+            if (development){
+                view.debugInfo = JSON.stringify(view, null, 2);
+            }
+
+            this.reply.view('index.html', view);
+        },
+        validate: {
+            query: {
+                url: Hapi.types.String().required().regex(/^http/i),
+                id: Hapi.types.String().required().regex(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i)
+            }
+        }
+    }
+});
+
 
 var browserify = require('browserify');
 server.route({
@@ -94,7 +153,9 @@ server.route({
             b.add('./client/main.js');
             this.reply(b.bundle()).type('application/javascript');
         },
-        cache: { expiresIn: 9000000000 }
+        cache: {
+            expiresIn: 9000000000
+        }
     }
 });
 
@@ -158,7 +219,7 @@ server.route({
     method: 'GET',
     path: '/status',
     config: {
-        handler: function(){
+        handler: function () {
             this.reply('ok');
         }
     }

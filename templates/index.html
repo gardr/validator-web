@@ -7,9 +7,10 @@
         div.pasties {
             border: 1px solid #ccc;
         }
-        iframe {
+        .animated-banner, iframe {
           width: 100%;
         }
+
       </style>
     </head>
     <body>
@@ -24,23 +25,47 @@
             <button class="btn btn-primary" id="start-validation">Validate</button>
             <br />
             {{#error}}
-                <div class="alert alert-warning">
+                <br />
+                <div class="alert alert-danger">
                     {{err.message}}
                 </div>
             {{/error}}
 
-            <div>
+            {{#showStatus}}
                 <br />
-                <img src="data:image/gif;base64,{{{harvest.animatedGif}}}" />
-            </div>
+                <div class="alert alert-warning">
+                    Expected run time is 12-15 seconds. Running for {{runtime}}. Reloading in <strong><span id="timer">{{reloadIn}}</span></strong> ms.
+                </div>
+                <script>
+                    (function(){
+                        var ms = {{reloadIn}};
+                        var timer = 0;
+                        var elem = document.getElementById('timer');
+                        if (ms > 0){
+                            setTimeout(function(){
+                                window.location = window.location.toString();
+                            }, ms);
+                            setInterval(function(){
+                                timer += 1000;
+                                elem.innerHTML = (ms - timer);
+                            }, 1000);
+                        }
+                    })()
+                </script>
+            {{/showStatus}}
 
-            {{^success}}
+            {{#showResultTable}}
+                <div>
+                    <br />
+                    <img class="animated-banner" src="data:image/gif;base64,{{harvest.animatedGif}}" />
+                </div>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Type</th>
                             <th>Melding</th>
                             <th>Rule</th>
+                            <th>Source</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +75,14 @@
                                 <td>Warning</td>
                                 <td>{{message}}</td>
                                 <td>{{validatorName}}</td>
+                                <td>
+                                    {{#data.trace}}
+                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
+                                    {{/data.trace}}
+                                    {{#trace}}
+                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
+                                    {{/trace}}
+                                </td>
                             </tr>
                         {{/report.warn}}
 
@@ -58,11 +91,35 @@
                                 <td>Error</td>
                                 <td>{{message}}</td>
                                 <td>{{validatorName}}</td>
+                                <td>
+                                    {{#data.trace}}
+                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
+                                    {{/data.trace}}
+                                    {{#trace}}
+                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
+                                    {{/trace}}
+                                </td>
                             </tr>
                         {{/report.error}}
+
+                        {{#report.info}}
+                            <tr class="">
+                                <td>Info</td>
+                                <td>{{message}}</td>
+                                <td>{{validatorName}}</td>
+                                <td>
+                                    {{#data.trace}}
+                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
+                                    {{/data.trace}}
+                                    {{#trace}}
+                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
+                                    {{/trace}}
+                                </td>
+                            </tr>
+                        {{/report.info}}
                     </tbody>
                 </table>
-            {{/success}}
+            {{/showResultTable}}
             <br />
             <div id="container">
 
@@ -72,12 +129,8 @@
         <script src="/main.js"></script>
 
         {{#debugInfo}}
-        <div class="container"><pre>
-            Validator View:
-            <code>
-                {{.}}
-            </code>
-        </pre></div>
+        <h1>Validator View:</h1>
+        <pre style="font-size:11px;"><code>{{.}}</code></pre>
         {{/debugInfo}}
     </body>
 </html>
