@@ -14,40 +14,70 @@
     </head>
     <body>
         <div class="container">
-          <h1>{{pack.name}} {{pack.version}}</h1>
-          <div class="form-group">
-            <label>URL</label>
-            <input id="urlInput" type="text" name="url" class="form-control" value="" placeholder="http://" />
-          </div>
-          <button class="btn btn-primary" id="render">Render</button>
-          <br />
-          <br />
-          <div class="alert alert-info" id="container">
-            
-          </div>
+            <h1>{{pack.name}} {{pack.version}}</h1>
+            <div class="form-group">
+              <label>URL</label>
+              <input id="urlInput" type="text" name="url" class="form-control" value="{{url}}" placeholder="http://" />
+            </div>
+
+            <button class="btn btn-default" id="render">Render</button>
+            <button class="btn btn-primary" id="start-validation">Validate</button>
+            <br />
+            {{#error}}
+                <div class="alert alert-warning">
+                    {{err.message}}
+                </div>
+            {{/error}}
+
+            <div>
+                <br />
+                <img src="data:image/gif;base64,{{{harvest.animatedGif}}}" />
+            </div>
+
+            {{^success}}
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Melding</th>
+                            <th>Rule</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {{#report.warn}}
+                            <tr class="warning">
+                                <td>Warning</td>
+                                <td>{{message}}</td>
+                                <td>{{validatorName}}</td>
+                            </tr>
+                        {{/report.warn}}
+
+                        {{#report.error}}
+                            <tr class="danger">
+                                <td>Error</td>
+                                <td>{{message}}</td>
+                                <td>{{validatorName}}</td>
+                            </tr>
+                        {{/report.error}}
+                    </tbody>
+                </table>
+            {{/success}}
+            <br />
+            <div id="container">
+
+            </div>
         </div>
         <script src="/preview/js/pasties/mobile.js"></script>
-        <script>
-          var button = document.getElementById('render');
-          var input = document.getElementById('urlInput');
-          var manager = getManager({iframeUrl: '/preview/html/pasties/mobile.htm'});
+        <script src="/main.js"></script>
 
-          var counter = 0;
-
-          function handler(event) {
-              var name = 'example_' + (counter++);
-              console.log(name);
-              manager.queue({
-                  name: name,
-                  url: input.value,
-                  container: 'container'
-              });
-              manager.render(name, function(err, res){
-                console.log('done', name, err, res);
-              });
-          }
-
-          button.addEventListener('click', handler, false);
-        </script>
+        {{#debugInfo}}
+        <div class="container"><pre>
+            Validator View:
+            <code>
+                {{.}}
+            </code>
+        </pre></div>
+        {{/debugInfo}}
     </body>
 </html>

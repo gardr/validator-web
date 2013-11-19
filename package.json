@@ -26,7 +26,14 @@
     "readline": "0.0.3",
     "request": "~2.27.0",
     "handlebars": "~1.1.2",
-    "pasties-validator": "0.0.1"
+    "pasties-validator": "0.0.1",
+    "browserify": "~2.35.4",
+    "domready": "~0.2.13",
+    "dom-events": "~0.1.1",
+    "bunyan": "~0.22.0",
+    "gifencoder": "~1.0.3",
+    "concat-stream": "~1.2.0",
+    "canvas": "~1.1.2"
   },
   "devDependencies": {
     "proxyquire": "~0.5.1",
