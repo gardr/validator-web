@@ -1,4 +1,6 @@
 window.onload = function () {
+    insertBanner();
+
     var el = document.createElement('script');
     document.body.appendChild(el);
     el.onload = function () {
@@ -14,8 +16,11 @@ window.onload = function () {
 setTimeout(interval1, 1);
 function interval1() { setTimeout(interval2, 10);}
 function interval2() { setTimeout(interval3, 100);}
-function interval3() {
+function interval3() {}
+function insertBanner(){
     var div = document.createElement('div');
-    document.body.appendChild(div);
+    var cont = document.getElementById('PASTIES');
+    cont.appendChild(div);
     div.setAttribute('style', 'width:100%;height:225px;background:red;');
+    div.innerHTML = '<h1>script.js test</h1>';
 }
