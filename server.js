@@ -61,18 +61,74 @@ server.route({
 var uuid = require('node-uuid');
 var simpleStorage = {count: 0};
 
+var CleanCSS = require('clean-css');
+var cssMinifier = new CleanCSS().minify;
+var dataTypes = {
+    'js': 'application/javascript',
+    'css': 'text/css',
+    'html': 'text/html'
+};
+
+
+function doWrite(str){
+    return 'document.write(\''+str+'\');';
+}
+
+
+var htmlparser = require('htmlparser2');
+var soupselect = require('soupselect');
+var select = soupselect.select;
+var toHtml = require('htmlparser-to-html');
+function trimHtml(str) {
+    var output = {
+        body: ''
+    };
+    var handler = new htmlparser.DomHandler(function(err, dom) {
+        var body = select(dom, 'body')[0];
+        if (body){
+            output.body = toHtml(body.children);
+        } else {
+            output.body = toHtml(dom);
+        }
+
+    });
+    new htmlparser.Parser(handler).parseComplete(str);
+    return output.body.replace(/(\r\n|\n|\r)/gm, '\\n');
+}
+
 server.route({
     method: 'GET',
     path: '/user-input.js',
     config: {
         handler: function (request, response) {
-            var id = request.query.id;
-            if (id && simpleStorage[id] && simpleStorage[id].js) {
-                this.reply(simpleStorage[id].js).type('application/javascript');
-                log.info('served javascript ok:' + id);
+            var id      = request.query.id;
+            var dataKey = request.query.key;
+            var data    = simpleStorage[id];
+
+            if (id && data && !dataKey){
+                // if no key, append all
+                var res = '';
+
+                if (data.css) {
+                    res += doWrite('<style>'+cssMinifier(data.css)+'</style>');
+                }
+
+                if (data.html) {
+                    var trimmed = trimHtml(data.html);
+                    res += doWrite(trimmed);
+                }
+
+                var scriptUrl = data.url + '&key=js&';
+                res += doWrite("<script src=\\'"+scriptUrl+"\\'></script>");
+
+                this.reply(res).type('application/javascript');
+                log.info('served composed file');
+            } else if (id && data && data[dataKey]) {
+                this.reply(data[dataKey]).type(dataTypes[dataKey]);
+                log.info('served '+dataTypes[dataKey]+' ok:' + id);
             } else {
                 this.reply('console.log("Missing input");').type('application/javascript');
-                log.warn('served javascript fail:' + id);
+                log.warn('served '+dataTypes[dataKey]+' fail:' + id);
             }
         }
         /*, validate forces parameters, but we dont know what comes from pasties-js
@@ -93,6 +149,8 @@ server.route({
             var id = uuid.v4();
             var url = request.payload.url;
             var js = request.payload.js;
+            var html = request.payload.html;
+            var css = request.payload.css;
 
             simpleStorage.count++;
             if (simpleStorage.count > 20){
@@ -103,13 +161,15 @@ server.route({
                 id: id,
                 time: new Date(),
                 url: url,
-                js: js
+                js: js,
+                html: html,
+                css: css
             };
 
             //console.log(request);
 
             if (js) {
-                simpleStorage[id].url = 'http://' + request.info.host + '/user-input.js?id=' + id + '&timestamp=' + Date.now();
+                simpleStorage[id].previewUrl = simpleStorage[id].url = 'http://' + request.info.host + '/user-input.js?id=' + id + '&timestamp=' + Date.now();
             }
 
             this.reply.redirect('/result?id=' + id);
@@ -134,7 +194,9 @@ server.route({
         validate: {
             payload: {
                 url: Hapi.types.String().regex(/^http/i).allow(''), //.without('js')
-                js: Hapi.types.String().optional().allow('')
+                js: Hapi.types.String().optional().allow(''),
+                css: Hapi.types.String().optional().allow(''),
+                html: Hapi.types.String().optional().allow('')
             }
         }
     }
@@ -182,6 +244,12 @@ server.route({
                 view.showStatus = true;
                 view.runtime = moment().diff(view.time);
                 view.reloadIn = (15000 - moment().diff(view.time));
+            }
+
+            if (view.showForm){
+                if (!view.js){
+                    view.hideCodeInput = true;
+                }
             }
 
             if (development) {
