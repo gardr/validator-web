@@ -1,8 +1,8 @@
 {
   "name": "pasties-validator-web",
   "version": "0.0.4",
-  "description": "validator-web =============",
-  "main": "index.js",
+  "description": "web-app for validating pasties",
+  "main": "server.js",
   "scripts": {
     "build": "./node_modules/.bin/grunt subgrunt && ./node_modules/.bin/bower install",
     "start": "npm run build && node server.js",
