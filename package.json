@@ -1,11 +1,12 @@
 {
   "name": "pasties-validator-web",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "validator-web =============",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/grunt subgrunt && node server.js",
-    "test": "./node_modules/.bin/grunt subgrunt && ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
+    "build": "./node_modules/.bin/grunt subgrunt && ./node_modules/.bin/bower install",
+    "start": "npm run build && node server.js",
+    "test": "npm run build && ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
   },
   "repository": {
     "type": "git",
@@ -29,9 +30,7 @@
     "browserify": "~2.35.4",
     "domready": "~0.2.13",
     "dom-events": "~0.1.1",
-    "gifencoder": "~1.0.3",
     "concat-stream": "~1.2.0",
-    "canvas": "~1.1.2",
     "moment": "~2.4.0",
     "node-uuid": "~1.4.1",
     "async": "~0.2.9",
