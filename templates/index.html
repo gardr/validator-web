@@ -14,16 +14,14 @@
       </style>
     </head>
     <body>
-        <div class="container">
-            <h1>{{pack.name}} {{pack.version}}</h1>
-            <div class="form-group">
-              <label>URL</label>
-              <input id="urlInput" type="text" name="url" class="form-control" value="{{url}}" placeholder="http://" />
-            </div>
+        <a href="{{pack.repository.url}}" title="Fork {{pack.name}}">
+            <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+        </a>
 
-            <button class="btn btn-default" id="render">Render</button>
-            <button class="btn btn-primary" id="start-validation">Validate</button>
-            <br />
+        <div class="container">
+            <h1 class="text-center">{{pack.name}} <small>{{pack.version}}</small></h1>
+
+
             {{#error}}
                 <br />
                 <div class="alert alert-danger">
@@ -33,32 +31,53 @@
 
             {{#showStatus}}
                 <br />
+                <div class="progress progress-striped active">
+                  <div id="progress" class="progress-bar"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    <span class="sr-only"><span id="percent">0</span>% Complete</span>
+                  </div>
+                </div>
                 <div class="alert alert-warning">
-                    Expected run time is 12-15 seconds. Running for {{runtime}}. Reloading in <strong><span id="timer">{{reloadIn}}</span></strong> ms.
+                    Expected run time is 12-15 seconds. Running for <span id="timerCounter">{{runtime}}</span> ms. Reloading in <strong><span id="timer">{{reloadIn}}</span></strong> ms.
                 </div>
                 <script>
                     (function(){
-                        var ms = {{reloadIn}};
-                        var timer = 0;
-                        var elem = document.getElementById('timer');
+                        // dirty inline
+                        var ms              = {{reloadIn}}||0;
+                        var runtime         = {{runtime}}||0;
+                        var timer           = 0;
+                        var msElem          = document.getElementById('timer');
+                        var timerCounter    = document.getElementById('timerCounter');
+                        var percElem        = document.getElementById('percent');
+                        var progressElem    = document.getElementById('progress');
+                        var UPDATE_FREQ     = 501;
+
                         if (ms > 0){
                             setTimeout(function(){
                                 window.location = window.location.toString();
                             }, ms);
+
                             setInterval(function(){
-                                timer += 1000;
-                                elem.innerHTML = (ms - timer);
-                            }, 1000);
+                                timer += UPDATE_FREQ;
+                                var timeleft = ms - timer;
+                                var percent = -(Math.round(timeleft / 15000 * 100) - 100);
+                                timerCounter.innerHTML = runtime + timer;
+                                percElem.innerHTML= percent;
+                                msElem.innerHTML = timeleft;
+                                progressElem.setAttribute('style', 'width: '+ percent + '%');
+                            }, UPDATE_FREQ);
                         }
                     })()
                 </script>
             {{/showStatus}}
 
-            {{#showResultTable}}
+            {{#harvest.animatedGif}}
                 <div>
                     <br />
-                    <img class="animated-banner" src="data:image/gif;base64,{{harvest.animatedGif}}" />
+                    <img class="animated-banner" src="data:image/gif;base64,{{.}}" />
                 </div>
+            {{/harvest.animatedGif}}
+
+            {{#showResultTable}}
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -120,17 +139,44 @@
                     </tbody>
                 </table>
             {{/showResultTable}}
+
+            {{#showForm}}
+
+            <form method="POST" action="/validate" class="form">
+
+                {{^hideUrlInput}}
+                <div class="form-group">
+                  <label>Input URL:</label>
+                  <input id="urlInput" type="text" name="url" class="form-control" value="{{url}}" placeholder="http://" />
+                </div>
+                {{/hideUrlInput}}
+
+                <div class="form-group">
+                  <label>Javascript:</label>
+                  <textarea rows="5" name="js" class="form-control" placeholder="script...">{{{js}}}</textarea>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary">Validate{{#hideUrlInput}} again{{/hideUrlInput}}</button>
+                    {{^hideUrlInput}}<button class="btn btn-default" id="render">Render URL</button>{{/hideUrlInput}}
+                    <a href="/" class="btn">Back to frontpage</a>
+                </div>
+            </div>
+            <br />
             <br />
             <div id="container">
 
             </div>
+            {{/showForm}}
         </div>
         <script src="/preview/js/pasties/mobile.js"></script>
         <script src="/main.js"></script>
 
         {{#debugInfo}}
-        <h1>Validator View:</h1>
-        <pre style="font-size:11px;"><code>{{.}}</code></pre>
+        <div style="margin: 0 20px">
+            <h1>Validator View:</h1>
+            <pre style="font-size:11px;"><code>{{.}}</code></pre>
+        </div>
         {{/debugInfo}}
     </body>
 </html>
