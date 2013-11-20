@@ -27,5 +27,6 @@ winston.add(winston.transports.DailyRotateFile, {
   filename: path.join(logsFolder, pack.name + '.json.log'),
   datePattern: '.yyyyMMdd'
 });
+winston.remove(winston.transports.Console);
 
 module.exports =  winston;
