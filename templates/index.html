@@ -186,6 +186,22 @@
                       <div id="javascript-editor" style="width:100%;height:350px;border-radius: 3px;"></div>
                     </div>
                 </div>
+
+
+                {{#harvest}}
+                    <table class="table table-condensed table-striped table-bordered table-hover">
+                        <tr>
+                            <th>Time</th>
+                            <th>Message</th>
+                        </tr>
+                        {{#logs}}
+                            <tr>
+                                <td>{{time}}</td>
+                                <td>{{message}}</td>
+                            </tr>
+                        {{/logs}}
+                    </table>
+                {{/harvest}}
                 {{/hideCodeInput}}
 
                 <div>

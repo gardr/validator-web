@@ -170,6 +170,8 @@ server.route({
 
             if (js) {
                 simpleStorage[id].previewUrl = simpleStorage[id].url = 'http://' + request.info.host + '/user-input.js?id=' + id + '&timestamp=' + Date.now();
+            } else {
+                simpleStorage[id].previewUrl = simpleStorage[id].url;
             }
 
             this.reply.redirect('/result?id=' + id);

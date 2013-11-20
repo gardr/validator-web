@@ -47,8 +47,6 @@ function preview() {
     var name = 'preview';
     if (!url) return;
 
-
-    console.log('preview', url);
     var m = global.getManager({
         iframeUrl: '/preview/html/pasties/mobile.htm'
     });
@@ -56,7 +54,7 @@ function preview() {
         name: name,
         url: url,
         container: 'preview-container'
-    })
+    });
     m.render(name, function (err, res) {
         console.log('done', name, err, res);
     });
