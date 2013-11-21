@@ -1,8 +1,8 @@
 var pack = require('./package.json');
 var development = process.env.NODE_ENV !== 'production';
-var log = require('./logger.js');
+var log = require('./lib/logger.js');
 var Hapi = require('hapi');
-
+var config = require('./lib/config.js');
 Hapi.joi.version('v2');
 
 var run = require('./lib/getReport.js');
@@ -10,8 +10,7 @@ var run = require('./lib/getReport.js');
 var uuidValidator = Hapi.types.String().required().regex(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
 
 // Create a server with a host and port
-var PORT = 8000;
-
+var PORT = config.get('httpServerPort');
 var options = {
     views: {
         basePath: __dirname,
@@ -346,7 +345,6 @@ server.route({
     }
 });
 
-// Start the server
 server.start();
 
 log.info(pack.name, 'v' + pack.version, 'started on port', PORT);

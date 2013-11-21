@@ -35,14 +35,15 @@ Install depedencies and package validator with package pasties-js(abit funky)
 
     $ npm install && npm run build
 
-Run server, logs go to ./logs
-
-    $ npm start
-
 Run tests
 
     $ npm test
 
+# Starting the application
+
+Run server
+
+    $ npm start
 
 # Where to get help
 

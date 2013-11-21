@@ -8,9 +8,9 @@ lib-cov
 *.gz
 
 pids
-logs
+
 results
 node_modules
 bower_components
 
-npm-debug.log
+report.xml
