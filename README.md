@@ -12,7 +12,7 @@ Hooks / Harvesters (runs inside phantomJS context):
 * har,logs,errors (default)
 * images
 * jquery
-* pasties
+* pasties (based on [advertsspec](https://github.com/finn-no/advertsspec/blob/master/specification.md))
 * timers
 
 Validators / Rules (runs in node.js context):
