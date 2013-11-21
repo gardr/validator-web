@@ -1,0 +1,4 @@
+{
+	"httpServerPort": 9090,
+	"logFileName": "./logs/stdout"
+}
