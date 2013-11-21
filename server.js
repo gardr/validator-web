@@ -92,7 +92,7 @@ function trimHtml(str) {
 
     });
     new htmlparser.Parser(handler).parseComplete(str);
-    return output.body.replace(/(\r\n|\n|\r)/gm, '\\n');
+    return output.body.replace(/(\r\n|\n|\r)/gm, '\\n').replace(/'/gmi, "\\'");
 }
 
 server.route({
