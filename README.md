@@ -1,4 +1,4 @@
-validator-web
+pasties-validator-web
 =============
 [![Build Status](https://travis-ci.org/pasties/validator-web.png)](https://travis-ci.org/pasties/validator-web)
 
@@ -9,12 +9,14 @@ The main purpose is to find possible errors or regressions in display ads. Its i
 The validator takes _input_ as a _scripturl_ or _html,css and javascript_, and produces in 2 steps harvested data and a report.
 
 Hooks / Harvesters (runs inside phantomJS context):
+* har,logs,errors (default)
 * images
 * jquery
 * pasties
 * timers
 
 Validators / Rules (runs in node.js context):
+* errors (default)
 * images
 * jquery
 * css
@@ -29,14 +31,17 @@ After phantomjs run, the validators/rules runs in a series to generate a report(
 
 # Installation instructions
 
-Install depedencies and package pasties-js(abit funky)
-$ npm install && npm run build
+Install depedencies and package validator with package pasties-js(abit funky)
+
+    $ npm install && npm run build
 
 Run server, logs go to ./logs
-$ npm start
+
+    $ npm start
 
 Run tests
-$ npm test
+
+    $ npm test
 
 
 # Where to get help
