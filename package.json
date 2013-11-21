@@ -42,7 +42,7 @@
     "htmlparser-to-html": "0.0.5",
     "htmlparser2": "~3.3.0",
     "soupselect": "~0.2.0",
-    "convict": "0.1.x"
+    "convict": "~0.1.1"
   },
   "devDependencies": {
     "proxyquire": "~0.5.1",
