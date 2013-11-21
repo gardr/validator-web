@@ -2,7 +2,7 @@
 <html>
     <head>
       <title>{{pack.name}} {{pack.version}}</title>
-      <link href="/components/bootstrap-theme-cirrus/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="./components/bootstrap-theme-cirrus/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
         div.pasties {
             border: 1px solid #ccc;
@@ -20,7 +20,7 @@
 
         <div class="container">
             <h1 class="text-center">
-                <a href="/">{{pack.name}} <small>{{pack.version}}</small></a>
+                <a href="./">{{pack.name}} <small>{{pack.version}}</small></a>
             </h1>
 
 
@@ -150,7 +150,7 @@
 
             {{#showForm}}
 
-            <form method="POST" action="/validate" class="form">
+            <form method="POST" action="./validate" class="form">
 
                 {{^hideUrlInput}}
                 <div class="form-group">
@@ -207,7 +207,7 @@
                 <div>
                     <button class="btn btn-primary">Validate{{#hideUrlInput}} again{{/hideUrlInput}}</button>
                     {{^hideUrlInput}}<button class="btn btn-default" id="render">Render URL</button>{{/hideUrlInput}}
-                    <a href="/" class="btn">Back to frontpage</a>
+                    <a href="./" class="btn">Back to frontpage</a>
                 </div>
             </div>
             <br />
@@ -217,8 +217,8 @@
             </div>
             {{/showForm}}
         </div>
-        <script src="/preview/js/pasties/mobile.js"></script>
-        <script src="/main.js"></script>
+        <script src="./preview/js/pasties/mobile.js"></script>
+        <script src="./main.js"></script>
 
         {{#debugInfo}}
         <div style="margin: 0 20px">

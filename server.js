@@ -1,6 +1,6 @@
 var pack = require('./package.json');
 var development = process.env.NODE_ENV !== 'production';
-var log = require('./logger.js')
+var log = require('./logger.js');
 var Hapi = require('hapi');
 
 Hapi.joi.version('v2');
