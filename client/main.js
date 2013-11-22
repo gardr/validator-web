@@ -10,7 +10,7 @@ var domready = require('domready');
 domready(function () {
 
     initRender();
-
+    replayBanner();
 
     preview();
 
@@ -19,10 +19,10 @@ domready(function () {
     initEditor('js', 'javascript-editor', 'ace/mode/javascript');
 });
 
-function initEditor(textareaId, editorId, mode){
+function initEditor(textareaId, editorId, mode) {
     var textarea = document.getElementById(textareaId);
 
-    if (!textarea){
+    if (!textarea) {
         return;
     }
 
@@ -34,8 +34,8 @@ function initEditor(textareaId, editorId, mode){
     textarea.style.display = 'none';
     editor.clearSelection();
 
-    editor.on('blur', function(e){
-       textarea.value = editor.getValue();
+    editor.on('blur', function (e) {
+        textarea.value = editor.getValue();
     });
 
     return editor;
@@ -90,4 +90,57 @@ function initRender() {
     }
 
     events.on(button, 'click', handler);
+}
+
+function replayBanner() {
+    var next = document.getElementById('screenshot-next');
+    var prev = document.getElementById('screenshot-prev');
+    var play = document.getElementById('screenshot-play');
+
+    if (!next || !prev || !play){
+        return;
+    }
+
+    var screenshots = Array.prototype.slice.call(document.getElementsByClassName('screenshot'));
+
+    var nextHandler = handler(function (index, len) {
+        return index + 1;
+    });
+    var prevHandler = handler(function (index, len) {
+        return index - 1;
+    });
+
+    events.on(next, 'click', nextHandler);
+    events.on(prev, 'click', prevHandler);
+    events.on(play, 'click', start);
+
+    var interval;
+
+    function start() {
+        if (interval) {
+            interval = clearInterval(interval);
+            return;
+        }
+        interval = setInterval(nextHandler, 1000);
+    }
+
+    function handler(fn) {
+        return function () {
+            screenshots.some(go(fn));
+        };
+    }
+
+    function go(indexFn) {
+        return function shiftActive(elem, index, list) {
+            if (elem.className.indexOf('active') > -1) {
+                elem.className = elem.className.replace('active', '');
+                var newElem = list[indexFn(index, list.length)];
+                if (!newElem) {
+                    newElem = list[0];
+                }
+                newElem.className = newElem.className += ' active';
+                return true;
+            }
+        };
+    }
 }

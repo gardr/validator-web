@@ -1,0 +1,52 @@
+div.pasties {
+    border: 1px solid #ccc;
+}
+.animated-banner, iframe {
+  width: 100%;  
+  display: block;
+}
+.pasties {
+  margin-bottom: 10px;
+}
+
+
+.screenshots-wrapper {
+    background: #ccc;
+    width: 100%;
+}
+.screenshots {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;                        
+    max-width: 100%;
+}
+.screenshots-controller {
+    position: absolute;
+    z-index: 2;
+    right: 20px;
+    bottom: 20px;
+}
+.screenshot {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: none;
+    z-index: 1;
+    max-width: 100%;
+}
+.screenshot.active {
+    display: block;
+}
+.screenshot img {
+    width: 100%;
+}
+.screenshot .screenshot-title {
+    position: absolute;
+    right: 20px;
+    font-size: 14px;
+    top: 20px;
+    text-align: right;
+}

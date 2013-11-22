@@ -7,8 +7,6 @@ Hapi.joi.version('v2');
 
 var run = require('./lib/getReport.js');
 
-var uuidValidator = Hapi.types.String().required().regex(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
-
 // Create a server with a host and port
 var PORT = config.get('httpServerPort');
 var options = {
@@ -126,7 +124,7 @@ server.route({
                 this.reply(data[dataKey]).type(dataTypes[dataKey]);
                 log.info('served '+dataTypes[dataKey]+' ok:' + id);
             } else {
-                this.reply('console.log("Missing input");').type('application/javascript');
+                this.reply('console.log("ID ('+id+') has expired.");').type('application/javascript');
                 log.warn('served '+dataTypes[dataKey]+' fail:' + id);
             }
         }
@@ -139,6 +137,28 @@ server.route({
         }*/
     }
 });
+
+var fs = require('fs');
+var path = require('path');
+server.route({
+    method: 'GET',
+    path: '/screenshots/{id}/{filename}',
+    config: {
+        handler: function (request, response){
+            var id          = this.params.id;
+            var filename    = this.params.filename;
+            var data        = simpleStorage[id];
+            if (data){
+                var imagePath = path.join(data.harvest.imageOutputDir, filename);
+                this.reply(fs.createReadStream(imagePath)).type('image/png');
+            } else {
+                this.reply('The image was not found').code(404);
+            }
+
+        }
+    }
+});
+
 
 server.route({
     method: 'POST',
@@ -217,6 +237,7 @@ function getNoIDView() {
     };
 }
 
+var hoek = require('hoek');
 server.route({
     method: 'GET',
     path: '/result',
@@ -228,7 +249,7 @@ server.route({
             if (!simpleStorage[id]) {
                 view = getNoIDView();
             } else {
-                view = simpleStorage[id];
+                view = hoek.clone(simpleStorage[id]);
             }
 
             view.pack = pack;
@@ -261,7 +282,7 @@ server.route({
         },
         validate: {
             query: {
-                id: uuidValidator
+                id: Hapi.types.String().required().regex(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i)
             }
         }
     }
@@ -279,6 +300,18 @@ server.route({
         },
         cache: {
             expiresIn: 9000000000
+        }
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/client/{path*}',
+    handler: {
+        directory: {
+            path: './client',
+            listing: false,
+            index: true
         }
     }
 });

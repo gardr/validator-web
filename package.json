@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "pasties-js": ">=0.5.16",
-    "pasties-validator": "0.0.4",
+    "pasties-validator": "0.0.5",
     "hapi": ">=1.19.3",
     "grunt-subgrunt": "~0.2.2",
     "grunt": "~0.4.1",
