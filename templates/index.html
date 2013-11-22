@@ -7,7 +7,7 @@
     </head>
     <body>
         <a href="{{pack.repository.url}}" title="Fork {{pack.name}}">
-            <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+            <img style="position: absolute; top: 0; right: 0; border: 0;" src="./client/fork.png" alt="Fork me on GitHub">
         </a>
 
         <div class="container">
@@ -180,29 +180,31 @@
 
                 {{^hideCodeInput}}
                 <div class="code-editors">
+
+                    <div class="form-group">
+                        <label>HTML / Markup</label>
+                        <textarea id="html" name="html" class="form-control" rows="10" placeholder="html...">{{{html}}}</textarea>
+                        <div id="html-editor" style="width:100%;height:350px;border-radius: 3px;"></div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>CSS</label>
-                                <textarea id="css" name="css" class="form-control" rows="10" placeholder="css...">{{{css}}}</textarea>
+                                <textarea id="css" name="css" class="form-control" rows="5" placeholder="css...">{{{css}}}</textarea>
                                 <div id="css-editor" style="width:100%;height:250px;border-radius: 3px;"></div>
 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Markup</label>
-                                <textarea id="html" name="html" class="form-control" rows="10" placeholder="html...">{{{html}}}</textarea>
-                                <div id="html-editor" style="width:100%;height:250px;border-radius: 3px;"></div>
+                              <label>JS:</label>
+                              <textarea id="js" rows="5" name="js" class="form-control" placeholder="script...">{{{js}}}</textarea>
+                              <div id="javascript-editor" style="width:100%;height:250px;border-radius: 3px;"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                      <label>Javascript:</label>
-                      <textarea id="js" rows="10" name="js" class="form-control" placeholder="script...">{{{js}}}</textarea>
-                      <div id="javascript-editor" style="width:100%;height:350px;border-radius: 3px;"></div>
-                    </div>
                 </div>
 
 
@@ -227,12 +229,42 @@
                     {{^hideUrlInput}}<button class="btn btn-default" id="render">Render URL</button>{{/hideUrlInput}}
                     <a href="./" class="btn">Back to frontpage</a>
                 </div>
+
+                {{#hasIds}}
+                    <h3>Validator results available:</h3>
+                    {{#ids}}
+                        <div class="row">
+                            {{#hasImage}}
+                            <div class="col-md-6">
+                                <a href="/result?id={{id}}" title="View {{id}}">
+                                    <img src="{{filename}}" class="thumbnail" />
+                                </a>
+                            </div>
+                            {{/hasImage}}
+                            <div class="col-md-{{#filename}}6{{/filename}}{{^filename}}12{{/filename}}">
+                                <a href="/result?id={{id}}" title="View {{id}}" class="btn btn-default {{#success}}btn-success{{/success}}">
+                                    {{#success}}
+                                        <span class="glyphicon glyphicon-check"></span>
+                                        &nbsp;
+                                    {{/success}}
+                                    {{^success}}
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                        &nbsp;
+                                    {{/success}}
+                                    View {{id}}
+                                </a>
+                            </div>
+                        </div>
+                        <hr />
+                    {{/ids}}
+                {{/hasIds}}
             </div>
             <br />
             <br />
             <div id="container">
 
             </div>
+
             {{/showForm}}
         </div>
         <script src="./preview/js/pasties/mobile.js"></script>

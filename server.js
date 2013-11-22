@@ -115,8 +115,10 @@ server.route({
                     res += doWrite(trimmed);
                 }
 
-                var scriptUrl = data.url + '&key=js&';
-                res += doWrite("<script src=\\'"+scriptUrl+"\\'></script>");
+                if (data.js){
+                    var scriptUrl = data.url + '&key=js&';
+                    res += doWrite("<script src=\\'"+scriptUrl+"\\'></script>");
+                }
 
                 this.reply(res).type('application/javascript');
                 log.info('served composed file');
@@ -167,9 +169,11 @@ server.route({
         handler: function (request, response) {
             var id = uuid.v4();
             var url = request.payload.url;
-            var js = request.payload.js;
             var html = request.payload.html;
             var css = request.payload.css;
+            var js = request.payload.js;
+
+            var hasCodePayload = (js || html);
 
             simpleStorage.count++;
             if (simpleStorage.count > 20){
@@ -187,7 +191,7 @@ server.route({
 
             //console.log(request);
 
-            if (js) {
+            if (hasCodePayload) {
                 simpleStorage[id].previewUrl = simpleStorage[id].url = 'http://' + request.info.host + '/user-input.js?id=' + id + '&timestamp=' + Date.now();
             } else {
                 simpleStorage[id].previewUrl = simpleStorage[id].url;
@@ -259,17 +263,21 @@ server.route({
                 view.hideUrlInput = true;
             }
 
+            view.totalTestRuntime = 15000;
+
             if (view.report) {
                 view.showStatus = false;
                 view.showResultTable = (view.report.error.length > 0 || view.report.warn.length > 0 || view.report.info.length > 0);
             } else if (typeof view.processed === 'undefined') {
                 view.showStatus = true;
                 view.runtime = moment().diff(view.time);
-                view.reloadIn = (15000 - moment().diff(view.time));
+                view.reloadIn = (view.totalTestRuntime  - view.runtime);
             }
 
             if (view.showForm){
-                if (!view.js){
+                if (view.html || view.js){
+
+                } else {
                     view.hideCodeInput = true;
                 }
             }
@@ -289,14 +297,29 @@ server.route({
 });
 
 var browserify = require('browserify');
+var concat = require('concat-stream');
+var cachedMainJS;
 server.route({
     method: 'GET',
     path: '/main.js',
     config: {
         'handler': function (request, response) {
-            var b = browserify();
-            b.add('./client/main.js');
-            this.reply(b.bundle()).type('application/javascript');
+            var b;
+            var stream;
+            if (development || !cachedMainJS){
+                b = browserify({debug: development});
+                b.add('./client/main.js');
+                stream = b.bundle();
+            }
+
+            this.reply(cachedMainJS||stream).type('application/javascript');
+
+            if (stream){
+                stream.pipe(concat(function(data){
+                    cachedMainJS = data;
+                }));
+            }
+
         },
         cache: {
             expiresIn: 9000000000
@@ -360,9 +383,23 @@ server.route({
     path: '/',
     config: {
         handler: function (request) {
+
+            var resultIds =  Object.keys(simpleStorage).filter(function(key){return key !== 'count';}).map(function(id){
+                var data = simpleStorage[id];
+                var harvest = data.harvest;
+                var filename = harvest && harvest.images && ('/screenshots/' + id + '/'+harvest.images[harvest.images.length-1].filename);
+                return {
+                    id: id,
+                    filename: filename,
+                    hasImage: !!filename,
+                    success: data.report && data.report.error.length === 0 && data.report.warn.length === 0
+                };
+            });
             request.reply.view('index.html', {
                 pack: pack,
-                showForm: true
+                showForm: true,
+                ids: resultIds,
+                hasIds: resultIds.length > 0
             });
         }
     }
