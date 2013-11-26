@@ -2,8 +2,10 @@
 <html>
     <head>
       <title>{{pack.name}} {{pack.version}}</title>
+      <script src="./preview/js/pasties/mobile.js?ver={{pack.dependencies.pasties-validator}}"></script>
+      <script src="./client/built/bundle.js?ver={{pack.version}}"></script>
       <link href="./components/bootstrap-theme-cirrus/dist/css/bootstrap.min.css" rel="stylesheet" />
-      <link href="./client/styles.css" rel="stylesheet" />
+      <link href="./client/styles.css?ver={{pack.version}}" rel="stylesheet" />
     </head>
     <body>
         <a href="{{pack.repository.url}}" title="Fork {{pack.name}}">
@@ -267,8 +269,7 @@
 
             {{/showForm}}
         </div>
-        <script src="./preview/js/pasties/mobile.js"></script>
-        <script src="./main.js"></script>
+
 
         {{#debugInfo}}
         <div style="margin: 0 20px">
