@@ -417,4 +417,4 @@ server.route({
 
 server.start();
 
-log.info(pack.name, 'v' + pack.version, 'started on port', PORT);
+log.info(pack.name, 'v' + pack.version, 'started on port', PORT, 'logs at', config.get('logFileName'));

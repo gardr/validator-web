@@ -45,6 +45,12 @@ Run server
 
     $ npm start
 
+## Additional startup configuration
+
+You can configure port, logfile location, etc using the [config module](lib/config.js) or by specifying environment variables when starting. 
+
+	$ HTTP_PORT=1337 LOG_FILE_NAME=~/mylogs/pvw npm start
+
 # Where to get help
 
 Create a github issue, or contact sveinung.rosaker@finn.no.
