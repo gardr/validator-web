@@ -53,7 +53,7 @@ var help = require('../lib/validateHelpers.js');
 
 describe('CSS validator', function(){
 
-    it('should fail on tag styling', function(done){
+    it.skip('should fail on tag styling', function(done){
         var harvest = {
             frameStyles: ['body {padding: 0}', 'p{background: red;}html{margin: 10px;}'],
             har: {}
