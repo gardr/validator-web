@@ -16,3 +16,4 @@ bower_components
 report.xml
 
 logs
+client/built/*
