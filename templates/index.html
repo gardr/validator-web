@@ -216,7 +216,7 @@
                         </tr>
                         {{#logs}}
                             <tr>
-                                <td>{{time}}</td>
+                                <td>{{formattedTime}}</td>
                                 <td>{{message}}</td>
                             </tr>
                         {{/logs}}
@@ -226,7 +226,7 @@
 
                 <div>
                     <button class="btn btn-primary">Validate{{#hideUrlInput}} again{{/hideUrlInput}}</button>
-                    {{^hideUrlInput}}<button class="btn btn-default" id="render">Render URL</button>{{/hideUrlInput}}
+                    {{^hideUrlInput}}<button class="btn btn-default" id="render">Render URL in page</button>{{/hideUrlInput}}
                     <a href="./" class="btn">Back to frontpage</a>
                 </div>
 
