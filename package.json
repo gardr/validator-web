@@ -4,7 +4,9 @@
   "description": "web-app for validating pasties",
   "main": "server.js",
   "scripts": {
-    "build": "./node_modules/.bin/grunt subgrunt && ./node_modules/.bin/bower install",
+    "build-browser-js": "mkdir ./client/built & ./node_modules/.bin/browserify  client/main.js | ./node_modules/.bin/uglifyjs -mc  --lint=false  > client/built/bundle.js",
+    "build": "./node_modules/.bin/grunt subgrunt && ./node_modules/.bin/bower install && npm run build-browser-js",
+    "watch-js": "./node_modules/.bin/watchify    client/main.js -o client/built/bundle.js -dv",
     "start": "npm run build && node server.js",
     "test": "npm run build && ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
   },
@@ -43,11 +45,13 @@
     "htmlparser2": "~3.3.0",
     "soupselect": "~0.2.0",
     "convict": "~0.1.1",
-    "css-parse": "~1.6.0"
+    "css-parse": "~1.6.0",
+    "uglify-js": "~2.4.3"
   },
   "devDependencies": {
     "proxyquire": "~0.5.1",
     "mocha": "~1.13.0",
-    "buster-assertions": "~0.10.4"
+    "buster-assertions": "~0.10.4",
+    "watchify": "~0.3.0"
   }
 }
