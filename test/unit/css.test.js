@@ -53,10 +53,10 @@ var help = require('../lib/validateHelpers.js');
 
 describe('CSS validator', function(){
 
-    it.skip('should fail on tag styling', function(done){
+    it('should fail on tag styling', function(done){
         var harvest = {
             frameStyles: ['body {padding: 0}', 'p{background: red;}html{margin: 10px;}'],
-            har: {}
+            HARFile: {}
         };
 
         var reporter = help.createReporter.call(this);
@@ -65,7 +65,7 @@ describe('CSS validator', function(){
 
             var result = reporter.getResult();
 
-            assert.equals(result.error.length, 2);
+            assert.equals(result.error.length, 3);
 
             done();
         });

@@ -115,7 +115,7 @@ server.route({
                 var res = '';
 
                 if (data.css) {
-                    res += doWrite('<style>'+cssMinifier(data.css)+'</style>');
+                    res += doWrite('<style data-injected="true">'+cssMinifier(data.css)+'</style>');
                 }
 
                 if (data.html) {
