@@ -4,7 +4,7 @@
   "description": "web-app for validating pasties",
   "main": "server.js",
   "scripts": {
-    "build-browser-js": "mkdir ./client/built & ./node_modules/.bin/browserify  client/main.js | ./node_modules/.bin/uglifyjs -mc  --lint=false  > client/built/bundle.js",
+    "build-browser-js": "sh ./build-browser-js.sh",
     "build": "./node_modules/.bin/grunt subgrunt && ./node_modules/.bin/bower install && npm run build-browser-js",
     "watch-js": "./node_modules/.bin/watchify    client/main.js -o client/built/bundle.js -dv",
     "start": "npm run build && node server.js",
