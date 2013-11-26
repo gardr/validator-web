@@ -25,6 +25,14 @@ var options = {
     labels: ['web']
 };
 
+
+var day7 = 1000 * 60 * 60 * 24 * 7;
+var staticCacheConfig = {
+    mode: 'client',
+    expiresIn: day7,
+    privacy: 'public'
+};
+
 var server = Hapi.createServer('0.0.0.0', PORT, options);
 
 // report json endpoint
@@ -157,7 +165,8 @@ server.route({
                 this.reply('The image was not found').code(404);
             }
 
-        }
+        },
+        cache: staticCacheConfig
     }
 });
 
@@ -296,37 +305,6 @@ server.route({
     }
 });
 
-var browserify = require('browserify');
-var concat = require('concat-stream');
-var cachedMainJS;
-server.route({
-    method: 'GET',
-    path: '/main.js',
-    config: {
-        'handler': function (request, response) {
-            var b;
-            var stream;
-            if (development || !cachedMainJS){
-                b = browserify({debug: development});
-                b.add('./client/main.js');
-                stream = b.bundle();
-            }
-
-            this.reply(cachedMainJS||stream).type('application/javascript');
-
-            if (stream){
-                stream.pipe(concat(function(data){
-                    cachedMainJS = data;
-                }));
-            }
-
-        },
-        cache: {
-            expiresIn: 9000000000
-        }
-    }
-});
-
 server.route({
     method: 'GET',
     path: '/client/{path*}',
@@ -336,6 +314,9 @@ server.route({
             listing: false,
             index: true
         }
+    },
+    config: {
+        cache: staticCacheConfig
     }
 });
 
@@ -362,7 +343,11 @@ server.route({
             listing: false,
             index: true
         }
+    },
+    config: {
+        cache: staticCacheConfig
     }
+
 });
 
 // bootstrap css
@@ -375,6 +360,9 @@ server.route({
             listing: false,
             index: true
         }
+    },
+    config: {
+        cache: staticCacheConfig
     }
 });
 
