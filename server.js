@@ -1,8 +1,8 @@
-var pack = require('./package.json');
+var pack        = require('./package.json');
 var development = process.env.NODE_ENV !== 'production';
-var log = require('./lib/logger.js');
-var Hapi = require('hapi');
-var config = require('./lib/config.js');
+var log         = require('./lib/logger.js');
+var Hapi        = require('hapi');
+var config      = require('./lib/config.js');
 Hapi.joi.version('v2');
 
 var run = require('./lib/getReport.js');
@@ -17,7 +17,7 @@ var options = {
             html: 'handlebars'
         },
         partialsPath: 'templates',
-        isCached: false // dev only
+        isCached: !development
     },
     cache: {
         engine: 'memory'
@@ -33,7 +33,7 @@ var staticCacheConfig = {
     privacy: 'public'
 };
 
-var server = Hapi.createServer('0.0.0.0', PORT, options);
+var server = new Hapi.Server('0.0.0.0', PORT, options);
 
 // report json endpoint
 server.route({
@@ -115,7 +115,7 @@ server.route({
                 var res = '';
 
                 if (data.css) {
-                    res += doWrite('<style data-injected="true">'+cssMinifier(data.css)+'</style>');
+                    res += doWrite('<style>'+cssMinifier(data.css)+'</style>');
                 }
 
                 if (data.html) {
