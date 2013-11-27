@@ -32,7 +32,7 @@ describe('CSS hook', function () {
 
         global.document = {
             querySelectorAll: function () {
-                return [dom('ignore {}'), dom('me{}'), dom('validate {}')];
+                return [dom('ignore PASTIES {}'), dom('me PASTIES{}'), dom('validate {}')];
             }
         };
 

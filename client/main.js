@@ -48,7 +48,7 @@ function preview() {
     if (!url) return;
 
     var m = global.getManager({
-        iframeUrl: '/preview/html/pasties/mobile.htm'
+        iframeUrl: './preview/html/pasties/mobile.htm'
     });
     m.queue({
         name: name,
@@ -69,7 +69,7 @@ function initRender() {
     }
 
     var manager = global.getManager({
-        iframeUrl: '/preview/html/pasties/mobile.htm'
+        iframeUrl: './preview/html/pasties/mobile.htm'
     });
 
     var counter = 0;

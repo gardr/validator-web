@@ -198,10 +198,11 @@ server.route({
                 css: css
             };
 
-            //console.log(request);
-
             if (hasCodePayload) {
-                simpleStorage[id].previewUrl = simpleStorage[id].url = 'http://' + request.info.host + '/user-input.js?id=' + id + '&timestamp=' + Date.now();
+                // X-Forwarded-For X-Forwarded-Host X-Forwarded-Server
+                var forwared = this.raw.req.headers['X-Forwarded-Host'];
+                var host = forwared||request.info.host;
+                simpleStorage[id].previewUrl = simpleStorage[id].url = 'http://' + host + '/user-input.js?id=' + id + '&timestamp=' + Date.now();
             } else {
                 simpleStorage[id].previewUrl = simpleStorage[id].url;
             }
@@ -291,15 +292,21 @@ server.route({
                 }
             }
 
-            if (development) {
+            if (development || request.query.debug) {
                 view.debugInfo = JSON.stringify(view, null, 2);
+                if (request.query.debug){
+                    view.debugInfo += '\n\nHeaders:\n' + JSON.stringify(this.raw.req.headers, null, 2);
+                }
             }
+
+
 
             this.reply.view('index.html', view);
         },
         validate: {
             query: {
-                id: Hapi.types.String().required().regex(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i)
+                id: Hapi.types.String().required().regex(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i),
+                debug: Hapi.types.Boolean().optional()
             }
         }
     }

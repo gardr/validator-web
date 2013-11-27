@@ -17,7 +17,6 @@
                 <a href="./">{{pack.name}} <small>{{pack.version}}</small></a>
             </h1>
 
-
             {{#error}}
                 <br />
                 <div class="alert alert-danger">
@@ -74,13 +73,6 @@
                 </script>
             {{/showStatus}}
 
-            {{#harvest.animatedGif}}
-                <div>
-                    <br />
-                    <img class="animated-banner" src="data:image/gif;base64,{{.}}" />
-                </div>
-            {{/harvest.animatedGif}}
-
             {{#harvest.hasScreenshots}}
                 <div class="screenshots-wrapper" style="height: {{harvest.firstImage.height}}px;">
                     <div id="screenshots" class="screenshots" style="height: {{harvest.firstImage.height}}px;width: {{harvest.firstImage.width}}px;">
@@ -98,7 +90,7 @@
                         {{#harvest.images}}
                             <div class="screenshot {{#active}}active{{/active}}" data-index="{{index}}" data-timing="{{timing}}" data-time="{{time}}">
                                 <div class="screenshot-title">Image {{index}} of {{total}}, {{formattedTime}}</div>
-                                <img class="entry" src="/screenshots/{{id}}/{{filename}}" width="{{width}}" height="{{height}}"/>
+                                <img class="entry" src="./screenshots/{{id}}/{{filename}}" width="{{width}}" height="{{height}}"/>
                             </div>
                         {{/harvest.images}}
                     </div>
@@ -238,13 +230,13 @@
                         <div class="row">
                             {{#hasImage}}
                             <div class="col-md-6">
-                                <a href="/result?id={{id}}" title="View {{id}}">
-                                    <img src="{{filename}}" class="thumbnail" />
+                                <a href="./result?id={{id}}" title="View {{id}}">
+                                    <img src=".{{filename}}" class="thumbnail" />
                                 </a>
                             </div>
                             {{/hasImage}}
                             <div class="col-md-{{#filename}}6{{/filename}}{{^filename}}12{{/filename}}">
-                                <a href="/result?id={{id}}" title="View {{id}}" class="btn btn-default {{#success}}btn-success{{/success}}">
+                                <a href="./result?id={{id}}" title="View {{id}}" class="btn btn-default {{#success}}btn-success{{/success}}">
                                     {{#success}}
                                         <span class="glyphicon glyphicon-check"></span>
                                         &nbsp;
