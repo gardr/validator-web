@@ -9,6 +9,9 @@ div.pasties {
   margin-bottom: 10px;
 }
 
+.table pre {
+    min-width: 175px;
+}
 
 .screenshots-wrapper {
     background: #ccc;
