@@ -3,7 +3,7 @@ var assert = buster.assert;
 var refute = buster.refute;
 
 
-var cssHOOK = require('../../lib/hook/css.js');
+var cssHOOK = require('../../lib/report/hook/css.js');
 
 describe('CSS hook', function () {
 
@@ -48,7 +48,7 @@ describe('CSS hook', function () {
 
 });
 
-var cssValidator = require('../../lib/validator/css.js');
+var cssValidator = require('../../lib/report/validator/css.js');
 var help = require('../lib/validateHelpers.js');
 
 describe('CSS validator', function(){

@@ -3,7 +3,7 @@ var assert = buster.assert;
 var refute = buster.refute;
 var help = require('../lib/validateHelpers.js');
 
-var hook = require('../../lib/hook/pasties.js');
+var hook = require('../../lib/report/hook/pasties.js');
 
 describe('Pasties hooks', function () {
 
@@ -45,7 +45,7 @@ describe('Pasties hooks', function () {
 
 });
 
-var validator = require('../../lib/validator/pasties.js');
+var validator = require('../../lib/report/validator/pasties.js');
 
 describe('Pasties validator', function () {
 

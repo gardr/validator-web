@@ -5,7 +5,7 @@ var refute = buster.refute;
 var proxyquire = require('proxyquire');
 
 var help = require('../lib/validateHelpers.js');
-var hook = require('../../lib/hook/jquery.js');
+var hook = require('../../lib/report/hook/jquery.js');
 
 describe('jQuery hook', function () {
 
@@ -83,7 +83,7 @@ describe('jQuery validator', function () {
             { major: 2, minor: 0,  patch: 3, sortKey: 20003}
            ]);
     }
-    var validator = proxyquire('../../lib/validator/jquery.js', {
+    var validator = proxyquire('../../lib/report/validator/jquery.js', {
         './getLatestJquery.js': {
             'getLatest': shimLatest
         }
