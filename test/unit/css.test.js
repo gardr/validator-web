@@ -10,7 +10,6 @@ describe('CSS hook', function () {
     it('it should collect styles and filter', function(){
 
         var result = {};
-        var list = ['ignore {}', 'me{}', 'validate {}'];
         var api = {
             'getResultObject' : function(){
                 return result;
@@ -32,7 +31,7 @@ describe('CSS hook', function () {
 
         global.document = {
             querySelectorAll: function () {
-                return [dom('ignore PASTIES {}'), dom('me PASTIES{}'), dom('validate {}')];
+                return [dom('* { padding: 0; margin: 0; border: 0; }'), dom('ignore PASTIES {}'), dom('me #PASTIES{}'), dom('validate {}')];
             }
         };
 
