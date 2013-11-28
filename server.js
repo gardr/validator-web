@@ -27,7 +27,6 @@ var options = {
 var server = new Hapi.Server('0.0.0.0', PORT, options);
 
 server.route(require('./lib/routes/frontpage.js'));
-server.route(require('./lib/routes/report.js'));
 server.route(require('./lib/routes/userInput.js'));
 server.route(require('./lib/routes/screenshots.js'));
 server.route(require('./lib/routes/validate.js'));
