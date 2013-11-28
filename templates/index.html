@@ -20,7 +20,10 @@
             {{#error}}
                 <br />
                 <div class="alert alert-danger">
+                    {{message}}
                     {{err.message}}
+                    {{err.code}}
+                    {{err.path}}
                 </div>
             {{/error}}
 
@@ -104,7 +107,7 @@
                             <th>Type</th>
                             <th>Message</th>
                             <th>Rule</th>
-                            <th>Source</th>
+                            <th>Source / Code</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -137,6 +140,9 @@
                                     {{#trace}}
                                         <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
                                     {{/trace}}
+                                    {{#data.code}}
+                                    <pre><small><code>{{.}}</code></small></pre>
+                                    {{/data.code}}
                                 </td>
                             </tr>
                         {{/report.error}}
@@ -153,6 +159,7 @@
                                     {{#trace}}
                                         <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
                                     {{/trace}}
+
                                 </td>
                             </tr>
                         {{/report.info}}
