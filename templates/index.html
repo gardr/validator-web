@@ -176,6 +176,18 @@
                   <label>Input URL:</label>
                   <input id="urlInput" type="text" name="url" class="form-control" value="{{url}}" placeholder="http://" />
                 </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="target" id="target1" value="mobile" {{#isMobileTarget}}checked{{/isMobileTarget}}>
+                    Mobile <small>(&lt; 50Kb)</small>
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="target" id="target2" value="tablet" {{#isTabletTarget}}checked{{/isTabletTarget}}>
+                    Tablet <small>(&lt; 100Kb)</small>
+                  </label>
+                </div>
                 {{/hideUrlInput}}
 
 

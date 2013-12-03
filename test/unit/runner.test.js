@@ -16,7 +16,7 @@ var runner = proxyquire('../../lib/report/index.js', {
 describe('getReport', function () {
 
     it('calling runner without scriptUrl should return an error', function(done){
-        runner(null, null, function(err, result){
+        runner(null, function(err, result){
             assert(err);
             done();
         });
@@ -24,7 +24,8 @@ describe('getReport', function () {
 
     it('calling runner should work, and return options as expected', function(done){
         var scriptUrl = 'id_'+Math.round(Math.random()*100012391023);
-        runner(scriptUrl, 'asd', function(err, options){
+
+        runner({url: scriptUrl, id: 'asd'}, function(err, options){
             refute(err);
             assert.isObject(options);
             assert.isString(options.scriptUrl);

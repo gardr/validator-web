@@ -1,6 +1,6 @@
 {
   "name": "pasties-validator-web",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "web-app for validating pasties",
   "main": "server.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "pasties-js": ">=0.5.16",
-    "pasties-validator": "0.0.6",
+    "pasties-validator": "0.0.7",
     "hapi": "1.19.4",
     "grunt-subgrunt": "~0.2.2",
     "grunt": "~0.4.1",
