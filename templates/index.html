@@ -124,6 +124,12 @@
                                     {{#trace}}
                                         <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
                                     {{/trace}}
+                                     {{#data.code}}
+                                    <pre><small><code>{{.}}</code></small></pre>
+                                    {{/data.code}}
+                                    {{#data.list}}
+                                    <pre><small><code>{{.}}</code></small></pre>
+                                    {{/data.list}}
                                 </td>
                             </tr>
                         {{/report.warn}}
@@ -143,6 +149,9 @@
                                     {{#data.code}}
                                     <pre><small><code>{{.}}</code></small></pre>
                                     {{/data.code}}
+                                    {{#data.list}}
+                                    <pre><small><code>{{.}}</code></small></pre>
+                                    {{/data.list}}
                                 </td>
                             </tr>
                         {{/report.error}}
@@ -159,6 +168,12 @@
                                     {{#trace}}
                                         <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
                                     {{/trace}}
+                                     {{#data.code}}
+                                    <pre><small><code>{{.}}</code></small></pre>
+                                    {{/data.code}}
+                                    {{#data.list}}
+                                    <pre><small><code>{{.}}</code></small></pre>
+                                    {{/data.list}}
 
                                 </td>
                             </tr>
