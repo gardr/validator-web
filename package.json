@@ -1,6 +1,6 @@
 {
   "name": "pasties-validator-web",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "web-app for validating pasties",
   "main": "server.js",
   "scripts": {
