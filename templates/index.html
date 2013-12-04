@@ -112,17 +112,17 @@
                     </thead>
                     <tbody>
 
-                        {{#report.warn}}
-                            <tr class="warning">
-                                <td>Warning</td>
+                        {{#report.full}}
+                            <tr class="{{typeClass}}">
+                                <td>{{type}}</td>
                                 <td>{{message}}</td>
                                 <td>{{validatorName}}</td>
                                 <td>
                                     {{#data.trace}}
-                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
+                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}{{#line}}:{{.}}{{/line}}</small></a><br />
                                     {{/data.trace}}
                                     {{#trace}}
-                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
+                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}{{#line}}:{{.}}{{/line}}</small></a><br />
                                     {{/trace}}
                                      {{#data.code}}
                                     <pre><small><code>{{.}}</code></small></pre>
@@ -132,52 +132,8 @@
                                     {{/data.list}}
                                 </td>
                             </tr>
-                        {{/report.warn}}
+                        {{/report.full}}
 
-                        {{#report.error}}
-                            <tr class="danger">
-                                <td>Error</td>
-                                <td>{{message}}</td>
-                                <td>{{validatorName}}</td>
-                                <td>
-                                    {{#data.trace}}
-                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
-                                    {{/data.trace}}
-                                    {{#trace}}
-                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
-                                    {{/trace}}
-                                    {{#data.code}}
-                                    <pre><small><code>{{.}}</code></small></pre>
-                                    {{/data.code}}
-                                    {{#data.list}}
-                                    <pre><small><code>{{.}}</code></small></pre>
-                                    {{/data.list}}
-                                </td>
-                            </tr>
-                        {{/report.error}}
-
-                        {{#report.info}}
-                            <tr class="">
-                                <td>Info</td>
-                                <td>{{message}}</td>
-                                <td>{{validatorName}}</td>
-                                <td>
-                                    {{#data.trace}}
-                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
-                                    {{/data.trace}}
-                                    {{#trace}}
-                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}:{{line}}</small></a><br />
-                                    {{/trace}}
-                                     {{#data.code}}
-                                    <pre><small><code>{{.}}</code></small></pre>
-                                    {{/data.code}}
-                                    {{#data.list}}
-                                    <pre><small><code>{{.}}</code></small></pre>
-                                    {{/data.list}}
-
-                                </td>
-                            </tr>
-                        {{/report.info}}
                     </tbody>
                 </table>
             {{/showResultTable}}
