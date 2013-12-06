@@ -1,4 +1,4 @@
-var validate = require('pasties-validator/lib/validate.js');
+var validate = require('gardr-validator/lib/validate.js');
 
 function getTraceObject(name) {
     return {

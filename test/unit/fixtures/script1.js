@@ -1,6 +1,6 @@
 function insertBanner(){
     var div = document.createElement('div');
-    var cont = document.getElementById('PASTIES');
+    var cont = document.getElementById('GARDR');
     cont.appendChild(div);
     div.setAttribute('style', 'text-align:center;width:100%;height:225px;background:green;color:white;line-height: 225px;');
     div.innerHTML = '<h1>script.js test</h1>';

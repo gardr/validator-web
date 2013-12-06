@@ -4,7 +4,7 @@ var refute = buster.refute;
 
 var help    = require('../lib/validateHelpers.js');
 
-var HOOKS   = require('pasties-validator/lib/phantom/createHooks.js').HOOKS;
+var HOOKS   = require('gardr-validator/lib/phantom/createHooks.js').HOOKS;
 var hooks   = require('../../lib/report/hook/timers.js');
 var timers  = require('../../lib/report/validator/timers.js');
 

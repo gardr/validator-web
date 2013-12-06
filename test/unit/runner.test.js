@@ -7,7 +7,7 @@ var proxyquire = require('proxyquire');
 // phantom smoke test
 
 var runner = proxyquire('../../lib/report/index.js', {
-    'pasties-validator': function (options, callback) {
+    'gardr-validator': function (options, callback) {
         // test just want the options for verifying the actual option-object
         callback(null, options);
     }

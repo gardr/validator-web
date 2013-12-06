@@ -4,8 +4,8 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         subgrunt: {
-            'grunt BUILD node_modules/pasties-js': {
-                'node_modules/pasties-js':'build'
+            'grunt BUILD node_modules/gardr': {
+                'node_modules/gardr':'build'
             }
         }
     });

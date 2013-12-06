@@ -1,7 +1,7 @@
 {
-  "name": "pasties-validator-web",
+  "name": "gardr-validator-web",
   "version": "0.0.18",
-  "description": "web-app for validating pasties",
+  "description": "The Web ui for the garðr validator",
   "main": "server.js",
   "scripts": {
     "build-browser-js": "sh ./build-browser-js.sh",
@@ -12,16 +12,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pasties/validator-web.git"
+    "url": "https://github.com/gardr/validator-web.git"
   },
   "author": "Sveinung Røsaker <sveinung.rosaker@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pasties/validator-web/issues"
+    "url": "https://github.com/gardr/validator-web/issues"
   },
   "dependencies": {
-    "pasties-js": ">=0.5.16",
-    "pasties-validator": "0.0.10",
+    "gardr": "0.5.17-SNAPSHOT",
+    "gardr-validator": "0.0.10",
     "hapi": "1.19.4",
     "grunt-subgrunt": "~0.2.2",
     "grunt": "~0.4.1",

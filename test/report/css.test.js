@@ -31,7 +31,7 @@ describe('CSS hook', function () {
 
         global.document = {
             querySelectorAll: function () {
-                return [dom('* { padding: 0; margin: 0; border: 0; }'), dom('ignore PASTIES {}'), dom('me #PASTIES{}'), dom('validate {}')];
+                return [dom('* { padding: 0; margin: 0; border: 0; }'), dom('ignore GARDR {}'), dom('me #GARDR{}'), dom('validate {}')];
             }
         };
 

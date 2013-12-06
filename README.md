@@ -1,8 +1,9 @@
-pasties-validator-web
+garðr-validator-web
 =============
-[![Build Status](https://travis-ci.org/pasties/validator-web.png)](https://travis-ci.org/pasties/validator-web)
 
-**Description: Web validator interface for the [pasties project](http://pasties.github.io/).**
+[![Build Status](https://travis-ci.org/gardr/validator-web.png)](https://travis-ci.org/gardr/validator-web)
+
+**Description: This is the web interface for the [garðr validator project](http://gardr.github.io/).**
 
 The main purpose is to find possible errors or regressions in display ads. Its intended to grow over time to a set of rules based on best practices for performance ( although displayads not necessarily can avoid document.write atm ).
 
@@ -12,7 +13,7 @@ Hooks / Harvesters (runs inside phantomJS context):
 * har,logs,errors (default)
 * images
 * jquery
-* pasties (based on [advertsspec](https://github.com/finn-no/advertsspec/blob/master/specification.md))
+* gardr (based on [advertsspec](https://github.com/finn-no/advertsspec/blob/master/specification.md))
 * timers
 
 Validators / Rules (runs in node.js context):
@@ -31,7 +32,7 @@ After phantomjs run, the validators/rules runs in a series to generate a report(
 
 # Installation instructions
 
-Install depedencies and package validator with package pasties-js(abit funky)
+Install depedencies and package validator with package gardr(abit funky)
 
     $ npm install && npm run build
 

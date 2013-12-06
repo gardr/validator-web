@@ -1,7 +1,7 @@
 {
-  "name": "pasties-validator-web",
+  "name": "gardr-validator-web",
   "version": "0.0.1",
-  "homepage": "https://github.com/pasties/validator-web",
+  "homepage": "https://github.com/gardr/validator-web",
   "authors": [
     "sverosak <sveinung.rosaker@finn.no>"
   ],

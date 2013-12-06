@@ -3,9 +3,9 @@ var assert = buster.assert;
 var refute = buster.refute;
 var help = require('../lib/validateHelpers.js');
 
-var hook = require('../../lib/report/hook/pasties.js');
+var hook = require('../../lib/report/hook/gardr.js');
 
-describe('Pasties hooks', function () {
+describe('Gardr hooks', function () {
 
     it('should store probes', function () {
 
@@ -45,13 +45,13 @@ describe('Pasties hooks', function () {
 
 });
 
-var validator = require('../../lib/report/validator/pasties.js');
+var validator = require('../../lib/report/validator/gardr.js');
 
-describe('Pasties validator', function () {
+describe('Gardr validator', function () {
 
     it('should evaluate and return errors', function (done) {
         var harvest = {
-            'pastiesDom': {
+            'gardrDom': {
                 banner: {
                     name: 'DIV',
                     clickHandler: '',
@@ -87,7 +87,7 @@ describe('Pasties validator', function () {
 
     function getValid(clickHandler){
         return {
-            'pastiesDom': {
+            'gardrDom': {
                 banner: {
                     name: 'DIV',
                     clickHandler: clickHandler,
