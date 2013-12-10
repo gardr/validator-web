@@ -14,7 +14,10 @@ describe('Static code inspection / forbidden usages', function(){
 
         var harvested = {
             frameScriptTags: ['var nav = navigator; nav.geolocation'],
-            frameScriptAttributes: ['window.open("url", "new_window")', 'navigator.geolocation;'],
+            frameScriptAttributes: [
+                {'matches': [{key: 'onclick', value: 'window.open("url", "new_window")'}], tag: 'dummy'},
+                {'matches': [{key: 'onchange', value: 'navigator.geolocation;'}], tag: 'dummy'}
+            ],
             rawFileData: {
                 "http://localhost:8000/fixtures/script1.js?": {
                     "url": "http://localhost:8000/fixtures/script1.js?",
