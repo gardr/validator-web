@@ -2,19 +2,19 @@
 <html>
     <head>
       <title>{{pack.name}} {{pack.version}}</title>
-      <script src="./preview/js/gardr/mobile.js?ver={{pack.dependencies.gardr-validator}}"></script>
-      <script src="./client/built/bundle.js?ver={{pack.version}}"></script>
-      <link href="./components/bootstrap-theme-cirrus/dist/css/bootstrap.min.css" rel="stylesheet" />
-      <link href="./client/styles.css?ver={{pack.version}}" rel="stylesheet" />
+      <script src="{{base}}preview/js/gardr/mobile.js?ver={{pack.dependencies.gardr-validator}}"></script>
+      <script src="{{base}}client/built/bundle.js?ver={{pack.version}}"></script>
+      <link  href="{{base}}components/bootstrap-theme-cirrus/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link  href="{{base}}client/styles.css?ver={{pack.version}}" rel="stylesheet" />
     </head>
     <body>
         <a href="{{pack.repository.url}}" title="Fork {{pack.name}}">
-            <img style="position: absolute; top: 0; right: 0; border: 0;" src="./client/fork.png" alt="Fork me on GitHub">
+            <img style="position: absolute; top: 0; right: 0; border: 0;" src="{{base}}client/fork.png" alt="Fork me on GitHub">
         </a>
 
         <div class="container">
             <h1 class="text-center">
-                <a href="./">{{pack.name}} <small>{{pack.version}}</small></a>
+                <a href="{{base}}">{{pack.name}} <small>{{pack.version}}</small></a>
             </h1>
 
             {{#error}}
@@ -93,7 +93,7 @@
                         {{#harvest.images}}
                             <div class="screenshot {{#active}}active{{/active}}" data-index="{{index}}" data-timing="{{timing}}" data-time="{{time}}">
                                 <div class="screenshot-title">Image {{index}} of {{total}}, {{formattedTime}}</div>
-                                <img class="entry" src="./screenshots/{{id}}/{{filename}}" width="{{width}}" height="{{height}}"/>
+                                <img class="entry" src="{{base}}screenshots/{{id}}/{{filename}}" width="{{width}}" height="{{height}}"/>
                             </div>
                         {{/harvest.images}}
                     </div>
@@ -140,7 +140,7 @@
 
             {{#showForm}}
 
-            <form method="POST" action="./validate" class="form">
+            <form method="POST" action="{{base}}validate" class="form">
 
                 {{^hideUrlInput}}
                 <div class="form-group">
@@ -211,7 +211,7 @@
                 <div>
                     <button class="btn btn-primary">Validate{{#hideUrlInput}} again{{/hideUrlInput}}</button>
                     {{^hideUrlInput}}<button class="btn btn-default" id="render">Render URL in page</button>{{/hideUrlInput}}
-                    <a href="./" class="btn">Back to frontpage</a>
+                    <a href="{{base}}" class="btn">Back to frontpage</a>
                 </div>
 
                 {{#hasIds}}
@@ -220,13 +220,13 @@
                         <div class="row">
                             {{#hasImage}}
                             <div class="col-md-6">
-                                <a href="./result?id={{id}}" title="View {{id}}">
+                                <a href="{{base}}result?id={{id}}" title="View {{id}}">
                                     <img src=".{{filename}}" class="thumbnail" />
                                 </a>
                             </div>
                             {{/hasImage}}
                             <div class="col-md-{{#filename}}6{{/filename}}{{^filename}}12{{/filename}}">
-                                <a href="./result?id={{id}}" title="View {{id}}" class="btn btn-default {{#success}}btn-success{{/success}}">
+                                <a href="{{base}}result?id={{id}}" title="View {{id}}" class="btn btn-default {{#success}}btn-success{{/success}}">
                                     {{#success}}
                                         <span class="glyphicon glyphicon-check"></span>
                                         &nbsp;
