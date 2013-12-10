@@ -48,15 +48,17 @@ function preview() {
     if (!url) return;
 
     var m = global.getManager({
-        iframeUrl: './preview/html/pasties/mobile.htm'
+        iframeUrl: './preview/html/gardr/mobile.htm'
     });
-    m.queue({
-        name: name,
+    m.queue(name, {
         url: url,
+        width: 980,
+        height: 225,
         container: 'preview-container'
     });
     m.render(name, function (err, res) {
         console.log('done', name, err, res);
+        res.iframe.resize('100%', res.input.height);
     });
 }
 
@@ -68,8 +70,8 @@ function initRender() {
         return;
     }
 
-    var manager = global.getManager({
-        iframeUrl: './preview/html/pasties/mobile.htm'
+    var manager = global.__manager = global.getManager({
+        iframeUrl: './preview/html/gardr/mobile.htm'
     });
 
     var counter = 0;
@@ -77,14 +79,15 @@ function initRender() {
     function handler(event) {
         event.preventDefault();
         var name = 'example_' + (counter++);
-        //console.log(name);
-        manager.queue({
-            name: name,
+        manager.queue(name, {
+            width: 980,
+            height: 225,
             url: input.value,
             container: 'container'
         });
         manager.render(name, function (err, res) {
             console.log('done', name, err, res);
+            res.iframe.resize('100%', res.input.height);
         });
         return false;
     }
