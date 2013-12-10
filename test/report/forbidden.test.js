@@ -2,11 +2,11 @@ var buster = require('buster-assertions');
 var assert = buster.assert;
 var refute = buster.refute;
 
-var validator = require('../../lib/report/validator/analysis.js');
+var validator = require('../../lib/report/validator/forbidden.js');
 var help = require('../lib/validateHelpers.js');
 
 
-describe('Static analysis', function(){
+describe('Static code inspection / forbidden usages', function(){
 
 
     it('should report on geolocation usage', function(done){
@@ -50,7 +50,5 @@ describe('Static analysis', function(){
 
             done();
         }
-
     });
-
 });

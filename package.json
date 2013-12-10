@@ -6,7 +6,7 @@
   "scripts": {
     "build-browser-js": "sh ./build-browser-js.sh",
     "build": "./node_modules/.bin/grunt subgrunt && ./node_modules/.bin/bower install && npm run build-browser-js",
-    "watch-js": "./node_modules/.bin/watchify    client/main.js -o client/built/bundle.js -dv",
+    "watch-js": "./node_modules/.bin/watchify client/main.js -o client/built/bundle.js -dv",
     "start": "npm run build && node server.js",
     "test": "npm run build && ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
   },
