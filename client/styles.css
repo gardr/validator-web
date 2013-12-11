@@ -135,7 +135,7 @@ div.gardr {
   background: #eee;
   box-shadow: 0 0 0 5px #eee;
 }
-.logo:hover:before {
+a:hover>.logo:before, .logo:hover:before {
     border-left-color: #455860;
     border-right-color: #455860;
     border-top-color: red;
@@ -189,7 +189,7 @@ div.gardr {
         -webkit-transform: scale(1);
     }
     50% {
-        -webkit-transform: scale(1.05);
+        -webkit-transform: scale(1.05   );
     }
     100% {
         -webkit-transform: scale(1);
@@ -200,7 +200,7 @@ div.gardr {
         -moz-transform: scale(1);
     }
     50% {
-        -moz-transform: scale(1.05);
+        -moz-transform: scale(1.05  );
     }
     100% {
         -moz-transform: scale(1);
@@ -212,7 +212,7 @@ div.gardr {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.05);
+        transform: scale(1.05   );
     }
     100% {
         transform: scale(1);

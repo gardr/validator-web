@@ -46,7 +46,7 @@
                 </div>
 
                 <div id="preview-container">
-                    <h3>Preview</h3>
+                    <h3 class="text-center">Preview</h3>
 
                 </div>
                 <script>
@@ -257,7 +257,7 @@
                                                 <p>Verified!</p>
                                             {{/success}}
                                             {{^success}}
-                                                <span class="glyphicon glyphicon-thumbs-down text-danger"></span>
+                                                <span class="glyphicon glyphicon-thumbs-down text-primary"></span>
                                                 <p>Not verified</p>
                                             {{/success}}
                                         </div>
@@ -297,17 +297,15 @@
                                 <br />
                                 <br />
                                 {{#fullSize}}
-                                    <p>Total payload size: {{.}} bytes</p>
+                                    <p>Total payload size: <strong>{{.}} bytes</strong></p>
                                 {{/fullSize}}
                                 {{#hasErrors}}
-                                    <p>{{errors}} errors found</p>
+                                    <p><strong>{{errors}}</strong> errors found</p>
                                 {{/hasErrors}}
                                 {{#hasWarnings}}
-                                    <p>{{warnings}} warnings found</p>
+                                    <p><strong>{{warnings}}</strong> warnings found</p>
                                 {{/hasWarnings}}
-                                {{#target}}
-                                    <p><span class="label label-info">{{.}}</span></p>
-                                {{/target}}
+                                <p>{{statusText}} for <span class="label label-info">{{target}}</span> {{formattedTime}}</p>
                             </div>
                         </div>
                         <hr />
