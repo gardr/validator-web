@@ -10,14 +10,46 @@ var domready = require('domready');
 domready(function () {
 
     initRender();
+    initToggleAdvanced();
     replayBanner();
 
     preview();
 
-    initEditor('css', 'css-editor', 'ace/mode/css');
     initEditor('html', 'html-editor', 'ace/mode/html');
+    initEditor('css', 'css-editor', 'ace/mode/css');
     initEditor('js', 'javascript-editor', 'ace/mode/javascript');
 });
+
+function addClass(elem, name, add){
+    var output = elem.className.toString().replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ').split(' ');
+    if (add === false){
+        output = output.filter(function(v){return v !== name;});
+    } else {
+        output.push(name);
+    }
+    elem.className = output.join(' ');
+}
+
+function initToggleAdvanced(){
+    var toggleButton = document.getElementById('toggleAdvanced');
+    var advancedInput = document.getElementById('advanced');
+    var advancedMode = document.getElementById('advancedMode');
+    if (!toggleButton || !advancedInput || !advancedMode){
+        return false;
+    }
+
+    events.on(toggleButton, 'click', handler);
+
+    function handler(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        var newValue = advancedInput.value == 'true' ? 'false' : 'true';
+        advancedInput.value = newValue;
+        toggleButton.textContent = (newValue === 'true' ? 'Hide advanced' : 'Show advanced');
+        addClass(advancedMode, 'advanced-mode', newValue === 'true');
+    }
+}
 
 function initEditor(textareaId, editorId, mode) {
     var textarea = document.getElementById(textareaId);
