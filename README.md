@@ -2,6 +2,7 @@ garðr-validator-web
 =============
 
 [![Build Status](https://travis-ci.org/gardr/validator-web.png)](https://travis-ci.org/gardr/validator-web)
+[![Build Status](https://drone.io/github.com/gardr/validator-web/status.png)](https://drone.io/github.com/gardr/validator-web/latest)
 
 **Description: This is the web interface for the [garðr validator project](http://gardr.github.io/).**
 
@@ -48,7 +49,7 @@ Run server
 
 ## Additional startup configuration
 
-You can configure port, logfile location, etc using the [config module](lib/config.js) or by specifying environment variables when starting. 
+You can configure port, logfile location, etc using the [config module](lib/config.js) or by specifying environment variables when starting.
 
 	$ HTTP_PORT=1337 LOG_FILE_NAME=~/mylogs/pvw npm start
 
