@@ -1,4 +1,5 @@
 {
 	"httpServerPort": 9090,
-	"logFileName": "./logs/stdout"
+	"logFileName": "./logs/stdout",
+  "host": "validator.finn.no"
 }
