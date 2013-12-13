@@ -1,6 +1,6 @@
-var buster = require('buster-assertions');
-var assert = buster.assert;
-var refute = buster.refute;
+var referee = require('referee');
+var assert = referee.assert;
+var refute = referee.refute;
 var help = require('../lib/validateHelpers.js');
 
 var hook = require('../../lib/report/hook/gardr.js');

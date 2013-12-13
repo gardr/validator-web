@@ -1,6 +1,6 @@
-var buster = require('referee');
-var assert = buster.assert;
-var refute = buster.refute;
+var referee = require('referee');
+var assert = referee.assert;
+var refute = referee.refute;
 
 var validator = require('../../lib/report/validator/codeUsage.js');
 var help = require('../lib/validateHelpers.js');

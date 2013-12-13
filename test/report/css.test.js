@@ -1,6 +1,6 @@
-var buster = require('buster-assertions');
-var assert = buster.assert;
-var refute = buster.refute;
+var referee = require('referee');
+var assert = referee.assert;
+var refute = referee.refute;
 
 
 var cssHOOK = require('../../lib/report/hook/css.js');
@@ -31,7 +31,7 @@ describe('CSS hook', function () {
 
         global.document = {
             querySelectorAll: function () {
-                return [dom('* { padding: 0; margin: 0; border: 0; }'), dom('ignore GARDR {}'), dom('me #GARDR{}'), dom('validate {}')];
+                return [dom('* { padding: 0; margin: 0; border: 0; }'), dom('ignore GARDR {background:red;}'), dom('me #GARDR{background:blue;}'), dom('validate {background:yellow;}')];
             }
         };
 
@@ -54,7 +54,7 @@ describe('CSS validator', function(){
 
     it('should fail on tag styling', function(done){
         var harvest = {
-            frameStyles: ['body {padding: 0}', 'p{background: red;}html{margin: 10px;}'],
+            frameStyles: ['body {background:red;}', 'p{background: red;}html{background:blue;}', 'should filter out {margin: 0}', '.classname {background: orange;}'],
             HARFile: {}
         };
 
@@ -64,7 +64,7 @@ describe('CSS validator', function(){
 
             var result = reporter.getResult();
 
-            assert.equals(result.error.length, 3);
+            assert.equals(result.error.length, 3, 'should filter tags with usages except margin/padding');
 
             done();
         });
