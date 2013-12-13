@@ -9,7 +9,7 @@
     "watch-js": "./node_modules/.bin/watchify client/main.js -o client/built/bundle.js -dv",
     "start": "npm run build && node server.js",
     "start-dev": "npm run watch-js & sleep 3 && nodemon",
-    "test": "npm run build && ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
+    "test": "./node_modules/.bin/mocha test/**/*.test.js --reporter list"
   },
   "repository": {
     "type": "git",
