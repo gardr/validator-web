@@ -4,6 +4,8 @@ garðr-validator-web
 [![Build Status](https://travis-ci.org/gardr/validator-web.png)](https://travis-ci.org/gardr/validator-web)
 [![Build Status](https://drone.io/github.com/gardr/validator-web/status.png)](https://drone.io/github.com/gardr/validator-web/latest)
 [![NPM version](https://badge.fury.io/js/gardr-validator-web.png)](http://badge.fury.io/js/gardr-validator-web)
+[![Dependency Status](https://david-dm.org/gardr/validator-web.png)](https://david-dm.org/gardr/validator-web)
+[![devDependency Status](https://david-dm.org/gardr/validator-web/dev-status.png)](https://david-dm.org/gardr/validator-web#info=devDependencies)
 
 **Description: This is the web interface for the [garðr validator project](http://gardr.github.io/).**
 
