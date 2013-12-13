@@ -158,7 +158,7 @@
 
             {{#showForm}}
 
-            <form method="POST" action="{{base}}validate" class="form">
+            <form method="POST" action="{{base}}validate" class="form" enctype="multipart/form-data">
 
                 {{^hideUrlInput}}
                     <div class="form-group">
@@ -193,9 +193,16 @@
 
                     <div class="advanced-container {{#advanced}}advanced-mode{{/advanced}}" id="advancedMode">
 
+                        <div>
+                            <div class="form-group">
+                                <label>Zip</label>
+                                <input class="form-control" type="file" name="zipfile" />
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label>HTML / Markup</label>
-                            <textarea id="html" name="html" class="form-control" rows="10" placeholder="html...">{{{html}}}</textarea>
+                            <textarea id="html" name="html" class="form-control" rows="10" placeholder="html...">{{^trimmed}}{{{html}}}{{/trimmed}}{{#trimmed}}{{full}}{{/trimmed}}</textarea>
                             <div id="html-editor" style="width:100%;height:350px;border-radius: 3px;"></div>
                         </div>
 
@@ -216,7 +223,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div>
                             <button class="btn btn-primary">Validate{{#hideUrlInput}} again{{/hideUrlInput}}</button>

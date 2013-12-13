@@ -8,7 +8,7 @@
     "build": "./node_modules/.bin/grunt subgrunt && ./node_modules/.bin/bower install && npm run build-browser-js",
     "watch-js": "./node_modules/.bin/watchify client/main.js -o client/built/bundle.js -dv",
     "start": "npm run build && node server.js",
-    "start-dev": "npm run watch-js & sleep 3 && nodemon",
+    "start-dev": "npm run watch-js & sleep 3 && NODE_ENV=local ./node_modules/.bin/nodemon",
     "test": "./node_modules/.bin/mocha test/**/*.test.js --reporter list"
   },
   "repository": {
@@ -55,7 +55,8 @@
   "devDependencies": {
     "proxyquire": "~0.5.1",
     "mocha": "~1.15.0",
-    "buster-assertions": "~0.10.4",
-    "watchify": "~0.4.1"
+    "watchify": "~0.4.1",
+    "referee": "~1.0.1",
+    "nodemon": "~0.7.10"
   }
 }

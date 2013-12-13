@@ -15,6 +15,7 @@ The validator takes _input_ as a _scripturl_ or _html,css and javascript_, and p
 
 Hooks / Harvesters (runs inside phantomJS context):
 * har,logs,errors (default)
+* actions (click)
 * images
 * jquery
 * gardr (based on [advertsspec](https://github.com/finn-no/advertsspec/blob/master/specification.md))
@@ -22,6 +23,8 @@ Hooks / Harvesters (runs inside phantomJS context):
 
 Validators / Rules (runs in node.js context):
 * errors (default)
+* css
+* forbidden (usages)
 * images
 * jquery
 * css
@@ -46,9 +49,13 @@ Run tests
 
 # Starting the application
 
-Run server
+Run server:
 
-    $ npm start
+    $ HOST=localhost PORT=8000 npm start
+
+Local development:
+
+    $ npm run start-dev
 
 ## Additional startup configuration
 
