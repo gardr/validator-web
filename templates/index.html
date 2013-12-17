@@ -3,7 +3,8 @@
     <head>
       <title>{{pack.name}} {{pack.version}}</title>
       <script src="{{base}}preview/js/gardr/mobile.js?ver={{pack.dependencies.gardr-validator}}"></script>
-      <script src="{{base}}client/built/bundle.js?ver={{pack.version}}"></script>
+      <script src="{{base}}client/built/main.js?ver={{pack.version}}"></script>
+      <script src="{{base}}client/built/editor.js?ver={{pack.version}}"></script>
       <meta name="HandheldFriendly" content="True">
       <meta name="MobileOptimized" content="320">
       <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes'>
@@ -27,7 +28,7 @@
 
         <div class="container">
             <h1 class="text-center">
-                <a href="{{base}}"><span class="logo"></span> Garðr <small>validator</small></a>
+                <a href="{{base}}"><span class="logo"></span><br/> Garðr <small>validator</small></a>
             </h1>
 
             {{#error}}
@@ -170,6 +171,38 @@
 
             <form method="POST" action="{{base}}validate" class="form" enctype="multipart/form-data">
 
+                <br />
+                <div class="text-center" id="selectInput">
+                    <button class="btn btn-default btn-lg">
+                        URL
+                    </button>
+                    <button class="btn btn-default btn-lg">
+                        ZIP
+                    </button>
+                    <button class="btn btn-default btn-lg">
+                        CODE
+                    </button>
+                </div>
+
+                <br />
+                <div class="text-center" id="selectTarget">
+                    <button class="btn btn-default btn-lg">
+                        MOBILE
+                    </button>
+                    <button class="btn btn-primary btn-lg">
+                        TABLET
+                    </button>
+                </div>
+
+                <br />
+                <div class="text-center" id="action">
+                    <button class="btn btn-success btn-lg">
+                        RUN
+                    </button>
+                </div>
+
+
+
                 {{^hideUrlInput}}
                     <div class="form-group">
                       <label>Input URL:</label>
@@ -260,7 +293,7 @@
 
 
                 {{#hasIds}}
-                    <h3 class="text-center">Validator results available:</h3>
+                    <h3 class="text-center">Recent runs available:</h3>
                     <hr />
                     {{#ids}}
                         <div class="row">
