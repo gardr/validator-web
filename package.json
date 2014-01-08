@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "gardr": "0.5.17-SNAPSHOT",
-    "gardr-validator": "0.0.11",
+    "gardr-validator": "0.0.12",
     "hapi": "1.20.0",
     "grunt-subgrunt": "~0.2.2",
     "grunt": "~0.4.1",
@@ -35,7 +35,6 @@
     "dom-events": "~0.1.1",
     "concat-stream": "~1.2.0",
     "moment": "~2.4.0",
-    "node-uuid": "~1.4.1",
     "async": "~0.2.9",
     "winston": "~0.7.2",
     "mkdirp": "~0.3.5",
@@ -53,10 +52,10 @@
     "unzip": "~0.1.9"
   },
   "devDependencies": {
-    "proxyquire": "~0.5.1",
-    "mocha": "~1.15.0",
-    "watchify": "~0.4.1",
-    "referee": "~1.0.1",
-    "nodemon": "~0.7.10"
+    "proxyquire": "~0.5.2",
+    "mocha": "~1.16.2",
+    "watchify": "~0.5.0",
+    "referee": "~1.0.2",
+    "nodemon": "~1.0.7"
   }
 }
