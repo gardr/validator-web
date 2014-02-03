@@ -52,7 +52,8 @@
     "lodash": "~2.4.1",
     "gardr": "~0.5.17-SNAPSHOT",
     "levelup": "~0.18.2",
-    "leveldown": "~0.10.2"
+    "leveldown": "~0.10.2",
+    "node-uuid": "~1.4.1"
   },
   "devDependencies": {
     "proxyquire": "~0.5.2",
