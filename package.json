@@ -24,7 +24,6 @@
     "url": "https://github.com/gardr/validator-web/issues"
   },
   "dependencies": {
-    "gardr": "0.6.0-SNAPSHOT",
     "gardr-validator": "0.1.1",
     "hapi": "~2.1.2",
     "hoek": "~1.4.1",
@@ -50,7 +49,8 @@
     "estraverse": "~1.5.0",
     "esprima": "~1.0.4",
     "unzip": "~0.1.9",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "gardr": "~0.5.17-SNAPSHOT"
   },
   "devDependencies": {
     "proxyquire": "~0.5.2",
