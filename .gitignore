@@ -10,6 +10,7 @@ lib-cov
 pids
 
 results
+/results-db*
 node_modules
 bower_components
 
