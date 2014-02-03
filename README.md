@@ -3,6 +3,7 @@ garðr-validator-web
 
 [![Build Status](https://travis-ci.org/gardr/validator-web.png)](https://travis-ci.org/gardr/validator-web)
 [![Build Status](https://drone.io/github.com/gardr/validator-web/status.png)](https://drone.io/github.com/gardr/validator-web/latest)
+[![Coverage Status](https://coveralls.io/repos/gardr/validator-web/badge.png)](https://coveralls.io/r/gardr/validator-web)
 [![NPM version](https://badge.fury.io/js/gardr-validator-web.png)](http://badge.fury.io/js/gardr-validator-web)
 [![Dependency Status](https://david-dm.org/gardr/validator-web.png)](https://david-dm.org/gardr/validator-web)
 [![devDependency Status](https://david-dm.org/gardr/validator-web/dev-status.png)](https://david-dm.org/gardr/validator-web#info=devDependencies)
