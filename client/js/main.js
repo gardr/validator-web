@@ -1,13 +1,12 @@
 var events = require('dom-events');
 var domready = require('domready');
+var getManager = require('gardr/src/mobile.js');
 
 domready(function () {
-
     initRender();
     initToggleAdvanced();
-    replayBanner();
-
-    preview();
+    initReplayBannerControllers();
+    initPreview();
 });
 
 function addClass(elem, name, add){
@@ -21,9 +20,9 @@ function addClass(elem, name, add){
 }
 
 function initToggleAdvanced(){
-    var toggleButton = document.getElementById('toggleAdvanced');
+    var toggleButton  = document.getElementById('toggleAdvanced');
     var advancedInput = document.getElementById('advanced');
-    var advancedMode = document.getElementById('advancedMode');
+    var advancedMode  = document.getElementById('advancedMode');
     if (!toggleButton || !advancedInput || !advancedMode){
         return false;
     }
@@ -41,14 +40,14 @@ function initToggleAdvanced(){
     }
 }
 
-function preview() {
+function initPreview() {
 
     var url = window.previewUrl;
     var name = 'preview';
     if (!url) return;
 
-    var m = global.getManager({
-        iframeUrl: './preview/html/gardr/mobile.htm'
+    var m = getManager({
+        iframeUrl: './preview/iframe.html'
     });
     m.queue(name, {
         url: url,
@@ -57,7 +56,7 @@ function preview() {
         container: 'preview-container'
     });
     m.render(name, function (err, res) {
-        console.log('done', name, err, res);
+        //console.log('done', name, err, res);
         res.iframe.resize('100%', res.input.height);
     });
 }
@@ -70,8 +69,8 @@ function initRender() {
         return;
     }
 
-    var manager = global.__manager = global.getManager({
-        iframeUrl: './preview/html/gardr/mobile.htm'
+    var manager = global.__manager = getManager({
+        iframeUrl: './preview/iframe.html'
     });
 
     var counter = 0;
@@ -86,7 +85,7 @@ function initRender() {
             container: 'container'
         });
         manager.render(name, function (err, res) {
-            console.log('done', name, err, res);
+            //console.log('done', name, err, res);
             res.iframe.resize('100%', res.input.height);
         });
         return false;
@@ -95,7 +94,7 @@ function initRender() {
     events.on(button, 'click', handler);
 }
 
-function replayBanner() {
+function initReplayBannerControllers() {
     var next = document.getElementById('screenshot-next');
     var prev = document.getElementById('screenshot-prev');
     var play = document.getElementById('screenshot-play');
