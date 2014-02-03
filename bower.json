@@ -14,6 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-theme-cirrus": "~0.3.0"
+    "bootstrap": "~3.0.3"
   }
 }
