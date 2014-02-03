@@ -13,7 +13,9 @@ results
 node_modules
 bower_components
 
+coverage
 report.xml
 
 logs
 client/built/*
+lib/report/resources/built/
