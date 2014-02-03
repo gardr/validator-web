@@ -11,8 +11,8 @@ describe('CSS hook', function () {
 
         var result = {};
         var api = {
-            'getResultObject' : function(){
-                return result;
+            'set' : function(key, value){
+                result[key] = value;
             },
             'evaluate' : function(fn){
                 return fn();
@@ -39,8 +39,8 @@ describe('CSS hook', function () {
 
         global.document = null;
 
-        assert.isArray(result.frameStyles);
-        assert.equals(result.frameStyles.length, 1);
+        assert.isArray(result.styles);
+        assert.equals(result.styles.length, 1);
 
 
     });
@@ -54,8 +54,17 @@ describe('CSS validator', function(){
 
     it('should fail on tag styling', function(done){
         var harvest = {
-            frameStyles: ['body {background:red;}', 'p{background: red;}html{background:blue;}', 'should filter out {margin: 0}', '.classname {background: orange;}'],
-            HARFile: {}
+            css : {
+                styles: [
+                    'body {background:red;}',
+                    'p{background: red;}html{background:blue;}',
+                    'should filter out {margin: 0}',
+                    '.classname {background: orange;}'
+                ],
+            },
+            har: {
+                file: {}
+            }
         };
 
         var reporter = help.createReporter.call(this);

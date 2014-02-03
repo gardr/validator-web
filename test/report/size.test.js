@@ -9,33 +9,35 @@ describe('Size validator', function () {
 
     it('should report on external files', function (done) {
         var harvested = {
-            "rawFileDataSummary": {
-                "total": {
-                    "redirects": 0,
-                    "rawRequests": 4,
-                    "requestErrors": 0,
-                    "requests": 4,
-                    "size": 0,
-                    "fullSize": 0
-                },
-                "tips": {
-                    "possibleCompressTarget": 81960,
-                    "possibleCompressImprovement": 193109,
-                    "possibleCompressWithOnlyScriptGzip": 81960
-                },
-                "typed": {
-                    "types": {
-                        "script": {
-                            "http://localhost:8000/fixtures/script1.js": {},
-                            "http://localhost:8000/fixtures/script2.js": {},
-                            "http://localhost:8000/fixtures/script3.js": {}
-                        },
-                        "style": {
-                            "http://localhost:8000/fixtures/style.css": {}
-                        },
-                        "image": {},
-                        "other": {},
-                        "errors": {}
+            "har": {
+                "rawFileDataSummary": {
+                    "total": {
+                        "redirects": 0,
+                        "rawRequests": 4,
+                        "requestErrors": 0,
+                        "requests": 4,
+                        "size": 0,
+                        "fullSize": 0
+                    },
+                    "tips": {
+                        "possibleCompressTarget": 81960,
+                        "possibleCompressImprovement": 193109,
+                        "possibleCompressWithOnlyScriptGzip": 81960
+                    },
+                    "typed": {
+                        "types": {
+                            "script": {
+                                "http://localhost:8000/fixtures/script1.js": {},
+                                "http://localhost:8000/fixtures/script2.js": {},
+                                "http://localhost:8000/fixtures/script3.js": {}
+                            },
+                            "style": {
+                                "http://localhost:8000/fixtures/style.css": {}
+                            },
+                            "image": {},
+                            "other": {},
+                            "errors": {}
+                        }
                     }
                 }
             }
@@ -59,24 +61,28 @@ describe('Size validator', function () {
     it('should report on sizes', function (done) {
 
         var harvested = {
-            "rawFileDataSummary": {
-                "total": {
-                    "redirects": 0,
-                    "rawRequests": 4,
-                    "requestErrors": 0,
-                    "requests": 4,
-                    "size": 99940,
-                    "fullSize": 275069
-                },
-                "tips": {
-                    "possibleCompressTarget": 81960,
-                    "possibleCompressImprovement": 193109,
-                    "possibleCompressWithOnlyScriptGzip": 81960
+            "har": {
+                "rawFileDataSummary": {
+                    "total": {
+                        "redirects": 0,
+                        "rawRequests": 4,
+                        "requestErrors": 0,
+                        "requests": 4,
+                        "size": 99940,
+                        "fullSize": 275069
+                    },
+                    "tips": {
+                        "possibleCompressTarget": 81960,
+                        "possibleCompressImprovement": 193109,
+                        "possibleCompressWithOnlyScriptGzip": 81960
+                    }
                 }
             }
         };
         var reporter = help.createReporter.call(this);
-        var options = {target: 'tablet'};
+        var options = {
+            target: 'tablet'
+        };
 
         validator.validate(harvested, reporter, handler, options);
 
@@ -94,24 +100,28 @@ describe('Size validator', function () {
     it('should report on oversize', function (done) {
 
         var harvested = {
-            "rawFileDataSummary": {
-                "total": {
-                    "redirects": 0,
-                    "rawRequests": 4,
-                    "requestErrors": 0,
-                    "requests": 4,
-                    "size": 99940,
-                    "fullSize": 275069
-                },
-                "tips": {
-                    "possibleCompressTarget": 81960,
-                    "possibleCompressImprovement": 193109,
-                    "possibleCompressWithOnlyScriptGzip": 81960
+            "har": {
+                "rawFileDataSummary": {
+                    "total": {
+                        "redirects": 0,
+                        "rawRequests": 4,
+                        "requestErrors": 0,
+                        "requests": 4,
+                        "size": 99940,
+                        "fullSize": 275069
+                    },
+                    "tips": {
+                        "possibleCompressTarget": 81960,
+                        "possibleCompressImprovement": 193109,
+                        "possibleCompressWithOnlyScriptGzip": 81960
+                    }
                 }
             }
         };
         var reporter = help.createReporter.call(this);
-        var options = {target: 'mobile'};
+        var options = {
+            target: 'mobile'
+        };
 
         validator.validate(harvested, reporter, handler, options);
 

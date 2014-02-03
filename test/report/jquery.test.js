@@ -50,14 +50,14 @@ describe('jQuery hook', function () {
     it('should collect wrapped and jquery version', function () {
 
         var calls = 0;
-        var result = {};
-        var key = '12345'+Math.random()+Date.now();
+        var result = {jquery: {}};
+        var key = ('12345'+Math.round(Math.random()+Date.now()));
         var apiShim = {
             switchToIframe: function () {
                 calls++;
             },
-            getResultObject: function () {
-                return result;
+            set: function (key, value) {
+                result.jquery[key] = value;
             },
             evaluate: function (fn) {
                 global.window = {jQuery: {fn: {jquery: key}}};
@@ -71,36 +71,40 @@ describe('jQuery hook', function () {
         hook.onBeforeExit(apiShim);
 
         assert.equals(calls, 2);
-        assert.equals(result.jquery_version, key);
+        assert.equals(result.jquery.version, key);
 
     });
 
 });
 
-describe('jQuery validator', function () {
-    function shimLatest(cb) {
-        cb([{ major: 1, minor: 10, patch: 2, sortKey: 11002},
-            { major: 2, minor: 0,  patch: 3, sortKey: 20003}
-           ]);
+function shimLatest(cb) {
+    cb([{ major: 1, minor: 10, patch: 2, sortKey: 11002},
+        { major: 2, minor: 0,  patch: 3, sortKey: 20003}
+       ]);
+}
+var jqueryPreprocessor = proxyquire('../../lib/report/preprocessor/jquery.js', {
+    '../lib/getLatestJquery.js': {
+        'getLatest': shimLatest
     }
-    var validator = proxyquire('../../lib/report/validator/jquery.js', {
-        '../lib/getLatestJquery.js': {
-            'getLatest': shimLatest
-        }
-    });
+});
+
+var jqueryValidator = require('../../lib/report/validator/jquery.js');
+
+describe('jQuery validator', function () {
 
     it('should report error if animate called', function (done) {
-
         var harvested = {
-            jquery_animate: [
-                [help.getTraceObject(1), help.getTraceObject(2), help.getTraceObject(3)],
-                [help.getTraceObject(4), help.getTraceObject(5), help.getTraceObject(6)]
-            ]
+            jquery: {
+                animate: [
+                    [help.getTraceObject(1), help.getTraceObject(2), help.getTraceObject(3)],
+                    [help.getTraceObject(4), help.getTraceObject(5), help.getTraceObject(6)]
+                ]
+            }
         };
 
         var report = help.createReporter.call(this);
 
-        validator.validate(harvested, report, function () {
+        jqueryValidator.validate(harvested, report, function () {
             var result = report.getResult();
             assert.equals(result.error.length, 2);
             done();
@@ -109,17 +113,22 @@ describe('jQuery validator', function () {
     });
 
     it('should report error when version doesnt match latest', function (done) {
+        var report = help.createReporter.call(this);
         var harvested = {
-            jquery_version: "1.10.1"
+            jquery: { version: "1.10.1" }
         };
 
-        var report = help.createReporter.call(this);
+        function output(key, value){
+            harvested['jquery'][key] = value;
+        }
 
-        validator.validate(harvested, report, function () {
-            var result = report.getResult();
-            assert.equals(result.error.length, 1);
-            done();
-        });
+        jqueryPreprocessor.preprocess(harvested, output, function(){
+            jqueryValidator.validate(harvested, report, function () {
+                var result = report.getResult();
+                assert.equals(result.error.length, 1);
+                done();
+            });
+        }, {});
 
     });
 
