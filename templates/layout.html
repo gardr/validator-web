@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="HandheldFriendly" content="True">
+      <meta name="MobileOptimized" content="320">
+      <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes'>
+      <title>{{pack.name}} {{pack.version}}</title>
+      <script src="{{base}}client/built/main.js?ver={{pack.version}}{{pack.dependencies.gardr-validator}}"></script>
+      <script src="{{base}}client/built/editor.js?ver={{pack.version}}"></script>
+      <link  href="{{base}}components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link  href="{{base}}client/styles.css?ver={{pack.version}}" rel="stylesheet" />
+    </head>
+    <body>
+        <a href="{{pack.repository.url}}" title="Fork {{pack.name}}">
+            <img style="position: absolute; top: 0; right: 0; border: 0;" src="{{base}}client/fork.png" alt="Fork me on GitHub">
+        </a>
+
+        <div class="container">
+            {{>header}}
+
+            {{#error}}
+                {{>errors}}
+            {{/error}}
+
+            {{{content}}}
+
+            {{>footer}}
+        </div>
+
+
+        {{#debugInfo}}
+        <div style="margin: 0 20px">
+            <h1>Validator View:</h1>
+            <pre style="font-size:11px;"><code>{{.}}</code></pre>
+        </div>
+        {{/debugInfo}}
+        {{>bottom_js}}
+    </body>
+</html>

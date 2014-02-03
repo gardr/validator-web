@@ -1,389 +1,146 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <title>{{pack.name}} {{pack.version}}</title>
-      <script src="{{base}}preview/js/gardr/mobile.js?ver={{pack.dependencies.gardr-validator}}"></script>
-      <script src="{{base}}client/built/main.js?ver={{pack.version}}"></script>
-      <script src="{{base}}client/built/editor.js?ver={{pack.version}}"></script>
-      <meta name="HandheldFriendly" content="True">
-      <meta name="MobileOptimized" content="320">
-      <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes'>
-      <link  href="{{base}}components/bootstrap-theme-cirrus/dist/css/bootstrap.min.css" rel="stylesheet" />
-      <link  href="{{base}}client/styles.css?ver={{pack.version}}" rel="stylesheet" />
-    </head>
-    <body>
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          ga('create', 'UA-46484158-1', 'finn.no');
-          ga('send', 'pageview');
 
-        </script>
-        <a href="{{pack.repository.url}}" title="Fork {{pack.name}}">
-            <img style="position: absolute; top: 0; right: 0; border: 0;" src="{{base}}client/fork.png" alt="Fork me on GitHub">
-        </a>
 
-        <div class="container">
-            <h1 class="text-center">
-                <a href="{{base}}"><span class="logo"></span><br/> Garðr <small>validator</small></a>
-            </h1>
+    <!--
 
-            {{#error}}
-                <br />
-                <div class="alert alert-danger">
-                    {{message}}
-                    {{err.message}}
-                    {{err.code}}
-                    {{err.path}}
+
+        More generic setup.
+
+        showResult:
+            output
+                info about input
+                table
+                sizeTable
+            optional output
+                codeedit
+
+
+    -->
+<!--     <br />
+    <div class="text-center" id="selectInput">
+        <div class="btn-group relative">
+            <a href="/input/url" class="btn btn-primary btn-lg">
+                URL
+            </a>
+            <div class="btn-group-legend"><span>Choose input</span></div>
+            <a href="/input/zip" class="btn btn-default btn-lg">
+                ZIP
+            </a>
+            <a hreF="/input/code" class="btn btn-default btn-lg">
+                CODE
+            </a>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="text-center" id="selectTarget">
+        <div class="btn-group relative">
+            <button class="btn btn-default btn-lg">
+                MOBILE
+            </button>
+             <div class="btn-group-legend"><span>Choose target</span></div>
+            <button class="btn btn-primary btn-lg">
+                TABLET
+            </button>
+        </div>
+    </div>
+
+    <br />
+    <div class="text-center" id="action">
+        <button class="btn btn-success btn-lg">
+            RUN
+        </button>
+    </div> -->
+
+<form method="POST" action="{{base}}validate" class="form" enctype="multipart/form-data">
+
+
+    {{^hideUrlInput}}
+        <div class="form-group">
+          <label>Input URL:</label>
+          <input id="urlInput" type="text" name="url" class="form-control" value="{{url}}" placeholder="http://" />
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="target" id="target1" value="mobile" {{#isMobileTarget}}checked{{/isMobileTarget}}>
+            Mobile <small>(&lt; 50Kb)</small>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="target" id="target2" value="tablet" {{#isTabletTarget}}checked{{/isTabletTarget}}>
+            Tablet <small>(&lt; 100Kb)</small>
+          </label>
+        </div>
+
+        <button class="btn btn-primary">Validate{{#showResultTable}} again{{/showResultTable}}</button>
+
+    {{/hideUrlInput}}
+
+
+    {{^hideCodeInput}}
+        {{^showResultTable}}
+            <button class="btn btn-default" id="toggleAdvanced">
+                {{^advanced}}Show advanced{{/advanced}}{{#advanced}}Hide advanced{{/advanced}}
+            </button>
+        {{/showResultTable}}
+        <input type="hidden" id="advanced" name="advanced" value="{{advanced}}{{^advanced}}false{{/advanced}}" />
+
+        <div class="advanced-container {{#advanced}}advanced-mode{{/advanced}}" id="advancedMode">
+
+            <div>
+                <div class="form-group">
+                    <label>Zip</label>
+                    <input class="form-control" type="file" name="zipfile" />
                 </div>
-            {{/error}}
+            </div>
 
-            {{#showStatus}}
-                <br />
-                <div class="progress progress-striped active">
-                  <div id="progress" class="progress-bar"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                    <span class="sr-only"><span id="percent">0</span>% Complete</span>
-                  </div>
-                </div>
-                <div class="alert alert-warning text-center">
-                    <h1 class="text-warning">Processing...</h1>
+            <div class="form-group">
+                <label>HTML / Markup</label>
+                <textarea id="html" name="html" class="form-control" rows="10" placeholder="html...">{{^trimmed}}{{{html}}}{{/trimmed}}{{#trimmed}}{{full}}{{/trimmed}}</textarea>
+                <div id="html-editor" style="width:100%;height:350px;border-radius: 3px;"></div>
+            </div>
 
-                    <br />
-                    <p>Expected run time is 12-15 seconds. Running for <span id="timerCounter">{{runtime}}</span> ms. Reloading in <strong><span id="timer">{{reloadIn}}</span></strong> ms.</p>
-                    <br />
-                </div>
-
-                <div id="preview-container">
-                    <h3 class="text-center">Preview</h3>
-
-                </div>
-                <script>
-                    {{#previewUrl}}
-                        window.previewUrl = '{{.}}';
-                    {{/previewUrl}}
-                    (function(){
-                        // dirty inline
-                        var ms              = {{reloadIn}}||0;
-                        var runtime         = {{runtime}}||0;
-                        var timer           = 0;
-                        var msElem          = document.getElementById('timer');
-                        var timerCounter    = document.getElementById('timerCounter');
-                        var percElem        = document.getElementById('percent');
-                        var progressElem    = document.getElementById('progress');
-                        var UPDATE_FREQ     = 501;
-
-                        if (ms > 0){
-                            setTimeout(function(){
-                                window.location = window.location.toString();
-                            }, ms);
-
-                            setInterval(function(){
-                                timer += UPDATE_FREQ;
-                                var timeleft = ms - timer;
-                                var percent = -(Math.round(timeleft / 15000 * 100) - 100);
-                                timerCounter.innerHTML = runtime + timer;
-                                percElem.innerHTML= percent;
-                                msElem.innerHTML = timeleft;
-                                progressElem.setAttribute('style', 'width: '+ percent + '%');
-                            }, UPDATE_FREQ);
-                        }
-                    })()
-                </script>
-            {{/showStatus}}
-
-            {{#harvest.hasScreenshots}}
-                <div class="screenshots-wrapper" style="height: {{harvest.firstImage.height}}px;">
-                    <div class="summary-container">
-                        {{#report.success}}
-                            <span class="glyphicon glyphicon-heart text-primary"></span>
-                            <p>Verified!</p>
-                        {{/report.success}}
-                        {{^report.success}}
-                            <span class="glyphicon glyphicon-thumbs-down text-danger"></span>
-                            <p>Not verified</p>
-                        {{/report.success}}
-                    </div>
-                    <div id="screenshots" class="screenshots" style="height: {{harvest.firstImage.height}}px;width: {{harvest.firstImage.width}}px;">
-                        <div id="screenshots-controller" class="screenshots-controller">
-                            <button class="btn btn-sm" id="screenshot-prev">
-                                <span class="glyphicon glyphicon-backward"></span>
-                            </button>
-                            <button class="btn btn-sm" id="screenshot-play">
-                                <span class="glyphicon glyphicon-play"></span>
-                            </button>
-                            <button class="btn btn-sm" id="screenshot-next">
-                                <span class="glyphicon glyphicon-forward"></span>
-                            </button>
-                        </div>
-                        {{#harvest.images}}
-                            <div class="screenshot {{#active}}active{{/active}}" data-index="{{index}}" data-timing="{{timing}}" data-time="{{time}}">
-                                <div class="screenshot-title">Image {{index}} of {{total}}, {{formattedTime}}</div>
-                                <img class="entry" src="{{base}}screenshots/{{id}}/{{filename}}" width="{{width}}" height="{{height}}"/>
-                            </div>
-                        {{/harvest.images}}
-                    </div>
-                </div>
-            {{/harvest.hasScreenshots}}
-
-            {{#showResultTable}}
-
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Message</th>
-                            <th>Rule</th>
-                            <th>Source / Code</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        {{#report.full}}
-                            <tr class="{{typeClass}}">
-                                <td>{{type}}</td>
-                                <td>{{message}}</td>
-                                <td>{{validatorName}}</td>
-                                <td>
-                                    {{#data.trace}}
-                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}{{#line}}:{{.}}{{/line}}</small></a><br />
-                                    {{/data.trace}}
-                                    {{#trace}}
-                                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}{{#line}}:{{.}}{{/line}}</small></a><br />
-                                    {{/trace}}
-                                     {{#data.code}}
-                                    <pre><small><code>{{.}}</code></small></pre>
-                                    {{/data.code}}
-                                    {{#data.list}}
-                                    <pre><small><code>{{.}}</code></small></pre>
-                                    {{/data.list}}
-                                </td>
-                            </tr>
-                        {{/report.full}}
-
-                    </tbody>
-                </table>
-            {{/showResultTable}}
-
-            {{#showForm}}
-
-            <form method="POST" action="{{base}}validate" class="form" enctype="multipart/form-data">
-
-<!--                 <br />
-                <div class="text-center" id="selectInput">
-                    <button class="btn btn-default btn-lg">
-                        URL
-                    </button>
-                    <button class="btn btn-default btn-lg">
-                        ZIP
-                    </button>
-                    <button class="btn btn-default btn-lg">
-                        CODE
-                    </button>
-                </div>
-
-                <br />
-                <div class="text-center" id="selectTarget">
-                    <button class="btn btn-default btn-lg">
-                        MOBILE
-                    </button>
-                    <button class="btn btn-primary btn-lg">
-                        TABLET
-                    </button>
-                </div>
-
-                <br />
-                <div class="text-center" id="action">
-                    <button class="btn btn-success btn-lg">
-                        RUN
-                    </button>
-                </div>
- -->
-
-
-                {{^hideUrlInput}}
+            <div class="row">
+                <div class="col-md-6">
                     <div class="form-group">
-                      <label>Input URL:</label>
-                      <input id="urlInput" type="text" name="url" class="form-control" value="{{url}}" placeholder="http://" />
+                        <label>CSS</label>
+                        <textarea id="css" name="css" class="form-control" rows="5" placeholder="css...">{{{css}}}</textarea>
+                        <div id="css-editor" style="width:100%;height:250px;border-radius: 3px;"></div>
+
                     </div>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="target" id="target1" value="mobile" {{#isMobileTarget}}checked{{/isMobileTarget}}>
-                        Mobile <small>(&lt; 50Kb)</small>
-                      </label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label>JS:</label>
+                      <textarea id="js" rows="5" name="js" class="form-control" placeholder="script...">{{{js}}}</textarea>
+                      <div id="javascript-editor" style="width:100%;height:250px;border-radius: 3px;"></div>
                     </div>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="target" id="target2" value="tablet" {{#isTabletTarget}}checked{{/isTabletTarget}}>
-                        Tablet <small>(&lt; 100Kb)</small>
-                      </label>
-                    </div>
-
-                    <button class="btn btn-primary">Validate{{#showResultTable}} again{{/showResultTable}}</button>
-
-                {{/hideUrlInput}}
-
-
-                {{^hideCodeInput}}
-                    {{^showResultTable}}
-                        <button class="btn btn-default" id="toggleAdvanced">
-                            {{^advanced}}Show advanced{{/advanced}}{{#advanced}}Hide advanced{{/advanced}}
-                        </button>
-                    {{/showResultTable}}
-                    <input type="hidden" id="advanced" name="advanced" value="{{advanced}}{{^advanced}}false{{/advanced}}" />
-
-                    <div class="advanced-container {{#advanced}}advanced-mode{{/advanced}}" id="advancedMode">
-
-                        <div>
-                            <div class="form-group">
-                                <label>Zip</label>
-                                <input class="form-control" type="file" name="zipfile" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>HTML / Markup</label>
-                            <textarea id="html" name="html" class="form-control" rows="10" placeholder="html...">{{^trimmed}}{{{html}}}{{/trimmed}}{{#trimmed}}{{full}}{{/trimmed}}</textarea>
-                            <div id="html-editor" style="width:100%;height:350px;border-radius: 3px;"></div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>CSS</label>
-                                    <textarea id="css" name="css" class="form-control" rows="5" placeholder="css...">{{{css}}}</textarea>
-                                    <div id="css-editor" style="width:100%;height:250px;border-radius: 3px;"></div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                  <label>JS:</label>
-                                  <textarea id="js" rows="5" name="js" class="form-control" placeholder="script...">{{{js}}}</textarea>
-                                  <div id="javascript-editor" style="width:100%;height:250px;border-radius: 3px;"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <button class="btn btn-primary">Validate{{#hideUrlInput}} again{{/hideUrlInput}}</button>
-                            {{^hideUrlInput}}<button class="btn btn-default" id="render">Render URL in page</button>{{/hideUrlInput}}
-                            <a href="{{base}}" class="btn">Back to frontpage</a>
-                        </div>
-
-
-                        {{#harvest}}
-                        <table class="table table-condensed table-striped table-bordered table-hover">
-                            <tr>
-                                <th>Time</th>
-                                <th>Message</th>
-                            </tr>
-                            {{#logs}}
-                                <tr>
-                                    <td>{{formattedTime}}</td>
-                                    <td>{{message}}</td>
-                                </tr>
-                            {{/logs}}
-                        </table>
-                    {{/harvest}}
-                    </div>
-                {{/hideCodeInput}}
-
-
-                {{#hasIds}}
-                    <h3 class="text-center">Recent runs available:</h3>
-                    <hr />
-                    {{#ids}}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="{{base}}result?id={{id}}" title="View {{id}}" class="relative">
-                                    {{#hasImage}}
-                                        <div class="summary-container">
-                                            {{#success}}
-                                                <span class="glyphicon glyphicon-heart text-primary"></span>
-                                                <p>Verified!</p>
-                                            {{/success}}
-                                            {{^success}}
-                                                <span class="glyphicon glyphicon-thumbs-down text-primary"></span>
-                                                <p>Not verified</p>
-                                            {{/success}}
-                                        </div>
-                                        {{#filename}}
-                                            <img src="{{.}}" class="thumbnail" />
-                                        {{/filename}}
-
-                                    {{/hasImage}}
-                                    {{^hasImage}}
-                                        {{#erroredOut}}
-                                            <div class="text-center">
-                                                <div class="logo"></div>
-                                                <p>{{message}} {{err.message}}</p>
-                                            </div>
-                                        {{/erroredOut}}
-                                        {{^erroredOut}}
-                                            <div class="text-center">
-                                                <div class="spinner logo"></div>
-                                                <p>Processing...</p>
-                                            </div>
-                                        {{/erroredOut}}
-                                    {{/hasImage}}
-                                </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="{{base}}result?id={{id}}" title="View {{id}}" class="btn btn-default {{#success}}btn-primary{{/success}}">
-                                    {{#success}}
-                                        <span class="glyphicon glyphicon-check"></span>
-                                        &nbsp;
-                                    {{/success}}
-                                    {{^success}}
-                                        <span class="glyphicon glyphicon-cog"></span>
-                                        &nbsp;
-                                    {{/success}}
-                                    View {{id}}
-                                </a>
-                                <br />
-                                <br />
-                                {{#fullSize}}
-                                    <p>Total payload size: <strong>{{.}} bytes</strong></p>
-                                {{/fullSize}}
-                                {{#hasErrors}}
-                                    <p><strong>{{errors}}</strong> errors found</p>
-                                {{/hasErrors}}
-                                {{#hasWarnings}}
-                                    <p><strong>{{warnings}}</strong> warnings found</p>
-                                {{/hasWarnings}}
-                                <p>{{statusText}} for <span class="label label-info">{{target}}</span> {{formattedTime}}</p>
-                            </div>
-                        </div>
-                        <hr />
-                    {{/ids}}
-                {{/hasIds}}
-            </div>
-            <br />
-            <br />
-            <div id="container">
-
+                </div>
             </div>
 
-            {{/showForm}}
-            <footer class="container text-center">
-                <hr />
+            <div>
+                <button class="btn btn-primary">Validate{{#hideUrlInput}} again{{/hideUrlInput}}</button>
+                {{^hideUrlInput}}<button class="btn btn-default" id="render">Render URL in page</button>{{/hideUrlInput}}
+                <a href="{{base}}" class="btn">Back to frontpage</a>
+            </div>
 
-                    <a href="{{pack.repository.url}}"><strong>{{pack.name}}</strong> <small>{{pack.version}}</small></a>
-                    <small> | </small>
-                    <a href="{{pack.bugs.url}}"><small><span class="glyphicon glyphicon-bullhorn"></span> Report issues</small></a>
 
-            </footer>
+
         </div>
+    {{/hideCodeInput}}
 
 
-        {{#debugInfo}}
-        <div style="margin: 0 20px">
-            <h1>Validator View:</h1>
-            <pre style="font-size:11px;"><code>{{.}}</code></pre>
-        </div>
-        {{/debugInfo}}
-    </body>
-</html>
+    {{#hasIds}}
+        <h3 class="text-center">Recent runs available:</h3>
+        <hr />
+        {{#ids}}
+            {{>recent_runs}}
+        {{/ids}}
+    {{/hasIds}}
+</div>
+<br />
+<br />
+
+

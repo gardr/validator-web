@@ -1,0 +1,35 @@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Message</th>
+            <th>Rule</th>
+            <th>Source / Code</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {{#report.full}}
+            <tr class="{{typeClass}}">
+                <td>{{type}}</td>
+                <td>{{message}}</td>
+                <td>{{validatorName}}</td>
+                <td>
+                    {{#data.trace}}
+                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}{{#line}}:{{.}}{{/line}}</small></a><br />
+                    {{/data.trace}}
+                    {{#trace}}
+                        <a href="{{sourceURL}}" target="_blank"><small>{{file}}{{#line}}:{{.}}{{/line}}</small></a><br />
+                    {{/trace}}
+                     {{#data.code}}
+                    <pre><small><code>{{.}}</code></small></pre>
+                    {{/data.code}}
+                    {{#data.list}}
+                    <pre><small><code>{{.}}</code></small></pre>
+                    {{/data.list}}
+                </td>
+            </tr>
+        {{/report.full}}
+
+    </tbody>
+</table>

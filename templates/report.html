@@ -1,0 +1,22 @@
+{{#harvest.screenshots.hasScreenshots}}
+    {{>screenshots}}
+{{/harvest.screenshots.hasScreenshots}}
+
+<h2>Report</h2>
+{{>result_table}}
+
+{{#harvest}}
+    <h2>Client logs</h2>
+    <table class="table table-condensed table-striped table-bordered table-hover">
+        <tr>
+            <th>Time</th>
+            <th>Message</th>
+        </tr>
+        {{#log.logs}}
+            <tr>
+                <td>{{formattedTime}}</td>
+                <td>{{message}}</td>
+            </tr>
+        {{/log.logs}}
+    </table>
+{{/harvest}}

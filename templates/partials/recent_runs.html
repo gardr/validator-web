@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-6">
+        <a href="{{base}}result?id={{id}}" title="View {{id}}" class="relative">
+            {{#hasImage}}
+                <div class="summary-container">
+                    {{#success}}
+                        <span class="glyphicon glyphicon-heart text-primary"></span>
+                        <p>Verified!</p>
+                    {{/success}}
+                    {{^success}}
+                        <span class="glyphicon glyphicon-thumbs-down text-primary"></span>
+                        <p>Not verified</p>
+                    {{/success}}
+                </div>
+                {{#filename}}
+                    <img src="{{.}}" class="thumbnail" style="max-width: 100%;" />
+                {{/filename}}
+
+            {{/hasImage}}
+            {{^hasImage}}
+                {{#erroredOut}}
+                    <div class="text-center">
+                        <div class="logo"></div>
+                        <p>{{message}} {{err.message}}</p>
+                    </div>
+                {{/erroredOut}}
+                {{^erroredOut}}
+                    <div class="text-center">
+                        <div class="spinner logo"></div>
+                        <p>Processing...</p>
+                    </div>
+                {{/erroredOut}}
+            {{/hasImage}}
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a href="{{base}}result?id={{id}}" title="View {{id}}" class="btn btn-default {{#success}}btn-primary{{/success}}">
+            {{#success}}
+                <span class="glyphicon glyphicon-check"></span>
+                &nbsp;
+            {{/success}}
+            {{^success}}
+                <span class="glyphicon glyphicon-cog"></span>
+                &nbsp;
+            {{/success}}
+            View {{formattedTitle}}
+        </a>
+        <br />
+        <br />
+        {{#fullSize}}
+            <p>Total payload size: <strong>{{.}} bytes</strong></p>
+        {{/fullSize}}
+        {{#hasErrors}}
+            <p><strong>{{errors}}</strong> errors found</p>
+        {{/hasErrors}}
+        {{#hasWarnings}}
+            <p><strong>{{warnings}}</strong> warnings found</p>
+        {{/hasWarnings}}
+        <p>{{statusText}} for <span class="label label-info">{{target}}</span> {{formattedTime}}</p>
+    </div>
+</div>
+<hr />

@@ -1,0 +1,32 @@
+<div class="screenshots-wrapper" style="height: {{harvest.screenshots.firstImage.height}}px;">
+    <div class="summary-container">
+        {{#report.success}}
+            <span class="glyphicon glyphicon-heart text-primary"></span>
+            <p>Verified!</p>
+        {{/report.success}}
+        {{^report.success}}
+            <span class="glyphicon glyphicon-thumbs-down text-danger"></span>
+            <p>Not verified</p>
+        {{/report.success}}
+    </div>
+    <div id="screenshots" class="screenshots"
+        style="height: {{harvest.screenshots.firstImage.height}}px;width: {{harvest.screenshots.firstImage.width}}px;">
+        <div id="screenshots-controller" class="screenshots-controller">
+            <button class="btn btn-sm" id="screenshot-prev">
+                <span class="glyphicon glyphicon-backward"></span>
+            </button>
+            <button class="btn btn-sm" id="screenshot-play">
+                <span class="glyphicon glyphicon-play"></span>
+            </button>
+            <button class="btn btn-sm" id="screenshot-next">
+                <span class="glyphicon glyphicon-forward"></span>
+            </button>
+        </div>
+        {{#harvest.screenshots.images}}
+            <div class="screenshot {{#active}}active{{/active}}" data-index="{{index}}" data-timing="{{timing}}" data-time="{{time}}">
+                <div class="screenshot-title">Image {{index}} of {{total}}, {{formattedTime}}</div>
+                <img class="entry" src="{{base}}screenshots/{{id}}/{{filename}}" width="{{width}}" height="{{height}}"/>
+            </div>
+        {{/harvest.screenshots.images}}
+    </div>
+</div>
