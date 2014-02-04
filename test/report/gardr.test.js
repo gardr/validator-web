@@ -47,6 +47,14 @@ describe('Gardr hooks', function () {
 
 var validator = require('../../lib/report/validator/gardr.js');
 
+var defaultOptions = {
+    options: {
+        format: {
+            height: 225
+        }
+    }
+};
+
 describe('Gardr validator', function () {
 
     it('should evaluate and return errors', function (done) {
@@ -82,7 +90,7 @@ describe('Gardr validator', function () {
 
             assert.equals(result.error.length, 4);
             done();
-        });
+        }, defaultOptions);
 
     });
 
@@ -114,6 +122,26 @@ describe('Gardr validator', function () {
         };
     }
 
+    it('should validate size based on options', function (done) {
+
+        var harvest = getValid('function(){window.open(url, "new_window");}');
+        var reporter = help.createReporter.call(this);
+        var options = {
+            options: {
+                format: {
+                    height: 450
+                }
+            }
+        };
+
+        validator.validate(harvest, reporter, function () {
+            var result = reporter.getResult();
+            assert.equals(result.error.length, 1);
+            done();
+        }, options);
+
+    });
+
     it('should error on missing clickhandler', function (done) {
 
         var harvest = getValid();
@@ -125,7 +153,7 @@ describe('Gardr validator', function () {
 
             assert.equals(result.error.length, 1);
             done();
-        });
+        }, defaultOptions);
 
     });
 
@@ -139,7 +167,7 @@ describe('Gardr validator', function () {
             var result = reporter.getResult();
 
             assert.equals(result.error.length, 0);
-        });
+        }, defaultOptions);
 
         harvest = getValid('window.open(url, "new_window")');
 
@@ -148,7 +176,7 @@ describe('Gardr validator', function () {
 
             assert.equals(result.error.length, 0);
             done();
-        });
+        }, defaultOptions);
 
     });
 
@@ -163,7 +191,8 @@ describe('Gardr validator', function () {
 
             assert.equals(result.error.length, 1);
             done();
-        });
+        }, defaultOptions);
+
     });
 
     it('should error on invalid window target', function (done) {
@@ -177,11 +206,11 @@ describe('Gardr validator', function () {
 
             assert.equals(result.error.length, 1);
             done();
-        });
+        }, defaultOptions);
     });
 
     it('should call next if missing data', function (done) {
-        validator.validate(null, null, done);
+        validator.validate(null, null, done, defaultOptions);
     });
 
 });

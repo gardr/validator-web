@@ -5,6 +5,14 @@
       <meta name="MobileOptimized" content="320">
       <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes'>
       <title>{{pack.name}} {{pack.version}}</title>
+      <script>
+       window.validatorWebData = {viewport: {}};
+       {{#viewport}}
+            window.validatorWebData.viewport.width = {{width}};
+            window.validatorWebData.viewport.height = {{height}};
+       {{/viewport}}
+
+      </script>
       <script src="{{base}}client/built/main.js?ver={{pack.version}}{{pack.dependencies.gardr-validator}}"></script>
       <script src="{{base}}client/built/editor.js?ver={{pack.version}}"></script>
       <link  href="{{base}}components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />

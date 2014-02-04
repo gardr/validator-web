@@ -3,10 +3,13 @@ var domready = require('domready');
 var getManager = require('gardr/src/mobile.js');
 
 domready(function () {
+
+    var options = window.validatorWebData||{};
+
     initRender();
     initToggleAdvanced();
     initReplayBannerControllers();
-    initPreview();
+    initPreview(options);
 });
 
 function addClass(elem, name, add){
@@ -40,23 +43,25 @@ function initToggleAdvanced(){
     }
 }
 
-function initPreview() {
+function initPreview(options) {
 
-    var url = window.previewUrl;
+    var url = options.previewUrl;
     var name = 'preview';
     if (!url) return;
 
     var m = getManager({
         iframeUrl: './preview/iframe.html'
     });
+
     m.queue(name, {
         url: url,
-        width: 980,
-        height: 225,
+        width: options.viewport.width,
+        height:  options.viewport.height,
         container: 'preview-container'
     });
     m.render(name, function (err, res) {
         //console.log('done', name, err, res);
+        //options.viewport.width
         res.iframe.resize('100%', res.input.height);
     });
 }
