@@ -32,12 +32,6 @@ server.state('session', {
     encoding: 'base64json'
 });
 
-// server.pack.allow({ ext: true }).require('yar', {
-//     cookieOptions: {
-//         password: 'password'
-//     }
-// }, function (err) { });
-
 server.route(require('./lib/routes/frontpage.js'));
 server.route(require('./lib/routes/userInput.js'));
 server.route(require('./lib/routes/screenshots.js'));
