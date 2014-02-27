@@ -1,3 +1,10 @@
+<div id="preview-container">
+    <h3 class="text-center">Preview</h3>
+
+</div>
+<div id="container">
+
+</div>
 <br />
 <div class="progress progress-striped active">
   <div id="progress" class="progress-bar"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
@@ -12,17 +19,8 @@
     <br />
 </div>
 
-<div id="preview-container">
-    <h3 class="text-center">Preview</h3>
 
-</div>
-<div id="container">
-
-</div>
 <script>
-    {{#previewUrl}}
-        window.validatorWebData.previewUrl = '{{.}}';
-    {{/previewUrl}}
     (function(){
         // dirty inline
         var ms              = {{reloadIn}}||0;

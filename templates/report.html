@@ -2,21 +2,97 @@
     {{>screenshots}}
 {{/harvest.screenshots.hasScreenshots}}
 
-<h2>Report</h2>
-{{>result_table}}
 
-{{#harvest}}
-    <h2>Client logs</h2>
-    <table class="table table-condensed table-striped table-bordered table-hover">
-        <tr>
-            <th>Time</th>
-            <th>Message</th>
-        </tr>
-        {{#log.logs}}
-            <tr>
-                <td>{{formattedTime}}</td>
-                <td>{{message}}</td>
-            </tr>
-        {{/log.logs}}
-    </table>
-{{/harvest}}
+<br />
+<div class="text-center" id="selectInput">
+    <div class="btn-group">
+        <button class="btn btn-default btn-primary btn-lg" data-tab="tab-result">
+            Result
+        </button>
+        <!--
+        <button class="btn btn-default btn-lg" data-tab="tab-checklist">
+            Checklist
+        </button>
+        -->
+
+        <button class="btn btn-default btn-lg" data-tab="tab-code">
+            Code
+        </button>
+        <button class="btn btn-default btn-lg" data-tab="tab-preview">
+            Preview
+        </button>
+    </div>
+    <button class="btn btn-default btn-warning btn-lg" data-tab="tab-options">
+        Options
+    </button>
+</div>
+<br />
+
+<div class="tabs" id="tabContent">
+    <div class="tab-content tab-active" data-tab="tab-result">
+        <div class="alert alert-info">
+            <p class="h1">Report
+                {{#report.success}}
+                    <span class="glyphicon glyphicon-heart text-primary"></span>
+                    <small>Verified!</small>
+                {{/report.success}}
+                {{^report.success}}
+                    <span class="glyphicon glyphicon-thumbs-down text-danger"></span>
+                    <small>Not verified</small>
+                {{/report.success}}
+            </p>
+            <p>Report started {{state.started}}. Finished {{state.processed}}.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                {{>result_table}}
+            </div>
+
+            <div class="col-md-3">
+                {{>result_stats}}
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <div class="tab-content" data-tab="tab-checklist">
+        <div class="row">
+            <div class="col-md-9">
+                {{>result_checklist}}
+            </div>
+
+            <div class="col-md-3">
+                {{>result_stats}}
+            </div>
+        </div>
+    </div>
+    -->
+
+    <div class="tab-content" data-tab="tab-options">
+        {{>advanced_options}}
+    </div>
+
+    <div class="tab-content" data-tab="tab-code">
+        <form action="/validate" method="POST" class="form" enctype="multipart/form-data">
+            <input type="hidden" name="copyOptionsFromId" value="{{id}}" />
+
+            {{>code}}
+
+            {{>code_advanced_info}}
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-lg" value="Run again" />
+            </div>
+        </form>
+    </div>
+
+
+    <div class="tab-content" data-tab="tab-preview">
+        <br />
+        <div id="result-preview-container">
+
+        </div>
+    </div>
+</div>
+
+
