@@ -1,10 +1,12 @@
+var domready = require('domready');
+
 var ace = require('brace');
 require('brace/mode/javascript');
 require('brace/mode/css');
 require('brace/mode/html');
 require('brace/theme/solarized_dark');
 
-var domready = require('domready');
+
 
 
 domready(function () {

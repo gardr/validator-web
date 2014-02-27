@@ -1,67 +1,92 @@
-var events = require('dom-events');
 var domready = require('domready');
+var events = require('dom-events');
 var getManager = require('gardr/src/mobile.js');
+
+var addClass = require('./lib/classes.js').addClass;
 
 domready(function () {
 
     var options = window.validatorWebData||{};
 
+    initTabs(options);
+
     initRender();
-    initToggleAdvanced();
+    // initToggleAdvanced();
     initReplayBannerControllers();
     initPreview(options);
 });
 
-function addClass(elem, name, add){
-    var output = elem.className.toString().replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ').split(' ');
-    if (add === false){
-        output = output.filter(function(v){return v !== name;});
-    } else {
-        output.push(name);
+
+var createTabs = require('./lib/tabs.js');
+
+function initTabs(options){
+    var selectInput = document.getElementById('selectInput');
+    if (!selectInput) {
+        return;
     }
-    elem.className = output.join(' ');
+    var buttons     = selectInput.getElementsByTagName('button');
+    var tabContent  = document.getElementById('tabContent');
+    var tabs        = tabContent.getElementsByClassName('tab-content');
+
+    var tabEvent = createTabs(buttons, tabs);
+
+    tabEvent.once('tab-code', window.injectEditor);
+
+    tabEvent.on('tab-preview', function(){
+
+        var name = 'result_preview';
+        var m = getManager({
+            'iframeUrl': options.gardrIframePath
+        });
+
+        var bannerContainer = document.getElementById('result-preview-container');
+
+        m.queue(name, {
+            'url': options.previewUrl,
+            'width': options.viewport.width,
+            'height':  options.viewport.height,
+            'container': 'result-preview-container'
+        });
+
+        m.render(name, function (err, res) {
+            if (err){
+                return logError(err);
+            }
+            var para = document.createElement('p');
+            para.innerHTML = 'Rendered <a href="'+options.previewUrl+'">'+options.previewUrl+'</a>. Viewport width '+ options.viewport.width+', height '+options.viewport.height;
+            bannerContainer.appendChild(para);
+            res.iframe.resize('100%', res.input.height);
+        });
+    });
 }
 
-function initToggleAdvanced(){
-    var toggleButton  = document.getElementById('toggleAdvanced');
-    var advancedInput = document.getElementById('advanced');
-    var advancedMode  = document.getElementById('advancedMode');
-    if (!toggleButton || !advancedInput || !advancedMode){
-        return false;
+function logError(err){
+    if ( window.console ){
+        return  window.console.error(err);
     }
-
-    events.on(toggleButton, 'click', handler);
-
-    function handler(e){
-        e.preventDefault();
-        e.stopPropagation();
-
-        var newValue = advancedInput.value == 'true' ? 'false' : 'true';
-        advancedInput.value = newValue;
-        toggleButton.textContent = (newValue === 'true' ? 'Hide advanced' : 'Show advanced');
-        addClass(advancedMode, 'advanced-mode', newValue === 'true');
-    }
+    window.alert('An error occured: '+err.message+'. '+err);
 }
 
 function initPreview(options) {
 
     var url = options.previewUrl;
     var name = 'preview';
-    if (!url) return;
+    if (!url || !document.getElementById('preview-container')) return;
 
     var m = getManager({
-        iframeUrl: './preview/iframe.html'
+        'iframeUrl': options.gardrIframePath
     });
 
     m.queue(name, {
-        url: url,
-        width: options.viewport.width,
-        height:  options.viewport.height,
-        container: 'preview-container'
+        'url': url,
+        'width': options.viewport.width,
+        'height':  options.viewport.height,
+        'container': 'preview-container'
     });
     m.render(name, function (err, res) {
-        //console.log('done', name, err, res);
-        //options.viewport.width
+        if (err){
+            return logError(err);
+        }
         res.iframe.resize('100%', res.input.height);
     });
 }
