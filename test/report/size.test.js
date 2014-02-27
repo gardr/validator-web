@@ -16,8 +16,8 @@ describe('Size validator', function () {
                         "rawRequests": 4,
                         "requestErrors": 0,
                         "requests": 4,
-                        "size": 0,
-                        "fullSize": 0
+                        "size": 200,
+                        "fullSize": 200
                     },
                     "tips": {
                         "possibleCompressTarget": 81960,
@@ -50,6 +50,7 @@ describe('Size validator', function () {
         function handler() {
 
             var report = reporter.getResult();
+
             assert.equals(report.error.length, 1, 'expect css to generate error');
             assert.equals(report.warn.length, 1, 'expect a external script warning');
 

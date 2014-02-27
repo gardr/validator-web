@@ -15,21 +15,34 @@ var runner = proxyquire('../../lib/report/index.js', {
 
 describe('getReport', function () {
 
-    it('calling runner without scriptUrl should return an error', function(done){
-        runner(null, function(err, result){
+    it('calling runner without scriptUrl should return an error', function (done) {
+        runner(null, function (err, result) {
             assert(err);
             done();
         });
     });
 
-    it('calling runner should work, and return options as expected', function(done){
-        var scriptUrl = 'id_'+Math.round(Math.random()*100012391023);
+    it('calling runner should work, and return options as expected', function (done) {
 
-        runner({url: scriptUrl, id: 'asd'}, function(err, options){
-            refute(err);
+        var input = {
+            'output': {
+                'url': 'id_' + Math.round(Math.random() * 100012391023)
+            },
+            'options': {
+                'target': 'mobile',
+                'viewport': {
+                    height: 123
+                }
+            },
+            id: 'asd'
+        };
+
+        runner(input, function (err, options) {
+            refute(err, 'should not return error');
             assert.isObject(options);
             assert.isString(options.scriptUrl);
-            assert.equals(options.scriptUrl, scriptUrl);
+            assert.equals(options.scriptUrl, input.output.url);
+            assert.equals(options.height, 123);
             assert(options.parentUrl.indexOf(process.cwd()) !== -1, 'smoketest file path resolving');
             done();
         });

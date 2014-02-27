@@ -32,6 +32,7 @@ describe('Actions', function () {
                 calledRealImpl++;
             }
         };
+
         var result = {actions: {}};
 
         var api = {
@@ -57,10 +58,6 @@ describe('Actions', function () {
             global.window = null;
             global.document = null;
             done();
-        }, 60);
-
-
-
-
+        }, 170);
     });
 });

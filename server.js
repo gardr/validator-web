@@ -17,6 +17,9 @@ var options = {
         partialsPath: 'templates/partials',
         isCached: !development
     },
+    payload: {
+        uploads: config.get('tmpDir')
+    },
     cache: {
         engine: 'memory'
     },
