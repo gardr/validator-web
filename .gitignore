@@ -8,7 +8,7 @@ lib-cov
 *.gz
 
 pids
-
+.tern-port
 results
 /results-db*
 node_modules

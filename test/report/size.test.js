@@ -48,7 +48,6 @@ describe('Size validator', function () {
         validator.validate(harvested, reporter, handler, options);
 
         function handler() {
-
             var report = reporter.getResult();
 
             assert.equals(report.error.length, 1, 'expect css to generate error');
@@ -92,14 +91,18 @@ describe('Size validator', function () {
 
             assert.equals(report.error.length, 0, 'expect 99 kb to not generate an error if target is tablet');
             assert.equals(report.info.length, 1);
+            assert.equals(report.meta.length, 3);
+
+            var data = report.meta[2].data;
+            assert.equals(data.threshold, 100000);
+            assert.equals(data.restValue, 60);
+            assert.equals(data.success, true);
 
             done();
         }
-
     });
 
     it('should report on oversize', function (done) {
-
         var harvested = {
             "har": {
                 "rawFileDataSummary": {
@@ -131,6 +134,12 @@ describe('Size validator', function () {
 
             assert.equals(report.error.length, 1, 'expect 99 kb to generate an error if target is mobile');
             assert.equals(report.info.length, 0);
+            assert.equals(report.meta.length, 3);
+
+            var data = report.meta[2].data;
+            assert.equals(data.threshold, 50000);
+            assert.equals(data.restValue, -49940);
+            assert.equals(data.success, false);
 
             done();
         }
