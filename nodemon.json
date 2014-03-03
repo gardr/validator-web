@@ -1,0 +1,21 @@
+{
+    "verbose": true,
+    "watch": [
+        "server.js",
+        "templates/partials/*.html",
+        "lib/*.js",
+        "lib/**/*.js",
+        "lib/**/**/*.js"
+    ],
+    "ignore": [
+        "test/*",
+        "TMP_DIR/*",
+        "client/*",
+        ".git",
+        "node_modules/*",
+        "node_modules/**/node_modules"
+    ],
+    "env": {
+        "NODE_ENV": "local"
+    }
+}
