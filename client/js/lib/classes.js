@@ -6,7 +6,7 @@ function addClass(elem, name, add){
         output.push(name);
     }
     elem.className = output.join(' ');
-    return elem;
+    return add === false ? false : true;
 }
 
 function removeClass(elem, name){
@@ -28,9 +28,14 @@ function hasClass(elem, name){
     return !!(elem.className && elem.className.indexOf(name) > -1);
 }
 
+function toggleClass(elem, name){
+    return addClass(elem, name, !hasClass(elem, name));
+}
+
 module.exports = {
     addClass: addClass,
     removeClass: removeClass,
     hasClass: hasClass,
+    toggleClass: toggleClass,
     siblingsAddClass: siblingsAddClass
 };

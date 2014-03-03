@@ -30,25 +30,25 @@
 
 <div class="tabs" id="tabContent">
     <div class="tab-content tab-active" data-tab="tab-result">
-        <div class="alert alert-info">
-            <p class="h1">Report
+        <div class="alert {{#report.success}}alert-info{{/report.success}} {{^report.success}}alert-danger{{/report.success}}">
+            <p><strong>Report:</strong>
                 {{#report.success}}
                     <span class="glyphicon glyphicon-heart text-primary"></span>
-                    <small>Verified!</small>
+                    <span>Verified!</span>
                 {{/report.success}}
                 {{^report.success}}
                     <span class="glyphicon glyphicon-thumbs-down text-danger"></span>
-                    <small>Not verified</small>
+                    <span>Not verified</span>
                 {{/report.success}}
             </p>
-            <p>Report started {{state.started}}. Finished {{state.processed}}.</p>
+            <p>Started <small>{{formattedStarted}}</small>. Ran for <small>{{totalRuntime}}</small>.</p>
         </div>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 {{>result_table}}
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {{>result_stats}}
             </div>
         </div>

@@ -1,0 +1,19 @@
+<div class="{{typeClass}}">
+    <p>
+        {{message}}
+        {{#data}}
+            <span class="glyphicon glyphicon-zoom-in expand-drilldown-list" data-tag-name="div"></span>
+        {{/data}}
+    </p>
+    {{#data}}
+        <div class="expandable">
+            {{#code}}<pre><code>{{.}}</code></pre>{{/code}}
+            {{#trace}}
+                <a href="{{sourceURL}}" target="_blank"><small>{{file}}{{#line}}:{{.}}{{/line}}</small></a><br />
+            {{/trace}}
+            {{#list}}
+                <pre><small><code>{{.}}</code></small></pre>
+            {{/list}}
+        </div>
+    {{/data}}
+</div>

@@ -2,26 +2,20 @@
 {{#report.hasInfo}}
 <h2>Information</h2>
 {{#report.info}}
-    <div class="{{typeClass}}">
-        <p>{{message}}</p>
-    </div>
+    {{>result_report_line}}
 {{/report.info}}
 {{/report.hasInfo}}
 
 {{#report.hasWarn}}
 <h2>Warnings</h2>
 {{#report.warn}}
-    <div class="{{typeClass}}">
-        <p>{{message}}</p>
-    </div>
+    {{>result_report_line}}
 {{/report.warn}}
 {{/report.hasWarn}}
 
 {{#report.hasError}}
 <h2>Errors</h2>
 {{#report.error}}
-    <div class="{{typeClass}}">
-        <p>{{message}}</p>
-    </div>
+    {{>result_report_line}}
 {{/report.error}}
 {{/report.hasError}}

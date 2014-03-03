@@ -36,6 +36,7 @@ server.state('session', {
 });
 
 server.route(require('./lib/routes/frontpage.js'));
+server.route(require('./lib/routes/entry.js'));
 server.route(require('./lib/routes/userInput.js'));
 server.route(require('./lib/routes/screenshots.js'));
 server.route(require('./lib/routes/serveZip.js'));

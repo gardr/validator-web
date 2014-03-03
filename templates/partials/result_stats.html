@@ -1,6 +1,72 @@
-<h2>kb stats....</h2>
+{{#report.hasMeta}}
+    <h2>Statistics</h2>
 
+    <ol class="drill-down-list nav">
 
-<p>Threshold:</p>
-<p>Total size:</p>
-.... types etc....
+        {{#report.meta}}
+            <li class="expanded-state {{#data.success}}bg-info{{/data.success}} {{#data.error}}bg-danger{{/data.error}}">
+                <div class="row">
+                    <div class="col-md-7">
+                        {{#data.hasSummary}}
+                            <span class="glyphicon glyphicon-zoom-in expand-drilldown-list"></span>
+                        {{/data.hasSummary}}
+                        {{message}}
+                    </div>
+                    <div  class="col-md-5 text-right">
+                        {{#data.increase_threshold}}
+                            <span class="text-info">{{.}}</span>
+                        {{/data.increase_threshold}}
+                        {{#data.decrease}}
+                            <span class="text-danger">-{{.}}</span>
+                        {{/data.decrease}}
+                        {{#data.restValue}}
+                            <span class="text-primary">{{.}}</span>
+                        {{/data.restValue}}
+
+                    </div>
+                </div>
+
+                <ol class="nav expandable-expand-drilldown">
+                    {{#data.summary}}
+                        <li class="sub-stats">
+                            <div clasS="row">
+                                <div class="col-xs-7">
+                                    {{#hasRaw}}
+                                        <span class="glyphicon glyphicon-zoom-in expand-drilldown-list"></span>
+                                    {{/hasRaw}}
+                                    <small>/ {{title}}</small>
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    <small>-{{data.size}}</small>
+                                </div>
+                            </div>
+
+                            {{#hasRaw}}
+                                <ol class="nav">
+                                    {{#raw}}
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-7">
+                                                <small><a href="{{url}}">{{title}}</a></small>
+                                            </div>
+                                            <div class="col-xs-5 text-right">
+                                                {{#bodyLength}}
+                                                <small>-{{.}}</small>
+                                                {{/bodyLength}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/raw}}
+                                </ol>
+                            {{/hasRaw}}
+
+                        </li>
+                    {{/data.summary}}
+                </ol>
+
+            </li>
+        {{/report.meta}}
+
+    </ol>
+
+{{/report.hasMeta}}

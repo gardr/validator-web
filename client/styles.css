@@ -1,3 +1,41 @@
+.drill-down-list ol{
+  display: none;
+}
+.drill-down-list .expanded-state > ol{
+  display: block;
+}
+
+.expandable {
+  display: none;
+}
+.expanded-state .expandable {
+  display: block;
+}
+
+.expand-drilldown-list {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.expanded-state > .expand-drilldown-list,
+.expanded-state > p > .expand-drilldown-list,
+.expanded-state > li > * > .expand-drilldown-list,
+.expanded-state > div > * > .expand-drilldown-list  {
+  color: #000;
+}
+
+.drill-down-list ol{
+  padding-left: 20px;
+}
+.drill-down-list > li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-bottom-width: 0;
+}
+.drill-down-list li:last-child {
+  border-bottom-width: 1px;
+}
+
 .tabs {
   position: relative;
   z-index: 1;

@@ -9,6 +9,7 @@ domready(function () {
     var options = window.validatorWebData||{};
 
     initTabs(options);
+    initExpandables(options);
 
     initRender();
     // initToggleAdvanced();
@@ -16,9 +17,17 @@ domready(function () {
     initPreview(options);
 });
 
+var expandable = require('./lib/expandable.js');
+function initExpandables(){
+    var buttons = document.getElementsByClassName('expand-drilldown-list');
+    if (!buttons) {
+        return;
+    }
+    expandable(buttons);
+}
+
 
 var createTabs = require('./lib/tabs.js');
-
 function initTabs(options){
     var selectInput = document.getElementById('selectInput');
     if (!selectInput) {
