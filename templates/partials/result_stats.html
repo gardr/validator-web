@@ -13,15 +13,15 @@
                         {{message}}
                     </div>
                     <div  class="col-md-5 text-right">
-                        {{#data.increase_threshold}}
+                        {{#data.increase_threshold_kb}}
                             <span class="text-info">{{.}}</span>
-                        {{/data.increase_threshold}}
-                        {{#data.decrease}}
+                        {{/data.increase_threshold_kb}}
+                        {{#data.decrease_kb}}
                             <span class="text-danger">-{{.}}</span>
-                        {{/data.decrease}}
-                        {{#data.restValue}}
+                        {{/data.decrease_kb}}
+                        {{#data.restValue_kb}}
                             <span class="text-primary">{{.}}</span>
-                        {{/data.restValue}}
+                        {{/data.restValue_kb}}
 
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                                     <small>/ {{title}}</small>
                                 </div>
                                 <div class="col-xs-5 text-right">
-                                    <small>-{{data.size}}</small>
+                                    <small>-{{data.size_kb}}</small>
                                 </div>
                             </div>
 
@@ -50,9 +50,9 @@
                                                 <small>{{#redirects}}<span class="label label-default">{{statusCode}}</span>&nbsp;{{/redirects}}<a href="{{url}}">{{title}}</a></small>
                                             </div>
                                             <div class="col-xs-5 text-right">
-                                                {{#bodyLength}}
+                                                {{#bodyLength_kb}}
                                                 <small>-{{.}}</small>
-                                                {{/bodyLength}}
+                                                {{/bodyLength_kb}}
                                             </div>
                                         </div>
                                     </li>

@@ -1,10 +1,11 @@
 
-{{#report.hasInfo}}
-<h2>Information</h2>
-{{#report.info}}
+{{#report.hasError}}
+<h2>Errors</h2>
+{{#report.error}}
     {{>result_report_line}}
-{{/report.info}}
-{{/report.hasInfo}}
+{{/report.error}}
+{{/report.hasError}}
+
 
 {{#report.hasWarn}}
 <h2>Warnings</h2>
@@ -13,9 +14,9 @@
 {{/report.warn}}
 {{/report.hasWarn}}
 
-{{#report.hasError}}
-<h2>Errors</h2>
-{{#report.error}}
+{{#report.hasInfo}}
+<h2>Information</h2>
+{{#report.info}}
     {{>result_report_line}}
-{{/report.error}}
-{{/report.hasError}}
+{{/report.info}}
+{{/report.hasInfo}}
