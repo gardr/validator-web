@@ -17,7 +17,7 @@
         {{/output.url}}
         window.injectEditor = function(){
             var editorScriptTag = document.createElement("script");
-            editorScriptTag.src = "{{base}}client/built/editor{{minifyExtention}}.js?ver={{pack.version}}";
+            editorScriptTag.src = "{{base}}client/built/editor{{minifyExtention}}.js?ver={{pack.version}}_{{pack.dependencies.gardr-validator}}";
             document.getElementsByTagName('head')[0].appendChild(editorScriptTag);
             window.injectEditor = function(){};
         }
