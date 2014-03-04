@@ -7,13 +7,25 @@
     </p>
     {{#data}}
         <div class="expandable">
-            {{#code}}<pre><code>{{.}}</code></pre>{{/code}}
+            <ul class="nav">
+            {{#code}}
+                <li>
+                    <pre><code>{{.}}</code></pre>{{/code}}
+                </li>
             {{#trace}}
-                <a href="{{sourceURL}}" target="_blank"><small>{{file}}{{#line}}:{{.}}{{/line}}</small></a><br />
+                <li>
+                    <a href="{{sourceURL}}" target="_blank">
+                        <small>{{file}}{{#line}}:{{.}}{{/line}}</small>
+                    </a>
+                </li>
             {{/trace}}
             {{#list}}
-                <pre><small><code>{{.}}</code></small></pre>
+                <li>
+                    <pre><small><code>{{.}}</code></small></pre>
+                </li>
             {{/list}}
+            </ul>
+            <br />
         </div>
     {{/data}}
 </div>
