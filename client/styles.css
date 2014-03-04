@@ -49,6 +49,7 @@ body, html {
   min-height: 100px;
   height: auto;
   transition: height 0.5s;
+  background: white;
 }
 
 .tab-content {
