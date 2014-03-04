@@ -8,6 +8,21 @@ var HOOKS   = require('gardr-validator/lib/phantom/createHooks.js').HOOKS;
 var hooks   = require('../../lib/report/hook/timers.js');
 var timers  = require('../../lib/report/validator/timers.js');
 
+function getTraceList(targetNum, i){
+    var res = [];
+    if (typeof i === 'undefined'){
+        i = 0;
+    } else {
+        targetNum = i + targetNum;
+    }
+
+    for(;i<=targetNum; i++){
+        res.push(help.getTraceObject(i+1));
+    }
+
+    return res;
+}
+
 
 describe('timers hooks', function(){
 
@@ -37,7 +52,7 @@ describe('timers validator', function () {
         var reporter = help.createReporter.call(this);
 
         timers.validate(harvested, reporter, function () {
-            assert(reporter.getResult().error.length === 0);
+            assert.equals(reporter.getResult().error.length, 0);
             done();
         });
 
@@ -47,7 +62,7 @@ describe('timers validator', function () {
         var harvested = {
             'timers': {
                 setTimeout: [
-                    [help.getTraceObject(1), help.getTraceObject(2), help.getTraceObject(3), help.getTraceObject(4)]
+                    getTraceList(21)
                 ]
             }
         };
@@ -56,7 +71,7 @@ describe('timers validator', function () {
 
         timers.validate(harvested, reporter, function () {
             var result = reporter.getResult();
-            assert(result.error.length === 1);
+            assert.equals(result.error.length, 1);
             var errorObject = result.error[0];
             assert.isString(errorObject.message);
             done();
@@ -68,10 +83,10 @@ describe('timers validator', function () {
         var harvested = {
             'timers': {
                 setTimeout: [
-                    [help.getTraceObject(1), help.getTraceObject(2), help.getTraceObject(3), help.getTraceObject(4)]
+                    getTraceList(21)
                 ],
                 setInterval: [
-                    [help.getTraceObject(5), help.getTraceObject(6), help.getTraceObject(7), help.getTraceObject(8)]
+                    getTraceList(5, 21)
                 ]
             }
         };
@@ -79,7 +94,7 @@ describe('timers validator', function () {
         var reporter = help.createReporter.call(this);
 
         timers.validate(harvested, reporter, function () {
-            assert(reporter.getResult().error.length === 2);
+            assert.equals(reporter.getResult().error.length, 2);
             done();
         });
 
