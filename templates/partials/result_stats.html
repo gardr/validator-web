@@ -47,7 +47,7 @@
                                     <li>
                                         <div class="row">
                                             <div class="col-xs-7">
-                                                <small><a href="{{url}}">{{title}}</a></small>
+                                                <small>{{#redirects}}<span class="label label-default">{{statusCode}}</span>&nbsp;{{/redirects}}<a href="{{url}}">{{title}}</a></small>
                                             </div>
                                             <div class="col-xs-5 text-right">
                                                 {{#bodyLength}}
