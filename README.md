@@ -51,7 +51,7 @@ You can configure port, logfile location, etc using the [config module](lib/conf
 
 # Where to get help
 
-Create a github issue, or contact sveinung.rosaker@finn.no.
+Create a github issue.
 
 
 # Contributing
