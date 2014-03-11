@@ -12,30 +12,12 @@ garðr-validator-web
 
 The main purpose is to find possible errors or regressions in display ads. Its intended to grow over time to a set of rules based on best practices for performance ( although displayads not necessarily can avoid document.write atm ).
 
-The validator takes _input_ as a _scripturl_ or _html,css and javascript_, and produces in 2 steps harvested data and a report.
-
-Hooks / Harvesters (runs inside phantomJS context):
-* har,logs,errors (default)
-* actions (click)
-* images
-* jquery
-* gardr (based on [advertsspec](https://github.com/finn-no/advertsspec/blob/master/specification.md))
-* timers
-
-Validators / Rules (runs in node.js context):
-* errors (default)
-* css
-* forbidden (usages)
-* images
-* jquery
-* css
-* timers
-
+The validator takes _input_ as a _scripturl_ or _zipfile_, _html,css and javascript_, and produces in 3 steps harvested data and a report.
 
 # How does the validator work?
 
-It uses phantomJS as a browser, loads in a shim on top of the phanomjs api, runs for a 10 seconds after all hooks/harvesters has been injected.
-After phantomjs run, the validators/rules runs in a series to generate a report(info, warn, debug, error).
+It uses phantomJS as a browser, loads in a shim on top of the PhantomJS api, runs for a 10 seconds after all hooks have been innjected and data colelcted.
+After phantomjs run, the preoprocessors and validators/rules runs in a series to generate a report(info, warn, debug, error...).
 
 
 # Installation instructions
@@ -56,7 +38,10 @@ Run server:
 
 Local development:
 
+( if editing gardr-validator, run ´npm link´ in gardr-validator folder, and then link gardr-validator inside gardr-validator-web with ´npm link gardr-validator´)
+
     $ npm run start-dev
+
 
 ## Additional startup configuration
 

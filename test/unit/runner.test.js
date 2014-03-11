@@ -43,7 +43,6 @@ describe('getReport', function () {
             assert.isString(options.scriptUrl);
             assert.equals(options.scriptUrl, input.output.url);
             assert.equals(options.height, 123);
-            assert(options.parentUrl.indexOf(process.cwd()) !== -1, 'smoketest file path resolving');
             done();
         });
     });
