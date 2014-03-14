@@ -1,76 +1,76 @@
 {
-	"sites": [
-		{
-			"name": "mobil-vg",
-			"logo": "some/logo.png",
-			"setup": [
-				{
-					"name": "default",
-					"viewport": [
-						{
-							"width": 468,
-							"height": 300
-						},
-						{
-							"width": 468,
-							"height": 200
-						},
-						{
-							"width": 468,
-							"height": 150
-						}
-					],
-					"kbLimit": 50,
-					"ignore" : [
-						"validator1",
-						"validator3"
-					],
-					"allowRelativePaths": false
-				},
-				{
-					"name": "tactus",
-					"kbLimit": 125,
-					"ignore" : [
-						"validator1",
-						"validator3"
-					],
-					"allowRelativePaths": true
-				}
-			]
-		},
-		{
-			"name": "tablet-vg",
-			"logo": "some/logo.png",
-			"setup" : [
-				{
-					"name": "default",
-					"viewport": [
-						{
-							"width": 768,
-							"height": 200
-						},
-						{
-							"width": 580,
-							"height": 500
-						}
-					],
-					"kbLimit": 100,
-					"ignore" : [
-						"validator1",
-						"validator3"
-					],
-					"allowRelativePaths": false
-				},
-				{
-					"name": "tactus",
-					"kbLimit": 100,
-					"ignore" : [
-						"validator1",
-						"validator3"
-					],
-					"allowRelativePaths": true
-				}
-			]
-		}
-	]
+    "sites": [
+        {
+            "name": "mobil-vg",
+            "logo": "some/logo.png",
+            "setup": [
+                {
+                    "name": "default",
+                    "viewport": [
+                        {
+                            "width": 468,
+                            "height": 300
+                        },
+                        {
+                            "width": 468,
+                            "height": 200
+                        },
+                        {
+                            "width": 468,
+                            "height": 150
+                        }
+                    ],
+                    "kbLimit": 50,
+                    "ignore" : [
+                        "validator1",
+                        "validator3"
+                    ],
+                    "allowRelativePaths": false
+                },
+                {
+                    "name": "tactus",
+                    "kbLimit": 125,
+                    "ignore" : [
+                        "validator1",
+                        "validator3"
+                    ],
+                    "allowRelativePaths": true
+                }
+            ]
+        },
+        {
+            "name": "tablet-vg",
+            "logo": "some/logo.png",
+            "setup" : [
+                {
+                    "name": "default",
+                    "viewport": [
+                        {
+                            "width": 768,
+                            "height": 200
+                        },
+                        {
+                            "width": 580,
+                            "height": 500
+                        }
+                    ],
+                    "kbLimit": 100,
+                    "ignore" : [
+                        "validator1",
+                        "validator3"
+                    ],
+                    "allowRelativePaths": false
+                },
+                {
+                    "name": "tactus",
+                    "kbLimit": 100,
+                    "ignore" : [
+                        "validator1",
+                        "validator3"
+                    ],
+                    "allowRelativePaths": true
+                }
+            ]
+        }
+    ]
 }
