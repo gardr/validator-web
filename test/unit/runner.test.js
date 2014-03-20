@@ -6,7 +6,7 @@ var proxyquire = require('proxyquire');
 
 // phantom smoke test
 
-var runner = proxyquire('../../lib/report/index.js', {
+var mockedRunner = proxyquire('../../lib/report/index.js', {
     'gardr-validator': function (options, callback) {
         // test just want the options for verifying the actual option-object
         callback(null, options);
@@ -16,7 +16,7 @@ var runner = proxyquire('../../lib/report/index.js', {
 describe('getReport', function () {
 
     it('calling runner without scriptUrl should return an error', function (done) {
-        runner(null, function (err, result) {
+        mockedRunner(null, function (err, result) {
             assert(err);
             done();
         });
@@ -37,12 +37,34 @@ describe('getReport', function () {
             id: 'asd'
         };
 
-        runner(input, function (err, options) {
+        mockedRunner(input, function (err, options) {
             refute(err, 'should not return error');
             assert.isObject(options);
             assert.isString(options.scriptUrl);
             assert.equals(options.scriptUrl, input.output.url);
             assert.equals(options.height, 123);
+            done();
+        });
+    });
+
+    var runner = require('../../lib/report/index.js');
+
+    it('should work to run', function(done){
+        this.timeout(3000);
+        var options = {
+            output: {
+                url: 'about:blank'
+            },
+            options: {
+
+            },
+            id: 'random'+Math.random(),
+            pageRunTime: 100
+        };
+        runner(options, function(err, result){
+            refute(err);
+            assert(result.log);
+            assert(result.har);
             done();
         });
     });
