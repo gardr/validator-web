@@ -1,3 +1,4 @@
 {
-  "host":"dev.validator.finn.no"
+  "host": "localhost:8000",
+  "httpServerPort": 8000
 }

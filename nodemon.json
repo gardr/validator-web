@@ -16,6 +16,6 @@
         "node_modules/**/node_modules"
     ],
     "env": {
-        "NODE_ENV": "local"
+        "NODE_ENV": "development"
     }
 }
