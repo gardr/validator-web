@@ -14,13 +14,13 @@ The main purpose is to find possible errors or regressions in display ads. Its i
 
 The validator takes _input_ as a _scripturl_ or _zipfile_, _html,css and javascript_, and produces in 3 steps harvested data and a report.
 
-# How does the validator work?
+#### How does the validator work?
 
 It uses phantomJS as a browser, loads in a shim on top of the PhantomJS api, runs for a 10 seconds after all hooks have been innjected and data colelcted.
 After phantomjs run, the preoprocessors and validators/rules runs in a series to generate a report(info, warn, debug, error...).
 
 
-# Installation instructions
+#### Installation instructions
 
 Install depedencies and package validator with package gardr(abit funky)
 
@@ -30,7 +30,7 @@ Run tests
 
     $ npm test
 
-# Starting the application
+#### Starting the application
 
 Run server:
 
@@ -43,21 +43,21 @@ Local development:
     $ npm run start-dev
 
 
-## Additional startup configuration
+##### Additional startup configuration
 
 You can configure port, logfile location, etc using the [config module](lib/config.js) or by specifying environment variables when starting.
 
 	$ HTTP_PORT=1337 LOG_FILE_NAME=~/mylogs/pvw npm start
 
-# Where to get help
+#### Where to get help
 
 Create a github issue.
 
 
-# Contributing
+#### Contributing
 
 YES, pull requests with tests. Be sure to create a issue and let us know you are working on it - maybe we can help out with insights etc.
 
-# Alternatives
+##### Alternatives
 
 (please let us know of alternatives to this project)
