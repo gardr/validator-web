@@ -21,7 +21,7 @@ var options = {
         uploads: config.get('tmpDir')
     },
     cache: {
-        engine: 'memory'
+        engine: 'catbox-memory'
     },
     labels: ['web']
 };
