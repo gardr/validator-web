@@ -43,34 +43,36 @@ body, html {
 }
 
 .tabs {
-  position: relative;
-  z-index: 1;
+  /*position: relative;*/
+  /*z-index: 1;*/
   overflow: visible;
   min-height: 100px;
   height: auto;
-  transition: height 0.5s;
+  transition: min-height 0.5s;
   background: white;
 }
 
 .tab-content {
   width: 100%;
-  position: absolute;
-  z-index: 2;
-  left: -5500px;
-  min-height: 100px;
-  opacity: 0;
-  transition:left 0.5s, opacity 0.5s, height 0.5s;
-}
+  /*position: absolute;*/
+  display: none;
+  /*z-index: 2;*/
+  /*left: -5500px;*/
+  /*min-height: 100px;*/
+  /*opacity: 0;*/
+/*  transition:left 0.5s, opacity 0.5s, height 0.5s;
+*/}
 
 .tab-active {
-  left: 10px;
-  opacity: 1;
+  display: block;
+  /*left: 10px;*/
+  /*opacity: 1;*/
 }
 
-.tab-outgoing {
+/*.tab-outgoing {
   left: 5500px;
 }
-
+*/
 
 div.gardr {
     border: 1px solid #ccc;

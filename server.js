@@ -4,9 +4,7 @@ var log         = require('./lib/logger.js');
 var Hapi        = require('hapi');
 var config      = require('./lib/config.js');
 
-// Create a server with a host and port
-var PORT = config.get('httpServerPort');
-var options = {
+var serverOptions = {
     views: {
         basePath: __dirname,
         path: 'templates',
@@ -26,7 +24,7 @@ var options = {
     labels: ['web']
 };
 
-var server = new Hapi.Server('0.0.0.0', PORT, options);
+var server = new Hapi.Server('0.0.0.0', config.get('port'), serverOptions);
 
 server.state('session', {
     ttl: 24 * 60 * 60 * 1000,
@@ -47,4 +45,4 @@ server.route(require('./lib/routes/static.js').routes);
 
 server.start();
 
-log.info(pack.name, 'v' + pack.version, 'started on port', PORT, 'logs at', config.get('logFileName'));
+log.info(pack.name, 'v' + pack.version, 'started on port', config.get('port'), 'logs at', config.get('logFileName'));

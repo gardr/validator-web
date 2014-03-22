@@ -153,16 +153,42 @@ function initReplayBannerControllers() {
 
     events.on(next, 'click', nextHandler);
     events.on(prev, 'click', prevHandler);
-    events.on(play, 'click', start);
+    events.on(play, 'click', toggleStart);
 
     var interval;
 
-    function start() {
+    function toggleStart() {
         if (interval) {
             interval = clearInterval(interval);
+            this.className = this.className.replace('btn-success', '').trim();
             return;
         }
-        interval = setInterval(nextHandler, 1000);
+
+        this.className = (this.className + ' btn-success').trim();
+        interval = setTimeout(function loop(){
+            nextHandler();
+            interval = setTimeout(loop, getTimeTillNext());
+        }, getTimeTillNext());
+    }
+
+    function getTimeTillNext(){
+        var match;
+        screenshots.some(function(elem, index, list){
+            var next;
+            if (elem.className.indexOf('active') > -1){
+                next = list[index+1];
+                if (!next){
+                    return true;
+                }
+                var currTime = elem.getAttribute('data-timing');
+                var nextTime = next.getAttribute('data-timing');
+                if (currTime && nextTime){
+                    match = Math.abs(nextTime - currTime);
+                }
+                return true;
+            }
+        });
+        return match||1000;
     }
 
     function handler(fn) {
@@ -175,7 +201,11 @@ function initReplayBannerControllers() {
         return function shiftActive(elem, index, list) {
             if (elem.className.indexOf('active') > -1) {
                 elem.className = elem.className.replace('active', '');
-                var newElem = list[indexFn(index, list.length)];
+                var newIndex = indexFn(index, list.length);
+                if (newIndex < 0){
+                    newIndex = list.length -1;
+                }
+                var newElem = list[newIndex];
                 if (!newElem) {
                     newElem = list[0];
                 }

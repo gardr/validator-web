@@ -33,7 +33,7 @@ module.exports = function(buttonList, containerList){
 
     function setHeight(elem){
         var computed = getComputedStyle(elem);
-        elem.parentNode.style.height = computed.height;
+        elem.parentNode.style['min-height'] = computed.height;
     }
 
     eventEmitter.on('newTab', function(elem){
