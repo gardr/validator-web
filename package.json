@@ -24,7 +24,7 @@
     "url": "https://github.com/gardr/validator-web/issues"
   },
   "dependencies": {
-    "gardr-validator": "^0.1.11",
+    "gardr-validator": "^0.2.0",
     "document-write-html": "0.1.0",
     "gardr": "~0.5.17-SNAPSHOT",
     "hapi": "^3.0.2",
