@@ -1,7 +1,6 @@
 body, html {
   font-family: 'Helvetica Neue Thin', 'Helvetica Neue';
   font-weight: 200;
-  /*color: #666666;*/
 }
 
 .drill-down-list ol{
@@ -43,8 +42,6 @@ body, html {
 }
 
 .tabs {
-  /*position: relative;*/
-  /*z-index: 1;*/
   overflow: visible;
   min-height: 100px;
   height: auto;
@@ -54,28 +51,21 @@ body, html {
 
 .tab-content {
   width: 100%;
-  /*position: absolute;*/
   display: none;
-  /*z-index: 2;*/
-  /*left: -5500px;*/
-  /*min-height: 100px;*/
-  /*opacity: 0;*/
-/*  transition:left 0.5s, opacity 0.5s, height 0.5s;
-*/}
+}
 
 .tab-active {
   display: block;
-  /*left: 10px;*/
-  /*opacity: 1;*/
 }
 
-/*.tab-outgoing {
-  left: 5500px;
-}
-*/
 
 div.gardr {
-    border: 1px solid #ccc;
+  border: 1px solid #ccc;
+  background: #f1f1f1;
+}
+div.gardr iframe {
+  margin: 0 auto;
+  background: #ccc;
 }
 .animated-banner, iframe {
   width: 100%;
@@ -179,13 +169,6 @@ div.gardr {
     animation: spin 3s linear 0s infinite normal;
 }
 
-.advanced-container {
-    /*display: none;*/
-}
-.advanced-mode {
-    display: block;
-}
-
 .logo {
   background: transparent;
   width: 60px;
@@ -204,9 +187,9 @@ div.gardr {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border-top: solid 46px rgba(218, 34, 34, 0.65);
   border-left: solid 8px #78929e;
   border-right: solid 8px #78929e;
+  border-top: solid 46px rgba(218, 34, 34, 0.65);
   background: #eee;
   box-shadow: 0 0 0 5px #eee;
 }
@@ -292,4 +275,55 @@ a:hover>.logo:before, .logo:hover:before {
     100% {
         transform: scale(1);
     }
+}
+
+.wrap-format {
+    background: #111;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+
+}
+.wrap-format-inner1 {
+    background: #f1f1f1;
+    position: absolute;
+    border: 3px solid black;
+    z-index: 1;
+    left: 12px;
+    top: 12px;
+    opacity: 0.9;
+
+}
+.wrap-format-inner2 {
+    background: #ccc;
+    position: absolute;
+    z-index: 1;
+    left: 6px;
+    top: 6px;
+    opacity: 0.9;
+}
+.wrap-format-inner2:hover {
+    z-index: 999;
+    opacity: 0.9;
+}
+.wrap-format-inner1:hover {
+    opacity: 1;
+}
+.wrap-format h2, .wrap-format h3, .wrap-format h4, .wrap-format h1{
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    display: block;
+    margin: 0;
+}
+.wrap-format h4 {
+    z-index: -1;
+}
+.wrap-format h1 {
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    margin: 0;
 }

@@ -64,7 +64,7 @@ function initTabs(options){
             var para = document.createElement('p');
             para.innerHTML = 'Rendered <a href="'+options.previewUrl+'">'+options.previewUrl+'</a>. Viewport width '+ options.viewport.width+', height '+options.viewport.height;
             bannerContainer.appendChild(para);
-            res.iframe.resize('100%', res.input.height);
+            //res.iframe.resize('100%', res.input.height);
         });
     });
 }
@@ -96,7 +96,7 @@ function initPreview(options) {
         if (err){
             return logError(err);
         }
-        res.iframe.resize('100%', res.input.height);
+        //res.iframe.resize('100%', res.input.height);
     });
 }
 

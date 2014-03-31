@@ -9,11 +9,10 @@
         <button class="btn btn-default btn-primary btn-lg" data-tab="tab-result">
             Result
         </button>
-        <!--
-        <button class="btn btn-default btn-lg" data-tab="tab-checklist">
+
+<!--         <button class="btn btn-default btn-lg" data-tab="tab-checklist">
             Checklist
-        </button>
-        -->
+        </button> -->
 
         <button class="btn btn-default btn-lg" data-tab="tab-code">
             Code
@@ -22,9 +21,6 @@
             Preview
         </button>
     </div>
-    <button class="btn btn-default btn-warning btn-lg" data-tab="tab-options">
-        Options
-    </button>
 </div>
 <br />
 
@@ -54,7 +50,7 @@
         </div>
     </div>
 
-    <!--
+
     <div class="tab-content" data-tab="tab-checklist">
         <div class="row">
             <div class="col-md-9">
@@ -66,16 +62,13 @@
             </div>
         </div>
     </div>
-    -->
 
-    <div class="tab-content" data-tab="tab-options">
-        {{>advanced_options}}
-    </div>
 
     <div class="tab-content" data-tab="tab-code">
         <form action="/validate" method="POST" class="form" enctype="multipart/form-data">
-            <input type="hidden" name="copyOptionsFromId" value="{{id}}" />
-
+            <input type="hidden" name="formatId"     value="{{format.id}}" />
+            <input type="hidden" name="formatSubId"  value="{{format.subId}}" />
+            <input type="hidden" name="formatIndex"  value="{{format.index}}" />
             {{>code}}
 
             {{>code_advanced_info}}
@@ -94,5 +87,3 @@
         </div>
     </div>
 </div>
-
-

@@ -1,6 +1,12 @@
 <h1>Select site</h1>
 <div class="list-group">
     {{#formats}}
-    <a href="{{base}}formats/{{name}}/" class="list-group-item">{{name}}</a>
+    <a href="{{base}}formats/{{name}}/" class="list-group-item">
+        {{#logo}}
+            <img src="{{.}}" alt="{{name}}" height="50" />
+        {{/logo}}
+        {{name}}
+
+    </a>
     {{/formats}}
 </div>

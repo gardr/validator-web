@@ -1,0 +1,30 @@
+<h1>Select size</h1>
+<div class="list-group">
+    {{#formats}}
+        <a href="{{link}}" class="list-group-item" title="{{description}}">
+            <strong>{{title}}</strong>
+            {{#description}}
+                <p>{{.}}</p>
+            {{/description}}
+            {{#isMultipleFormat}}
+                <div class="wrap-format" style="width:{{width}};height:{{height}};">
+
+                    <div class="wrap-format-inner2" style="width:{{width2}};height:{{height2}}">
+                        <h3>{{title2}}</h3>
+                    </div>
+                    <div class="wrap-format-inner1 text-right" style="width:{{width1}};height:{{height1}}">
+                        <h2>{{title1}}</h2>
+                    </div>
+                    <h4>Viewport</h3>
+                </div>
+            {{/isMultipleFormat}}
+
+            {{^isMultipleFormat}}
+                <div class="wrap-format" style="width:{{width1}};height:{{height1}};" >
+                    <br />
+                    <h1 class="text-center" style="line-height:{{height}};">{{title}}</h1>
+                </div>
+            {{/isMultipleFormat}}
+        </a>
+    {{/formats}}
+</div>

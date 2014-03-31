@@ -23,18 +23,17 @@ describe('getReport', function () {
     });
 
     it('calling runner should work, and return options as expected', function (done) {
-
+        var id = 'id_' + Math.round(Math.random() * 100012391023);
         var input = {
             'output': {
-                'url': 'id_' + Math.round(Math.random() * 100012391023)
+                'url': id
             },
-            'options': {
-                'target': 'mobile',
+            'runnerConfig': {
                 'viewport': {
                     height: 123
                 }
             },
-            id: 'asd'
+            id: id
         };
 
         mockedRunner(input, function (err, options) {
@@ -42,7 +41,7 @@ describe('getReport', function () {
             assert.isObject(options);
             assert.isString(options.scriptUrl);
             assert.equals(options.scriptUrl, input.output.url);
-            assert.equals(options.height, 123);
+            assert.equals(options.viewport.height, 123);
             done();
         });
     });
@@ -55,11 +54,11 @@ describe('getReport', function () {
             output: {
                 url: 'about:blank'
             },
-            options: {
-
+            'runnerConfig': {
+                pageRunTime: 100
             },
             id: 'random'+Math.random(),
-            pageRunTime: 100
+
         };
         runner(options, function(err, result){
             refute(err);
