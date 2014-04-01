@@ -47,6 +47,9 @@
         </a>
         <br />
         <br />
+        {{#formatData}}
+            <p><strong>Format:</strong> {{title}}</p>
+        {{/formatData}}
         {{#fullSize}}
             <p>Total payload size: <strong>{{.}} bytes</strong></p>
         {{/fullSize}}
