@@ -1,10 +1,9 @@
 var referee = require('referee');
 var assert = referee.assert;
 var refute = referee.refute;
+var os = require('os');
 
 var proxyquire = require('proxyquire');
-
-// phantom smoke test
 
 var mockedRunner = proxyquire('../../lib/report/index.js', {
     'gardr-validator': function (options, callback) {
@@ -33,6 +32,7 @@ describe('getReport', function () {
                     height: 123
                 }
             },
+
             id: id
         };
 
@@ -55,10 +55,10 @@ describe('getReport', function () {
                 url: 'about:blank'
             },
             'runnerConfig': {
-                pageRunTime: 100
+                pageRunTime: 100,
+                outputDirectory: os.tmpDir()
             },
             id: 'random'+Math.random(),
-
         };
         runner(options, function(err, result){
             refute(err);
