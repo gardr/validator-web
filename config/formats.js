@@ -1,5 +1,5 @@
 module.exports = [{
-    'name': 'finn-responsive',
+    'name': 'FINN responsive',
     'logo': 'http://hjemmehos.finn.no/filestore/dev/GFX/logo_finn.png',
     'config': {
 
@@ -19,7 +19,7 @@ module.exports = [{
         }
     }]
     }, {
-    'name': 'finn',
+    'name': 'FINN',
     'logo': 'http://nyapp.finn.no/assets/logo.png',
     'subFormats': {
         'non-strict': {
@@ -31,7 +31,7 @@ module.exports = [{
         }
     },
     'formats': [{
-            'description': 'Toppbanner, dominant eller hestestko',
+            'description': 'Toppbanner / dominans / hestesko',
             'viewport': {
                 width: 1004,
                 height: 150
@@ -48,14 +48,14 @@ module.exports = [{
             'height': 600
         },
         {
-            'description': 'Test-format',
+            'description': 'FINN responsive',
             'viewport': {
                 width: 980,
                 height: 225
             },
             'width': '100%',
             'height': 225
-        },
+        }/*,
         {
             'description': 'test',
             'viewport': {
@@ -70,7 +70,7 @@ module.exports = [{
                 min: 250,
                 max: 300
             }
-    }]
+    }*/]
 }, {
     'name': 'mobil-vg',
     'logo': 'http://www.vg.no/img/logo277x64.png',
@@ -124,8 +124,9 @@ module.exports = [{
             min: 468,
             max: 468
         }
-    }, {
+    }/*, {
         'height': 225,
         'width': '100%'
-    }]
+    }*/
+    ]
 }];

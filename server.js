@@ -46,3 +46,5 @@ server.route(require('./lib/routes/static.js').routes);
 server.start();
 
 log.info(pack.name, 'v' + pack.version, 'started on port', config.get('port'), 'logs at', config.get('logFileName'));
+
+module.exports = server;
