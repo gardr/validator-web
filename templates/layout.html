@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <meta name="HandheldFriendly" content="True" />
-      <meta name="MobileOptimized" content="320" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
-      <title>{{pack.name}} {{pack.version}}</title>
-      <meta name="description" content="{{pack.description}}" />
-      <script>
-        window.validatorWebData = {viewport: {}, gardrIframePath: "./preview/iframe.html"};
-        {{#options.viewport}}
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+        <title>{{pack.name}} {{pack.version}}</title>
+        <meta name="description" content="{{pack.description}}" />
+        <link href="{{base}}components/bootstrap/dist/css/bootstrap{{minifyExtention}}.css" rel="stylesheet" />
+        <link href="{{base}}client/styles.css?ver={{pack.version}}" rel="stylesheet" />
+        <script>
+        window.validatorWebData = {
+            "viewport": {},
+            "gardrIframePath": "./preview/iframe.html"
+        };
+        {{#runnerConfig.viewport}}
             window.validatorWebData.viewport.width = {{width}};
             window.validatorWebData.viewport.height = {{height}};
-        {{/options.viewport}}
+        {{/runnerConfig.viewport}}
         {{#output.url}}
             window.validatorWebData.previewUrl = '{{.}}';
         {{/output.url}}
@@ -21,11 +26,9 @@
             document.getElementsByTagName('head')[0].appendChild(editorScriptTag);
             window.injectEditor = function(){};
         }
-      </script>
-      <script src="{{base}}client/built/common{{minifyExtention}}.js?ver={{pack.version}}_{{pack.dependencies.gardr-validator}}"></script>
-      <script src="{{base}}client/built/main{{minifyExtention}}.js?ver={{pack.version}}_{{pack.dependencies.gardr-validator}}"></script>
-      <link  href="{{base}}components/bootstrap/dist/css/bootstrap{{minifyExtention}}.css" rel="stylesheet" />
-      <link  href="{{base}}client/styles.css?ver={{pack.version}}" rel="stylesheet" />
+        </script>
+        <script src="{{base}}client/built/common{{minifyExtention}}.js?ver={{pack.version}}_{{pack.dependencies.gardr-validator}}"></script>
+        <script src="{{base}}client/built/main{{minifyExtention}}.js?ver={{pack.version}}_{{pack.dependencies.gardr-validator}}"></script>
     </head>
     <body>
         <a href="{{pack.repository.url}}" title="Fork {{pack.name}} on GitHub">
@@ -39,7 +42,10 @@
                 {{>errors}}
             {{/error}}
 
-            {{{content}}}
+            {{^error}}
+                {{{content}}}
+            {{/error}}
+
 
             {{>footer}}
         </div>

@@ -1,4 +1,4 @@
-<form method="POST" action="{{base}}validate" class="form" enctype="multipart/form-data">
+
 
     <div class="text-center" id="selectInput">
         <div class="btn-group">
@@ -19,35 +19,53 @@
             {{/hasIds}}
         </div>
 
-        <button class="btn btn-lg btn-warning" data-tab="tab-options">
-            Options
-        </button>
     </div>
 
     <div id="tabContent" class="tabs">
+
         <div class="tab-content tab-active" data-tab="tab-url">
-            <div class="form-group">
-                <label>Input URL:</label>
-                <input id="urlInput" type="text" name="url" class="form-control" value="{{url}}" placeholder="http://" />
-            </div>
+            <form method="POST" action="{{base}}validate" class="form" enctype="multipart/form-data">
+                <input type="hidden" name="formatId"     value="{{formatId}}" />
+                <input type="hidden" name="formatSubId"  value="{{formatSubId}}" />
+                <input type="hidden" name="formatIndex"  value="{{formatIndex}}" />
+                <div class="form-group">
+                    <label>Input URL:</label>
+                    <input id="urlInput" type="text" name="url" class="form-control" value="{{url}}" placeholder="http://" />
+                </div>
+                <div class="submit text-center">
+                    <input type="submit" class="btn btn-lg btn-primary btn-success" value="RUN"></input>
+                </div>
+            </form>
         </div>
 
         <div class="tab-content" data-tab="tab-file">
-            <div>
-                <div class="form-group">
-                    <label>ZIP / File upload</label>
-                    <input class="form-control" type="file" name="zipfile" />
+            <form method="POST" action="{{base}}validate" class="form" enctype="multipart/form-data">
+                <input type="hidden" name="formatId"     value="{{formatId}}" />
+                <input type="hidden" name="formatSubId"  value="{{formatSubId}}" />
+                <input type="hidden" name="formatIndex"  value="{{formatIndex}}" />
+                <div>
+                    <div class="form-group">
+                        <label>ZIP / File upload</label>
+                        <input class="form-control" type="file" name="zipfile" />
+                    </div>
                 </div>
-            </div>
+                <div class="submit text-center">
+                    <input type="submit" class="btn btn-lg btn-primary btn-success" value="RUN"></input>
+                </div>
+            </form>
         </div>
 
         <div class="tab-content" data-tab="tab-code">
-            {{>code}}
-        </div>
+            <form method="POST" action="{{base}}validate" class="form" enctype="multipart/form-data">
+                <input type="hidden" name="formatId"     value="{{formatId}}" />
+                <input type="hidden" name="formatSubId"  value="{{formatSubId}}" />
+                <input type="hidden" name="formatIndex"  value="{{formatIndex}}" />
 
-
-        <div class="tab-content" data-tab="tab-options">
-            {{>advanced_options}}
+                {{>code}}
+                <div class="submit text-center">
+                    <input type="submit" class="btn btn-lg btn-primary btn-success" value="RUN"></input>
+                </div>
+            </form>
         </div>
 
         {{#hasIds}}
@@ -64,14 +82,6 @@
 
 
 
-    <div class="submit text-center">
-        <input type="submit" class="btn btn-lg btn-primary btn-success" value="RUN"></input>
-    </div>
+
 
 </form>
-
-
-
-
-
-

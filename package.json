@@ -9,7 +9,7 @@
     "build": "./node_modules/.bin/bower install && npm run build-browser-js",
     "start": "npm run build && node server.js",
     "start-dev": "npm run watch-js & sleep 3 && NODE_ENV=development ./node_modules/.bin/nodemon",
-    "test": "./node_modules/.bin/mocha test/**/*.test.js --reporter list"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -24,38 +24,39 @@
     "url": "https://github.com/gardr/validator-web/issues"
   },
   "dependencies": {
-    "gardr-validator": "^0.1.11",
-    "document-write-html": "0.0.2",
+    "gardr-validator": "^0.2.0",
+    "document-write-html": "0.1.2",
     "gardr": "~0.5.17-SNAPSHOT",
-    "hapi": "^3.0.1",
-    "hoek": "~1.5.0",
-    "request": "~2.34.0",
+    "hapi": "^4.0.0",
+    "hoek": "^2.0.0",
+    "request": "^2.34.0",
     "handlebars": "~1.3.0",
-    "browserify": "^3.33.0",
+    "browserify": "^3.44.2",
     "domready": "^1.0.4",
-    "dom-events": "~0.1.1",
-    "concat-stream": "~1.4.1",
+    "dom-events": "^0.1.1",
     "moment": "~2.5.0",
     "async": "~0.2.9",
     "mkdirp": "~0.3.5",
     "bower": "~1.2.7",
-    "brace": "~0.2.1",
+    "brace": "^0.2.1",
     "convict": "~0.4.1",
     "uglify-js": "~2.4.8",
-    "unzip": "~0.1.9",
     "lodash": "~2.4.1",
     "levelup": "~0.18.2",
     "leveldown": "~0.10.2",
     "node-uuid": "~1.4.1",
     "winston": "^0.7.2",
     "catbox": "^2.2.0",
-    "catbox-memory": "^1.0.1"
+    "catbox-memory": "^1.0.1",
+    "joi": "^3.1.0",
+    "decompress-zip": "0.0.6"
   },
   "devDependencies": {
     "proxyquire": "~0.5.2",
-    "mocha": "~1.17.1",
     "watchify": "^0.6.1",
-    "referee": "~1.0.2",
-    "nodemon": "~1.0.16"
+    "nodemon": "^1.0.17",
+    "colors": "^0.6.2",
+    "lab": "^3.0.1",
+    "mock-fs": "^2.2.0"
   }
 }

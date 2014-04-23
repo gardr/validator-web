@@ -22,13 +22,14 @@
                 <span class="glyphicon glyphicon-forward"></span>
             </button>
         </div>
+
         {{#harvest.screenshots.images}}
             <div class="screenshot {{#active}}active{{/active}}" data-index="{{index}}" data-timing="{{timing}}" data-time="{{time}}">
                 <div class="screenshot-title">
                     Image {{index}} of {{total}}, {{formattedTime}}<br />
                     <small>{{formattedTiming}}</small>
                 </div>
-                <img class="entry" src="{{base}}screenshots/{{id}}/{{filename}}" width="{{width}}" height="{{height}}"/>
+                <img class="entry" src="{{link}}" width="{{width}}" height="{{height}}"/>
             </div>
         {{/harvest.screenshots.images}}
     </div>

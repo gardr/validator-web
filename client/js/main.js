@@ -64,7 +64,7 @@ function initTabs(options){
             var para = document.createElement('p');
             para.innerHTML = 'Rendered <a href="'+options.previewUrl+'">'+options.previewUrl+'</a>. Viewport width '+ options.viewport.width+', height '+options.viewport.height;
             bannerContainer.appendChild(para);
-            res.iframe.resize('100%', res.input.height);
+            //res.iframe.resize('100%', res.input.height);
         });
     });
 }
@@ -96,7 +96,7 @@ function initPreview(options) {
         if (err){
             return logError(err);
         }
-        res.iframe.resize('100%', res.input.height);
+        //res.iframe.resize('100%', res.input.height);
     });
 }
 
@@ -133,6 +133,17 @@ function initRender() {
     events.on(button, 'click', handler);
 }
 
+function getRaf(){
+    return (
+        global.requestAnimationFrame ||
+        global.mozRequestAnimationFrame ||
+        global.webkitRquestAnimationFrame ||
+        function(fn){
+            setTimeout(fn, 1);
+        }
+    );
+}
+
 function initReplayBannerControllers() {
     var next = document.getElementById('screenshot-next');
     var prev = document.getElementById('screenshot-prev');
@@ -155,6 +166,8 @@ function initReplayBannerControllers() {
     events.on(prev, 'click', prevHandler);
     events.on(play, 'click', toggleStart);
 
+    var raf = getRaf();
+
     var interval;
 
     function toggleStart() {
@@ -166,8 +179,10 @@ function initReplayBannerControllers() {
 
         this.className = (this.className + ' btn-success').trim();
         interval = setTimeout(function loop(){
-            nextHandler();
-            interval = setTimeout(loop, getTimeTillNext());
+            raf(function(){
+                nextHandler();
+                interval = setTimeout(loop, getTimeTillNext());
+            });
         }, getTimeTillNext());
     }
 

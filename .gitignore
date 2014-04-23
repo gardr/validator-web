@@ -13,6 +13,7 @@ results
 /results-db*
 node_modules
 bower_components
+TMP_DIR
 
 coverage
 report.xml

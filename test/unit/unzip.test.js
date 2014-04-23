@@ -1,15 +1,59 @@
-var referee = require('referee');
-var assert = referee.assert;
-var refute = referee.refute;
-
+var Lab         = require('lab');
+var expect      = Lab.expect;
+var before      = Lab.before;
+var after       = Lab.after;
+var describe    = Lab.experiment;
+var it          = Lab.test;
 
 var unzip = require('../../lib/unzip.js');
 
+var zipFiles = [];
 
-describe('Unzip', function(){
+var data = {
+    output: {
+        zip: {
+            'path': __dirname + '/fixtures/zip2/'
+        }
+    },
+    input: {
+        'zip': {
+            'filename': 'zipfile.zip',
+            'path': __dirname + '/fixtures/zipfile.zip',
+            'headers': {
+                'content-disposition': 'form-data; name=\"zipfile\"; filename=\"zipfile.zip\"',
+                'content-type': 'application/zip'
+            },
+            'bytes': 75710
+        }
+    }
+};
 
-    it('should take a uploaded zip object from hapijs');
-    it('only include valid filetypes');
-    it('should remove zip after unzipping file');
+describe('Unzip', function () {
+
+    it('should take a uploaded zip object from hapijs', function (done) {
+
+        var fs = require('fs');
+        var mockFs = require('mock-fs');
+
+
+        mockFs();
+
+        unzip(data.input.zip, data, function(err){
+            expect(err).to.be.an('undefined');
+            //console.log(mockFs.directory());
+            // todo: should assert what directory and files written to mock filesystem
+            mockFs.restore();
+            done();
+        });
+
+    });
+
+    // it('only include valid filetypes', function () {
+
+    // });
+
+    // it('should remove zip after unzipping file', function () {
+
+    // });
 
 });

@@ -1,8 +1,19 @@
-<br />
 <div class="alert alert-danger">
-    <p><strong>Error: </strong></p>
+    <p>
+        <strong>Error: </strong>
+    </p>
     {{message}}
     {{err.message}}
-    {{err.code}}
-    {{err.path}}
+
+    {{#err.code}}
+        <pre><code>{{.}}</code></pre>
+    {{/err.code}}
+
+    {{#err.path}}
+        <pre><code>{{.}}</code></pre>
+    {{/err.path}}
+
+    {{#err.stack}}
+        <pre><code>{{.}}</code></pre>
+    {{/err.stack}}
 </div>

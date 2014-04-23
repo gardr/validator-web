@@ -1,10 +1,13 @@
-var referee = require('referee');
-var assert = referee.assert;
-var refute = referee.refute;
+var Lab         = require('lab');
+var expect      = Lab.expect;
+var before      = Lab.before;
+var after       = Lab.after;
+var describe    = Lab.experiment;
+var it          = Lab.test;
+
+var os = require('os');
 
 var proxyquire = require('proxyquire');
-
-// phantom smoke test
 
 var mockedRunner = proxyquire('../../lib/report/index.js', {
     'gardr-validator': function (options, callback) {
@@ -17,54 +20,53 @@ describe('getReport', function () {
 
     it('calling runner without scriptUrl should return an error', function (done) {
         mockedRunner(null, function (err, result) {
-            assert(err);
+            expect(err).to.be.an('object');
             done();
         });
     });
 
     it('calling runner should work, and return options as expected', function (done) {
-
+        var id = 'id_' + Math.round(Math.random() * 100012391023);
         var input = {
             'output': {
-                'url': 'id_' + Math.round(Math.random() * 100012391023)
+                'url': id
             },
-            'options': {
-                'target': 'mobile',
+            'runnerConfig': {
                 'viewport': {
                     height: 123
                 }
             },
-            id: 'asd'
+
+            id: id
         };
 
         mockedRunner(input, function (err, options) {
-            refute(err, 'should not return error');
-            assert.isObject(options);
-            assert.isString(options.scriptUrl);
-            assert.equals(options.scriptUrl, input.output.url);
-            assert.equals(options.height, 123);
+            expect(err).to.be.an('null');
+            expect(options).to.be.an('object');
+            expect(options.scriptUrl).to.be.a('string');
+            expect(options.scriptUrl).to.equal(input.output.url);
+            expect(options.viewport.height).to.equal(123);
             done();
         });
     });
 
     var runner = require('../../lib/report/index.js');
 
-    it('should work to run', function(done){
-        this.timeout(3000);
+    it('should work to run', {timeout: 3000}, function(done){
         var options = {
             output: {
                 url: 'about:blank'
             },
-            options: {
-
+            'runnerConfig': {
+                pageRunTime: 100,
+                outputDirectory: os.tmpDir()
             },
             id: 'random'+Math.random(),
-            pageRunTime: 100
         };
         runner(options, function(err, result){
-            refute(err);
-            assert(result.log);
-            assert(result.har);
+            expect(err).to.be.a('null');
+            expect(result.log).to.be.an('object');
+            expect(result.har).to.be.an('object');
             done();
         });
     });

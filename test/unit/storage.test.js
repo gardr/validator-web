@@ -1,6 +1,9 @@
-var referee = require('referee');
-var assert = referee.assert;
-var refute = referee.refute;
+var Lab         = require('lab');
+var expect      = Lab.expect;
+var before      = Lab.before;
+var after       = Lab.after;
+var describe    = Lab.experiment;
+var it          = Lab.test;
 
 var proxyquire = require('proxyquire');
 
@@ -15,10 +18,10 @@ describe('Storage', function(){
         var key = 'TESTKEY-'+Date.now();
         var val = 'TESTVALUE-'+Date.now();
         storage.set(key, {someValue: val}, function(err){
-            refute(err);
+            expect(err).to.be.a('undefined');
             storage.get(key, function(err, value){
-                refute(err);
-                assert.equals(value.someValue, val);
+                expect(err).to.be.a('null');
+                expect(value.someValue).to.equal(val);
                 done();
             });
         });
@@ -28,8 +31,8 @@ describe('Storage', function(){
     it('should  return empty result with prefix', function(done){
 
         storage.startsWith('asdf'+Date.now(), function(err, list){
-            refute(err);
-            assert.equals(list.length, 0);
+            expect(err).to.be.an('null');
+            expect(list.length).to.equal(0);
             done();
         });
 
@@ -49,8 +52,8 @@ describe('Storage', function(){
             if (count) return;
 
             storage.startsWith(prefix, function(err, list){
-                refute(err);
-                assert.equals(list.length, 2);
+                expect(err).to.be.an('null');
+                expect(list.length).to.equal(2);
                 done();
             });
         }

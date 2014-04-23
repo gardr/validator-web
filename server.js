@@ -43,6 +43,10 @@ server.route(require('./lib/routes/result.js'));
 server.route(require('./lib/routes/status.js'));
 server.route(require('./lib/routes/static.js').routes);
 
-server.start();
+if (process.env.NODE_ENV !== 'test'){
+    server.start();
+    log.info(pack.name, 'v' + pack.version, 'started on port', config.get('port'), 'logs at', config.get('logFileName'));
+}
 
-log.info(pack.name, 'v' + pack.version, 'started on port', config.get('port'), 'logs at', config.get('logFileName'));
+
+module.exports = server;
