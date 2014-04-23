@@ -1,9 +1,4 @@
-var Lab         = require('lab');
-var expect      = Lab.expect;
-var before      = Lab.before;
-var after       = Lab.after;
-var describe    = Lab.experiment;
-var it          = Lab.test;
+var expect = require('expect.js');
 
 var proxyquire = require('proxyquire');
 
@@ -20,7 +15,7 @@ describe('Storage', function(){
         storage.set(key, {someValue: val}, function(err){
             expect(err).to.be.a('undefined');
             storage.get(key, function(err, value){
-                expect(err).to.be.a('null');
+                expect(err).to.equal(null);
                 expect(value.someValue).to.equal(val);
                 done();
             });
@@ -31,7 +26,7 @@ describe('Storage', function(){
     it('should  return empty result with prefix', function(done){
 
         storage.startsWith('asdf'+Date.now(), function(err, list){
-            expect(err).to.be.an('null');
+            expect(err).to.equal(null);
             expect(list.length).to.equal(0);
             done();
         });
@@ -52,7 +47,7 @@ describe('Storage', function(){
             if (count) return;
 
             storage.startsWith(prefix, function(err, list){
-                expect(err).to.be.an('null');
+                expect(err).to.equal(null);
                 expect(list.length).to.equal(2);
                 done();
             });

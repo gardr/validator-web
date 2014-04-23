@@ -9,7 +9,7 @@
     "build": "./node_modules/.bin/bower install && npm run build-browser-js",
     "start": "npm run build && node server.js",
     "start-dev": "npm run watch-js & sleep 3 && NODE_ENV=development ./node_modules/.bin/nodemon",
-    "test": "make test"
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
     "document-write-html": "0.1.2",
     "gardr": "~0.5.17-SNAPSHOT",
     "hapi": "^4.0.0",
-    "hoek": "^2.0.0",
+    "hoek": "^2.1.0",
     "request": "^2.34.0",
     "handlebars": "~1.3.0",
     "browserify": "^3.44.2",
@@ -49,7 +49,9 @@
     "catbox": "^2.2.0",
     "catbox-memory": "^1.0.1",
     "joi": "^3.1.0",
-    "decompress-zip": "0.0.6"
+    "decompress-zip": "0.0.6",
+    "proxyquire": "^0.6.0",
+    "lab": "^3.0.1"
   },
   "devDependencies": {
     "proxyquire": "~0.5.2",
@@ -57,6 +59,9 @@
     "nodemon": "^1.0.17",
     "colors": "^0.6.2",
     "lab": "^3.0.1",
-    "mock-fs": "^2.2.0"
+    "mock-fs": "^2.2.0",
+    "mocha": "^1.18.2",
+    "expect": "^0.1.1",
+    "expect.js": "^0.3.1"
   }
 }

@@ -1,9 +1,4 @@
-var Lab         = require('lab');
-var expect      = Lab.expect;
-var before      = Lab.before;
-var after       = Lab.after;
-var describe    = Lab.experiment;
-var it          = Lab.test;
+var expect = require('expect.js');
 
 var os = require('os');
 
@@ -41,7 +36,7 @@ describe('getReport', function () {
         };
 
         mockedRunner(input, function (err, options) {
-            expect(err).to.be.an('null');
+            expect(err).to.equal(null);
             expect(options).to.be.an('object');
             expect(options.scriptUrl).to.be.a('string');
             expect(options.scriptUrl).to.equal(input.output.url);
@@ -52,7 +47,8 @@ describe('getReport', function () {
 
     var runner = require('../../lib/report/index.js');
 
-    it('should work to run', {timeout: 3000}, function(done){
+    it('should work to run', function(done){
+        this.timeout = 3000;
         var options = {
             output: {
                 url: 'about:blank'
@@ -64,9 +60,9 @@ describe('getReport', function () {
             id: 'random'+Math.random(),
         };
         runner(options, function(err, result){
-            expect(err).to.be.a('null');
-            expect(result.log).to.be.an('object');
-            expect(result.har).to.be.an('object');
+            expect(err).to.equal(null);
+            expect(result.log).to.be.a('object');
+            expect(result.har).to.be.a('object');
             done();
         });
     });

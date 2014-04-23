@@ -1,9 +1,4 @@
-var Lab         = require('lab');
-var expect      = Lab.expect;
-var before      = Lab.before;
-var after       = Lab.after;
-var describe    = Lab.experiment;
-var it          = Lab.test;
+var expect = require('expect.js');
 
 var unzip = require('../../lib/unzip.js');
 
