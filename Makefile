@@ -1,5 +1,5 @@
 test:
-	@node node_modules/lab/bin/lab test/**/*.test.js -r console
+	@node node_modules/lab/bin/lab test/**/*.test.js -r console --leaks
 test-cov:
 	@node node_modules/lab/bin/lab test/**/*.test.js -t 80
 test-cov-html:
