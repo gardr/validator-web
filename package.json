@@ -50,18 +50,14 @@
     "catbox-memory": "^1.0.1",
     "joi": "^3.1.0",
     "decompress-zip": "0.0.6",
-    "proxyquire": "^0.6.0",
-    "lab": "^3.0.1"
+    "colors": "^0.6.2"
   },
   "devDependencies": {
-    "proxyquire": "~0.5.2",
+    "proxyquire": "^0.6.0",
     "watchify": "^0.6.1",
     "nodemon": "^1.0.17",
-    "colors": "^0.6.2",
-    "lab": "^3.0.1",
     "mock-fs": "^2.2.0",
     "mocha": "^1.18.2",
-    "expect": "^0.1.1",
     "expect.js": "^0.3.1"
   }
 }
