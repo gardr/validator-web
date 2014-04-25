@@ -63,7 +63,11 @@ server.route({
 
 if (process.env.NODE_ENV !== 'test'){
     server.start();
-    log.info(pack.name, 'v' + pack.version, 'started on port', config.get('port'), 'logs at', config.get('logFileName'));
+    var msg = [pack.name, 'v' + pack.version, 'started on port', config.get('port'), 'logs at', config.get('logFileName')].join(' ')
+    log.info(msg);
+    console.log(msg);
+} else {
+    console.log('Running server.js in NODE_ENV=test');
 }
 
 
