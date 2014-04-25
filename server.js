@@ -21,7 +21,10 @@ var serverOptions = {
     cache: {
         engine: 'catbox-memory'
     },
-    labels: ['web']
+    labels: ['web'],
+    load: {
+        sampleInterval: 500
+    }
 };
 
 var server = new Hapi.Server('0.0.0.0', config.get('port'), serverOptions);
@@ -40,8 +43,23 @@ server.route(require('./lib/routes/screenshots.js'));
 server.route(require('./lib/routes/serveZip.js'));
 server.route(require('./lib/routes/validate.js'));
 server.route(require('./lib/routes/result.js'));
-server.route(require('./lib/routes/status.js'));
 server.route(require('./lib/routes/static.js').routes);
+server.route({
+    method: 'GET',
+    path: '/status',
+    config: {
+        handler: function (request, reply) {
+            var hasSomeLoad = server.load.eventLoopDelay < 10;
+            var healthStatus = hasSomeLoad ? 'ok' : 'load';
+
+            reply({
+                health: healthStatus,
+                load: server.load
+            });
+        }
+    }
+});
+
 
 if (process.env.NODE_ENV !== 'test'){
     server.start();
