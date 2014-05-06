@@ -5,7 +5,7 @@
         {{#logo}}
             <img src="{{.}}" alt="{{name}}" height="50" />
         {{/logo}}
-        {{name}}
+        {{title}}{{^title}}{{name}}{{/title}}
 
     </a>
     {{/formats}}

@@ -1,6 +1,8 @@
 module.exports = [{
-    'name': 'FINN responsive',
-    'logo': 'http://hjemmehos.finn.no/filestore/dev/GFX/logo_finn.png',
+    'name': 'inma',
+    'title': 'Industry standard – HTML Responsive ads',
+    'logo': 'http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/092011/inma_green.gif',
+    'meta': ['mobile'],
     'config': {
 
     },
@@ -21,6 +23,7 @@ module.exports = [{
     }, {
     'name': 'FINN',
     'logo': 'http://nyapp.finn.no/assets/logo.png',
+    'meta': ['mobile', 'tablet', 'desktop'],
     'subFormats': {
         'non-strict': {
             config: {
@@ -31,6 +34,15 @@ module.exports = [{
         }
     },
     'formats': [{
+            'description': 'FINN responsive',
+            'viewport': {
+                width: 980,
+                height: 225
+            },
+            'width': '100%',
+            'height': 225
+        },
+        {
             'description': 'Toppbanner / dominans / hestesko',
             'viewport': {
                 width: 1004,
@@ -46,31 +58,7 @@ module.exports = [{
             'description': 'Skyskraper',
             'width': 240,
             'height': 600
-        },
-        {
-            'description': 'FINN responsive',
-            'viewport': {
-                width: 980,
-                height: 225
-            },
-            'width': '100%',
-            'height': 225
-        }/*,
-        {
-            'description': 'test',
-            'viewport': {
-                width: 500,
-                height: 300
-            },
-            'width': {
-                min: 400,
-                max: 500
-            },
-            'height': {
-                min: 250,
-                max: 300
-            }
-    }*/]
+        }]
 }, {
     'name': 'mobil-vg',
     'logo': 'http://www.vg.no/img/logo277x64.png',

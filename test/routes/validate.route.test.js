@@ -69,7 +69,7 @@ describe('Validate route', function(){
 
         var payload = multipart({
             "url":"http://www.finn.no",
-            "formatId": "FINN responsive",
+            "formatId": "inma",
             "formatSubId": "default",
             "formatIndex": 0
         });
