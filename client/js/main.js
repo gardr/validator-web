@@ -1,6 +1,6 @@
 var domready = require('domready');
 var events = require('dom-events');
-var getManager = require('gardr/src/mobile.js');
+var getManager = require('gardr-host');
 
 var addClass = require('./lib/classes.js').addClass;
 
@@ -109,7 +109,7 @@ function initRender() {
     }
 
     var manager = global.__manager = getManager({
-        iframeUrl: './preview/iframe.html'
+        iframeUrl: './preview/built/iframe.html'
     });
 
     var counter = 0;
