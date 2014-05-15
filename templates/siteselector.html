@@ -5,8 +5,11 @@
         {{#logo}}
             <img src="{{.}}" alt="{{name}}" height="50" />
         {{/logo}}
-        {{title}}{{^title}}{{name}}{{/title}}
 
+        {{title}}{{^title}}{{name}}{{/title}}
+        {{#meta}}
+            <span class="meta-{{.}}" title="{{.}}">{{.}}</span>
+        {{/meta}}
     </a>
     {{/formats}}
 </div>

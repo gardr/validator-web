@@ -62,6 +62,7 @@ module.exports = [{
 }, {
     'name': 'mobil-vg',
     'logo': 'http://www.vg.no/img/logo277x64.png',
+    'meta': ['mobile'],
     'config': {
         'sizes': {
             thresholdBytes: 200000
