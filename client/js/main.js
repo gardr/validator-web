@@ -44,7 +44,7 @@ function initTabs(options){
     tabEvent.on('tab-preview', function(){
 
         var name = 'result_preview';
-        var m = getManager({
+        var m = global.__manager = getManager({
             'iframeUrl': options.gardrIframePath
         });
 
