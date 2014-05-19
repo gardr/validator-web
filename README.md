@@ -42,6 +42,9 @@ Local development:
 
     $ npm run start-dev
 
+    If you need to debug output from phantomjs, add env variable TMP_DIR=/TMP_DIR.
+    Screenshots and json output from phantom will be outputted in a folder with id as name.
+
 
 ##### Additional startup configuration
 

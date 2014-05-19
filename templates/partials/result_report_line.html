@@ -15,7 +15,7 @@
             {{#trace}}
                 <li>
                     <a href="{{sourceURL}}" target="_blank">
-                        <small>{{file}}{{#line}}:{{.}}{{/line}}</small>
+                        <small>{{file}}{{#line}}:{{.}}{{/line}} {{#function}} -> {{.}}{{/function}}</small>
                     </a>
                 </li>
             {{/trace}}
