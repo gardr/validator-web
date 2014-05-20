@@ -71,6 +71,9 @@ module.exports = [{
     'subFormats': {
         'easy': {
             config: {
+                jquery: {
+                    versionsBack: 3
+                },
                 sizes: {
                     thresholdBytes: 250000
                 }
