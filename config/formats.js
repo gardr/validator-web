@@ -20,7 +20,7 @@ module.exports = [{
             max: 225
         }
     }]
-    }, {
+}, {
     'name': 'FINN',
     'logo': 'http://nyapp.finn.no/assets/logo.png',
     'meta': ['mobile', 'tablet', 'desktop'],
@@ -34,88 +34,67 @@ module.exports = [{
         }
     },
     'formats': [{
-            'description': 'FINN responsive',
-            'viewport': {
-                width: 980,
-                height: 225
-            },
-            'width': '100%',
-            'height': 225
+        'description': 'FINN responsive',
+        'viewport': {
+            width: 980,
+            height: 225
         },
-        {
-            'description': 'Toppbanner / dominans / hestesko',
-            'viewport': {
-                width: 1004,
-                height: 150
-            },
-            'width': {
-                min: 980,
-                max: 1004
-            },
-            'height': 150
+        'width': '100%',
+        'height': 225
+    },
+    {
+        'description': 'Toppbanner / dominans / hestesko',
+        'viewport': {
+            width: 1004,
+            height: 150
         },
-        {
-            'description': 'Skyskraper',
-            'width': 240,
-            'height': 600
-        }]
+        'width': {
+            min: 980,
+            max: 1004
+        },
+        'height': 150
+    },
+    {
+        'description': 'Skyskraper',
+        'width': 240,
+        'height': 600
+    }]
 }, {
-    'name': 'mobil-vg',
+    'name': 'VG Mobil',
     'logo': 'http://www.vg.no/img/logo277x64.png',
     'meta': ['mobile'],
     'config': {
         'sizes': {
-            thresholdBytes: 200000
-        }
-    },
-    'subFormats': {
-        'easy': {
-            config: {
-                sizes: {
-                    thresholdBytes: 250000
-                }
-            }
+            thresholdBytes: 150000
         }
     },
     'formats': [{
-        'viewport': {
-            width: 468,
-            height: 300
-        },
-        'height': {
-            min: 200,
-            max: 300
-        },
+        'height': 300,
         'width': 468,
-        'config': {
-            sizes: {
-                thresholdBytes: 50000
-            },
-            gardr: {
-                enforceSpec: false
-            }
-        }
     }, {
-        'height': {
-            min: 200,
-            max: 200
-        },
-        'width': {
-            min: 468,
-            max: 468
+        'height': 400,
+        'width': 468
+    }]
+}, {
+    'name': 'VG Tablet',
+    'logo': 'http://www.vg.no/img/logo277x64.png',
+    'meta': ['tablet'],
+    'config': {
+        'sizes': {
+            thresholdBytes: 150000
         }
+    },
+    'formats': [{
+        'height': 300,
+        'width': 990,
     }, {
-        'height': {
-            min: 150,
-            max: 150
-        },
-        'width': {
-            min: 468,
-            max: 468
-        }
-    }/*, {
-        'height': 225,
-        'width': '100%'
-    }*/
-    ]
+        'height': 150,
+        'width': 990
+    }, {
+        'height': 500,
+        'width': 580
+    }, {
+        'height': 660,
+        'width': 300
+    }]
 }];
