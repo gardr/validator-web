@@ -1,5 +1,5 @@
 var expect = require('expect.js');
-
+var proxyquire = require('proxyquire');
 var unzip = require('../../lib/unzip.js');
 
 var zipFiles = [];
@@ -24,12 +24,9 @@ var data = {
 };
 
 describe('Unzip', function () {
-
     it('should take a uploaded zip object from hapijs', function (done) {
-
         var fs = require('fs');
         var mockFs = require('mock-fs');
-
 
         mockFs();
 
@@ -42,6 +39,43 @@ describe('Unzip', function () {
         });
 
     });
+
+    describe('_validateIndex', function(){
+        it('should not error out if wellformed html', function(done){
+            var mockedUnzip = proxyquire('../../lib/unzip.js', {
+                'request': function(options, callback){
+                    callback(null, null, JSON.stringify({messages: []}));
+                }
+            });
+
+            var output = {};
+            mockedUnzip._validateIndex(output, '<!DOCTYPE html><html><body><div></div></body></html>', function(){
+                expect(output.error).to.be.an('undefined');
+                done();
+            });
+
+
+        });
+
+        it('should error out if not wellformed html', function(done){
+            var mockedUnzip = proxyquire('../../lib/unzip.js', {
+                'request': function(options, callback){
+                    callback(null, null, JSON.stringify({'messages': [{
+                        type: 'error',
+                        message: '...',
+                    }]}));
+                }
+            });
+
+            var output = {};
+            mockedUnzip._validateIndex(output, '_', function(){
+                expect(output.error).to.be.a('object');
+                expect(output.error.errors.length).to.be(1);
+                done();
+            });
+        });
+    });
+
 
     // it('only include valid filetypes', function () {
 
