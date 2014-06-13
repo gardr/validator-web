@@ -63,7 +63,7 @@ server.route({
 
 if (process.env.NODE_ENV !== 'test'){
     server.start();
-    var msg = [pack.name, 'v' + pack.version, 'started on port', config.get('port'), 'logs at', config.get('logFileName')].join(' ')
+    var msg = [pack.name, 'v' + pack.version, 'started on port', config.get('port'), 'logs at', config.get('logFileName')].join(' ');
     log.info(msg);
     console.log(msg);
 } else {
