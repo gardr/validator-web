@@ -34,7 +34,7 @@ Run tests
 
 Run server:
 
-    $ HOST=localhost PORT=8000 npm start
+    $ PORT=8000 npm start
 
 Local development:
 
