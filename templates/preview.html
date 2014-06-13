@@ -1,6 +1,6 @@
 <div class="text-center">
     <h1 class="text-primary">Processing...</h1>
-    <p>Expected run time is 15-20 seconds. Running for <span id="timerCounter">{{runtime}}</span> ms. Reloading in <strong><span id="timer">{{reloadIn}}</span></strong> ms.</p>
+    <p>Expected run time is 15-25 seconds. Running for <span id="timerCounter">{{runtime}}</span> ms. Reloading in <strong><span id="timer">{{reloadIn}}</span></strong> ms.</p>
     <br />
 </div>
 <div class="progress progress-striped active">
@@ -39,7 +39,7 @@
             setInterval(function(){
                 timer += UPDATE_FREQ;
                 var timeleft = ms - timer;
-                var percent = -(Math.round(timeleft / 20000 * 100) - 100);
+                var percent = -(Math.round(timeleft / 25000 * 100) - 100);
                 timerCounter.innerHTML = runtime + timer;
                 percElem.innerHTML= percent;
                 msElem.innerHTML = timeleft;
