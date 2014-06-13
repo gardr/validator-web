@@ -6,37 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
         <title>{{pack.name}} {{pack.version}}</title>
         <meta name="description" content="{{pack.description}}" />
-        <link href="{{base}}components/bootstrap/dist/css/bootstrap{{minifyExtention}}.css" rel="stylesheet" />
-        <link href="{{base}}client/styles.css?ver={{pack.version}}" rel="stylesheet" />
-        <script>
-        window.validatorWebData = {
-            "viewport": {},
-            "gardrIframePath": "./preview/built/iframe.html"
-        };
-        {{#runnerConfig.viewport}}
-            window.validatorWebData.viewport.width = {{width}};
-            window.validatorWebData.viewport.height = {{height}};
-        {{/runnerConfig.viewport}}
-        {{#output.url}}
-            window.validatorWebData.previewUrl = '{{.}}';
-        {{/output.url}}
-        window.injectEditor = function(){
-            var editorScriptTag = document.createElement("script");
-            editorScriptTag.src = "{{base}}client/built/editor{{minifyExtention}}.js?ver={{pack.version}}_{{pack.dependencies.gardr-validator}}";
-            document.getElementsByTagName('head')[0].appendChild(editorScriptTag);
-            window.injectEditor = function(){};
-        }
-        </script>
-        <script src="{{base}}client/built/common{{minifyExtention}}.js?ver={{pack.version}}_{{pack.dependencies.gardr-validator}}"></script>
-        <script src="{{base}}client/built/main{{minifyExtention}}.js?ver={{pack.version}}_{{pack.dependencies.gardr-validator}}"></script>
+        <!-- <link href="{{base}}components/bootstrap/dist/css/bootstrap{{minifyExtention}}.css" rel="stylesheet" /> -->
+        <link href="{{base}}client/built/styles.css?ver={{pack.version}}" rel="stylesheet" />
     </head>
     <body>
-        <a href="{{pack.repository.url}}" title="Fork {{pack.name}} on GitHub">
-            <img style="position: absolute; top: 0; right: 0; border: 0;" src="{{base}}client/fork.png" alt="Fork {{pack.name}} on GitHub">
-        </a>
 
-        <div class="container">
-            {{>header}}
+        {{>header}}
+
+        <div class="container main-container">
 
             {{#error}}
                 {{>errors}}
@@ -46,17 +23,17 @@
                 {{{content}}}
             {{/error}}
 
-
-            {{>footer}}
         </div>
 
+        {{>footer}}
 
         {{#debugInfo}}
-        <div style="margin: 20px">
-            <div class="alert alert-success"><h4 class="" style="margin: 0;">Validator View-data:</h4></div>
-            <pre style="font-size:11px;"><code>{{.}}</code></pre>
-        </div>
+            <div style="margin: 20px">
+                <div class="alert alert-success"><h4 class="" style="margin: 0;">Validator View-data:</h4></div>
+                <pre style="font-size:11px;"><code>{{.}}</code></pre>
+            </div>
         {{/debugInfo}}
+
         {{>bottom_js}}
     </body>
 </html>

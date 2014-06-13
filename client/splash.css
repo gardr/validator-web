@@ -1,0 +1,83 @@
+html,body {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+.container {
+    display: block;
+    font-family: 'Open Sans', Open Sans, Sans;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding-top: 10%;
+    /*background-image: url('http://upload.wikimedia.org/wikipedia/commons/a/a4/Stonehenge_cloudy_sunset.jpg');*/
+    background-image: url('./stonewall.jpg');
+
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-size: cover;
+    text-align: center;
+}
+ul {
+    background: rgba(0,0,0,0.5);
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 0;
+}
+li {
+    display: inline;
+    vertical-align: center;
+}
+li a {
+    line-height: 1em;
+    text-decoration: none;
+    color: #428bca;
+    color: white;
+    font-size: 95%;
+    display: inline-block;
+    border-right: 1px solid #f1f1f1;
+    padding-right: 10px;
+    margin-right: 4px;
+    text-shadow: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+li:last-child a {
+    border-right: 0px;
+}
+
+h1 small {
+    color: #428bca;
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 90%;
+}
+.btn {
+    background: #428bca;
+    color: #f1f1f1;
+    padding: 5px 10px;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 12px;
+}

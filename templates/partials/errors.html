@@ -16,4 +16,8 @@
     {{#err.stack}}
         <pre><code>{{.}}</code></pre>
     {{/err.stack}}
+
+    {{#errors}}
+        <p>-&gt; {{message}}</p>
+    {{/errors}}
 </div>

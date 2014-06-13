@@ -4,7 +4,7 @@ var ace = require('brace');
 require('brace/mode/javascript');
 require('brace/mode/css');
 require('brace/mode/html');
-require('brace/theme/solarized_dark');
+require('brace/theme/merbivore');
 
 
 
@@ -26,7 +26,7 @@ function initEditor(textareaId, editorId, mode) {
     var editor = ace.edit(editorId);
 
     editor.getSession().setMode(mode);
-    editor.setTheme('ace/theme/solarized_dark');
+    editor.setTheme('ace/theme/merbivore');
     editor.setValue(textarea.value);
     textarea.style.display = 'none';
     editor.clearSelection();

@@ -1,6 +1,37 @@
-<footer class="container text-center">
-    <hr />
-    <a href="{{pack.repository.url}}"><strong>{{pack.name}}</strong> <small>{{pack.version}}</small></a>
-    <small> | </small>
-    <a href="{{pack.bugs.url}}"><small><span class="glyphicon glyphicon-bullhorn"></span> Report issues</small></a>
-</footer>
+<div class="footer-wrapper">
+    <footer class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Resources</h4>
+                <hr />
+                <ul class="nav">
+                    <li>
+                        <a href="{{pack.repository.url}}">
+                            Github <strong>{{pack.name}}</strong> <small>{{pack.version}}</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{pack.bugs.url}}">
+                           Report issues / bugs
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Social</h4>
+                <hr />
+                <ul class="nav">
+                    <li>
+                        <a href="{{pack.repository.url}}">
+                            Twitter
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+        <div></div>
+    </footer>
+</div>

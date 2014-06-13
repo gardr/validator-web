@@ -6,8 +6,9 @@
   "scripts": {
     "clean": "rm -rf ./results-db-* && rm -rf logs/* && rm -rf ./client/built",
     "build-browser-js": "sh ./scripts/build-browser-js.sh",
+    "build-css": "./node_modules/.bin/lessc client/styles.less client/built/styles.css",
     "watch-js": "sh ./scripts/watch-browser-js.sh",
-    "build": "./node_modules/.bin/bower install && npm run build-browser-js",
+    "build": "./node_modules/.bin/bower install --allow-root && npm run build-browser-js && npm run build-css",
     "start": "npm run build && npm run pre-start && node server.js",
     "pre-start": "mkdir -p ./logs",
     "start-dev": "npm run pre-start && npm run watch-js & sleep 3 && NODE_ENV=development ./node_modules/.bin/nodemon",
@@ -27,10 +28,11 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gardr/validator-web/issues"
+    "url": "https://github.com/gardr/validator/issues"
   },
   "dependencies": {
-    "gardr-validator": "^0.3.2",
+    "gardr-validator": "^0.3.3",
+    "gardr-host": "^0.4.1",
     "document-write-html": "0.1.3",
     "hapi": "^4.1.2",
     "hoek": "^2.1.0",
@@ -56,7 +58,9 @@
     "joi": "^3.1.0",
     "decompress-zip": "0.0.6",
     "colors": "^0.6.2",
-    "gardr-host": "^0.4.1"
+    "level-jobs": "^0.4.2",
+    "level-sublevel": "^5.2.0",
+    "less": "^1.7.1"
   },
   "devDependencies": {
     "proxyquire": "^0.6.0",
@@ -64,6 +68,9 @@
     "nodemon": "^1.0.19",
     "mock-fs": "^2.3.1",
     "mocha": "^1.19.0",
-    "expect.js": "^0.3.1"
+    "expect.js": "^0.3.1",
+    "level-cache": "^0.1.0",
+    "memdown": "^0.10.1",
+    "underscore": "^1.6.0"
   }
 }
