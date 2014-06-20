@@ -9,7 +9,7 @@ var serverOptions = {
         basePath: __dirname,
         path: 'templates',
         engines: {
-            html: 'handlebars'
+            html: require('handlebars')
         },
         layout: true,
         partialsPath: 'templates/partials',
@@ -18,9 +18,7 @@ var serverOptions = {
     payload: {
         uploads: config.get('tmpDir')
     },
-    cache: {
-        engine: 'catbox-memory'
-    },
+    cache: require('catbox-memory'),
     labels: ['web'],
     load: {
         sampleInterval: 500
