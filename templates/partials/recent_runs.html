@@ -20,13 +20,15 @@
             {{^hasImage}}
                 {{#erroredOut}}
                     <div class="text-center">
-                        <div class="logo">logo....</div>
+                        <img src="/client/logo.png" alt="Gardr logo" /><br />
+                        <br />
                         <p>{{message}} {{err.message}}</p>
                     </div>
                 {{/erroredOut}}
                 {{^erroredOut}}
                     <div class="text-center">
-                        <div class="spinner logo">logo....</div>
+                        <img src="/client/logo.png" alt="Gardr logo" /><br />                        
+                        <br />
                         <p>Processing...</p>
                     </div>
                 {{/erroredOut}}
