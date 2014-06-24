@@ -10,9 +10,9 @@
             Result
         </button>
 
-<!--         <button class="btn btn-default btn-lg" data-tab="tab-checklist">
+        <button class="btn btn-default btn-lg" data-tab="tab-checklist">
             Checklist
-        </button> -->
+        </button>
 
         <button class="btn btn-default btn-lg" data-tab="tab-code">
             Code
@@ -26,19 +26,7 @@
 
 <div class="tabs" id="tabContent">
     <div class="tab-content tab-active" data-tab="tab-result">
-        <div class="alert {{#report.success}}alert-info{{/report.success}} {{^report.success}}alert-danger{{/report.success}}">
-            <p><strong>Report:</strong>
-                {{#report.success}}
-                    <span class="glyphicon glyphicon-heart text-primary"></span>
-                    <span>Verified!</span>
-                {{/report.success}}
-                {{^report.success}}
-                    <span class="glyphicon glyphicon-thumbs-down text-danger"></span>
-                    <span>Not verified</span>
-                {{/report.success}}
-            </p>
-            <p>Started <small>{{formattedStarted}}</small>. Ran for <small>{{totalRuntime}}</small>.</p>
-        </div>
+
         <div class="row">
             <div class="col-md-8">
                 {{>result_table}}
@@ -46,6 +34,22 @@
 
             <div class="col-md-4">
                 {{>result_stats}}
+                <br />
+                <div class="alert {{#report.success}}alert-success{{/report.success}} {{^report.success}}alert-danger{{/report.success}}">
+                    <p>
+                        <strong>Report:</strong>
+                        {{#report.success}}
+                            <span class="glyphicon glyphicon-heart text-warning"></span>
+                            <span>Verified!</span>
+                        {{/report.success}}
+                        {{^report.success}}
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                            <span>Not verified</span>
+                        {{/report.success}}
+                    </p>
+                    <p>Started <small>{{formattedStarted}}</small>.</p>
+                    <p>Runtime was <small>{{totalRuntime}}</small>.</p>
+                </div>
             </div>
         </div>
     </div>

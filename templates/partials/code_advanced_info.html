@@ -28,7 +28,7 @@
         {{#report.full}}
             <tr class="{{typeClass}}">
                 <td>{{type}}</td>
-                <td>{{message}}</td>
+                <td>{{message}}{{name}}{{#desc}} - <small>{{.}}</small>{{/desc}}</td>
                 <td>{{validatorName}}</td>
                 <td>
                     {{#data.trace}}

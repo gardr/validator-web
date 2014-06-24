@@ -1,1 +1,33 @@
-<h2>checklist...</h2>
+
+
+{{#report.hasChecklist}}
+<div class="list-group">
+{{#report.checklist}}
+    <div class="list-group-item">
+        <h3 class="list-group-item-heading">{{name}} <small>{{desc}}</small></h3>
+        <ul class="list-group-item-text">
+            {{#error}}
+                <li class="text-danger">
+                    {{>result_report_line}}
+                </li>
+            {{/error}}
+            {{#warn}}
+                <li class="text-warning">
+                    {{>result_report_line}}
+                </li>
+            {{/warn}}
+            {{#success}}
+                <li>
+                    {{>result_report_line}}
+                </li>
+            {{/success}}
+            {{#info}}
+                <li class="">
+                    {{>result_report_line}}
+                </li>
+            {{/info}}
+        </ul>
+    </div>
+{{/report.checklist}}
+</div>
+{{/report.hasChecklist}}
