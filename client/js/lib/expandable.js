@@ -8,17 +8,20 @@ function toList(list){
     return Array.prototype.slice.call(list);
 }
 
-function findParentTag(item, name, cb){
+function findParentTag(item, cb){
     if (!item || !item.parentNode){
         return null;
     }
-    if (item.parentNode.tagName.toUpperCase() === name.toUpperCase()){
+    var value = item.parentNode.getAttribute('data-expandable-container');
+    console.log(item.parentNode.className, value);
+    if (value !== null){
+        console.log('MATCH');
         if (cb) {
             cb(item.parentNode);
         }
         return item.parentNode;
     }
-    return findParentTag(item.parentNode, name, cb);
+    return findParentTag(item.parentNode, cb);
 }
 
 module.exports = function(clickElems){
@@ -29,11 +32,9 @@ module.exports = function(clickElems){
 
     function clickHandler(event){
         var elem = this;
-        var tagName = elem.getAttribute('data-tag-name')||'li';
-        findParentTag(elem, tagName, function(list){
+        findParentTag(elem, function(list){
             var added = klasses.toggleClass(list, 'expanded-state');
             klasses.addClass(elem, 'expanded-state-button', added);
         });
     }
 };
-

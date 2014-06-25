@@ -5,7 +5,7 @@
 
         {{#report.meta}}
             <li class="expanded-state {{#data.success}}bg-info{{/data.success}} {{#data.error}}bg-danger{{/data.error}}">
-                <div class="row">
+                <div class="row" data-expandable-container="true">
                     <div class="col-md-7">
                         {{#data.hasSummary}}
                             <span class="glyphicon glyphicon-zoom-in expand-drilldown-list"></span>
@@ -20,7 +20,7 @@
                             <span class="text-danger">-{{.}}</span>
                         {{/data.decrease_kb}}
                         {{#data.restValue_kb}}
-                            <span class="text-primary">{{.}}</span>
+                            <span class="text-primary badge">{{.}}</span>
                         {{/data.restValue_kb}}
 
                     </div>
@@ -28,7 +28,7 @@
 
                 <ol class="nav expandable-expand-drilldown">
                     {{#data.summary}}
-                        <li class="sub-stats">
+                        <li class="sub-stats" data-expandable-container="true">
                             <div clasS="row">
                                 <div class="col-xs-7">
                                     {{#hasRaw}}

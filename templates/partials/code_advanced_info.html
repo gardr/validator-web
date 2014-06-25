@@ -17,6 +17,7 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th>Time</th>
             <th>Type</th>
             <th>Message</th>
             <th>Rule</th>
@@ -27,6 +28,7 @@
 
         {{#report.full}}
             <tr class="{{typeClass}}">
+                <td><small>{{time}}</small></td>
                 <td>{{type}}</td>
                 <td>{{message}}{{name}}{{#desc}} - <small>{{.}}</small>{{/desc}}</td>
                 <td>{{validatorName}}</td>

@@ -1,31 +1,31 @@
-<div class="{{typeClass}}">
+<div class="{{typeClass}}" data-expandable-container="true">
     <div>
         {{message}}
         {{#data}}
-            <span class="glyphicon glyphicon-zoom-in expand-drilldown-list" data-tag-name="div"></span>
+            <span class="glyphicon glyphicon-zoom-in expand-drilldown-list"></span>
         {{/data}}
     </div>
     {{#data}}
-        <div class="expandable">
-            <ul class="nav">
-            {{#code}}
-                <li>
-                    <pre><code>{{.}}</code></pre>{{/code}}
-                </li>
-            {{#trace}}
-                <li>
-                    <a href="{{sourceURL}}" target="_blank">
-                        <small>{{file}}{{#line}}:{{.}}{{/line}} {{#function}} -> {{.}}{{/function}}</small>
-                    </a>
-                </li>
-            {{/trace}}
-            {{#list}}
-                <li>
-                    <pre><small><code>{{.}}</code></small></pre>
-                </li>
-            {{/list}}
-            </ul>
-            <br />
-        </div>
+    <div class="expandable">
+        <ul class="nav">
+        {{#code}}
+            <li>
+                <pre><code>{{.}}</code></pre>{{/code}}
+            </li>
+        {{#trace}}
+            <li>
+                <a href="{{sourceURL}}" target="_blank">
+                    <small>{{file}}{{#line}}:{{.}}{{/line}} {{#function}} -> {{.}}{{/function}}</small>
+                </a>
+            </li>
+        {{/trace}}
+        {{#list}}
+            <li>
+                <pre><small><code>{{.}}</code></small></pre>
+            </li>
+        {{/list}}
+        </ul>
+        <br />
+    </div>
     {{/data}}
 </div>
