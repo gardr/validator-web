@@ -9,7 +9,7 @@ module.exports = function(conf) {
 
     if (conf.get('env') === 'production'){
 
-        base = 'http://ads-gardr.gardr.org/';
+        base = 'http://ads-gardr.gardr.org';
 
 
         return {
