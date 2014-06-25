@@ -13,9 +13,7 @@ function findParentTag(item, cb){
         return null;
     }
     var value = item.parentNode.getAttribute('data-expandable-container');
-    console.log(item.parentNode.className, value);
     if (value !== null){
-        console.log('MATCH');
         if (cb) {
             cb(item.parentNode);
         }
