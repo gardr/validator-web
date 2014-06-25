@@ -48,7 +48,7 @@ describe('getReport', function () {
     var runner = require('../../lib/report/index.js');
 
     it('should work to run', function(done){
-        this.timeout = 3000;
+        this.timeout(4000);
         var options = {
             output: {
                 url: 'about:blank'

@@ -49,6 +49,7 @@ function initTabs(options){
         });
 
         var bannerContainer = document.getElementById('result-preview-container');
+        console.log('js/main.js:gardr-host -> start rendering', name);
 
         m.queue(name, {
             'url': options.previewUrl,
@@ -61,6 +62,7 @@ function initTabs(options){
             if (err){
                 return logError(err);
             }
+            console.log('js/main.js:gardr-host done rendering', name, res.rendered);
             var para = document.createElement('p');
             para.innerHTML = 'Rendered <a href="'+options.previewUrl+'">'+options.previewUrl+'</a>. Viewport width '+ options.viewport.width+', height '+options.viewport.height;
             bannerContainer.appendChild(para);
