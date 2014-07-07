@@ -21,3 +21,4 @@ report.xml
 logs
 client/built/*
 lib/report/resources/built/
+phantom_output_files_*
