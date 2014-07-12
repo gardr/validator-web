@@ -4,12 +4,13 @@
   "description": "The Web ui for the garðr validator",
   "main": "server.js",
   "scripts": {
-    "clean": "rm -rf ./results-db-* && rm -rf logs/* && rm -rf ./client/built",
+    "clean": "rm -rf ./results-db-* && rm -rf logs/* && rm -rf ./client/built && rm -rf phantom_output_files_*",
     "build-browser-js": "sh ./scripts/build-browser-js.sh",
     "build-css": "./node_modules/.bin/lessc client/styles.less client/built/styles.css",
     "watch-js": "sh ./scripts/watch-browser-js.sh",
     "build": "./node_modules/.bin/bower install --allow-root && npm run build-browser-js && npm run build-css",
-    "start": "npm run build && npm run pre-start && node server.js",
+    "postinstall": "npm run build",
+    "start": "npm run pre-start && node server.js",
     "pre-start": "mkdir -p ./logs",
     "start-dev": "npm run pre-start && npm run watch-js & sleep 3 && NODE_ENV=development ./node_modules/.bin/nodemon",
     "test": "NODE_ENV=test ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
