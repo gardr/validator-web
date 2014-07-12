@@ -1,23 +1,31 @@
 <div class="alert alert-danger">
-    <p>
-        <strong>Error: </strong>
-    </p>
+
+    <h2>Runtime error: </h2>
+
     {{message}}
-    {{err.message}}
+    {{^message}}
+        {{err.message}}
+    {{/message}}
+
+    <br />
 
     {{#err.code}}
+        <br />
         <pre><code>{{.}}</code></pre>
     {{/err.code}}
 
     {{#err.path}}
+        <br />
         <pre><code>{{.}}</code></pre>
     {{/err.path}}
 
     {{#err.stack}}
+        <br />
         <pre><code>{{.}}</code></pre>
     {{/err.stack}}
 
     {{#errors}}
+        <br />
         <p>-&gt; {{message}}</p>
     {{/errors}}
 </div>

@@ -22,12 +22,12 @@
                     <div class="text-center">
                         <img src="/client/logo.png" alt="Gardr logo" /><br />
                         <br />
-                        <p>{{message}} {{err.message}}</p>
+                        <p>{{message}} {{^message}}{{err.message}}{{/message}}</p>
                     </div>
                 {{/erroredOut}}
                 {{^erroredOut}}
                     <div class="text-center">
-                        <img src="/client/logo.png" alt="Gardr logo" /><br />                        
+                        <img src="/client/logo.png" alt="Gardr logo" /><br />
                         <br />
                         <p>Processing...</p>
                     </div>
