@@ -1,4 +1,4 @@
-var proxyquire = require('proxyquire');
+var proxyquire = require('proxyquire').noPreserveCache();
 var storage = require('../../lib/storage.js');
 var createJobs = require('../../lib/jobs.js');
 

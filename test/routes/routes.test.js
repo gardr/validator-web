@@ -1,5 +1,5 @@
 var expect = require('expect.js');
-var proxyquire  = require('proxyquire');
+var proxyquire  = require('proxyquire').noPreserveCache();
 var multipart = require('../helpers/multipart.js');
 
 

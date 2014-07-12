@@ -1,6 +1,6 @@
 var expect = require('expect.js');
 
-var proxyquire = require('proxyquire');
+var proxyquire = require('proxyquire').noPreserveCache();
 
 var storage = proxyquire('../../lib/storage.js', {
     '../package.json': {version: 'results-db-TEST-RUN-'+Date.now()}

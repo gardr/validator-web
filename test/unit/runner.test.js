@@ -2,7 +2,7 @@ var expect = require('expect.js');
 
 var os = require('os');
 
-var proxyquire = require('proxyquire');
+var proxyquire = require('proxyquire').noPreserveCache();
 
 var mockedRunner = proxyquire('../../lib/report/index.js', {
     'gardr-validator': function (options, callback) {
