@@ -65,7 +65,13 @@ module.exports = [{
     'meta': ['mobile'],
     'config': {
         'sizes': {
-            thresholdBytes: 150000
+            thresholdBytes: 150000,
+            maxRequests: {
+                style: 1
+            }
+        },
+        'gardr': {
+            enforceSpec: false
         }
     },
     'formats': [{
@@ -81,7 +87,13 @@ module.exports = [{
     'meta': ['tablet'],
     'config': {
         'sizes': {
-            thresholdBytes: 150000
+            thresholdBytes: 150000,
+            maxRequests: {
+                style: 1
+            }
+        },
+        'gardr': {
+            enforceSpec: false
         }
     },
     'formats': [{
