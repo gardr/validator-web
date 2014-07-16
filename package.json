@@ -32,7 +32,7 @@
     "url": "https://github.com/gardr/validator/issues"
   },
   "dependencies": {
-    "gardr-validator": "^0.6.2",
+    "gardr-validator": "^0.7.0",
     "gardr-host": "^0.5.0",
     "document-write-html": "^0.2.1",
     "hapi": "^6.0.2",
