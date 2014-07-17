@@ -12,16 +12,16 @@ window.onload = function () {
 
     var el = document.createElement('script');
     document.body.appendChild(el);
-    el.onload = function () {
-        setTimeout(function(){
-            jQuery('body').slideToggle(1000, function(){
+    el.onload = function runOnload() {
+        setTimeout(function delayAnimation(){
+            jQuery('body').slideToggle(1000, function runJQuerySlideToggle(){
                 $(this).slideToggle(150);
             });
         }, 500);
 
-        jQuery(bannerEl).click(function(){
+        jQuery(bannerEl).click(function clickEventHandler(){
             console.log('fixtures/script1.js - > jquery clickhandler');
-        }).mouseover(function(){
+        }).mouseover(function mouseroverEventHandler(){
             console.log('fixtures/script1.js - > jquery clickhandler');
         });
     };
@@ -30,9 +30,12 @@ window.onload = function () {
     //el.src = ''
 };
 
+var counter = 25;
 setTimeout(interval1, 1);
 function interval1() { setTimeout(interval2, 10);}
 function interval2() { setTimeout(interval3, 100);}
 function interval3() {
-    //throw new Error('Huzzlas');
+    if (counter-- >= 0){
+        setTimeout(interval3, 10);
+    }
 }
