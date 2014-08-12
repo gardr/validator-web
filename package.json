@@ -1,6 +1,6 @@
 {
   "name": "gardr-validator-web",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "The Web ui for the garðr validator",
   "main": "server.js",
   "scripts": {
