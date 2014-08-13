@@ -22,6 +22,9 @@ var serverOptions = {
     labels: ['web'],
     load: {
         sampleInterval: 500
+    },
+    debug: {
+        request: ['error']
     }
 };
 
