@@ -34,7 +34,7 @@
   "dependencies": {
     "gardr-validator": "^0.7.2",
     "gardr-host": "^0.5.0",
-    "document-write-html": "^0.2.2",
+    "document-write-html": "^0.2.3",
     "hapi": "^6.0.2",
     "hoek": "^2.3.0",
     "request": "^2.36.0",
