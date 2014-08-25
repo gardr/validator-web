@@ -85,7 +85,7 @@ As the setup is Ubuntu with Dokku, you can SSH into git.gardr.org and use the do
 
 ### Direct SSH-access:
 
-Redeploy via dokku:
+Redeploy via dokku / (throw away logs, files and database):
 
         dokku rebuild:all
 
