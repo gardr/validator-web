@@ -81,3 +81,11 @@ h1 small {
     text-decoration: none;
     font-size: 12px;
 }
+.photo-owner-link {
+    position: absolute;
+    bottom: 45px;
+    right: 10px;
+    font-size: 10px;
+    line-height: 10px;
+    color: #ccc;
+}
