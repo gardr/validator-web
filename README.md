@@ -64,33 +64,51 @@ YES, pull requests with tests. Be sure to create a issue and let us know you are
 
 (please let us know of alternatives to this project)
 
-### Current Deployment / validator.gardr.org production
+------------------------------------------------------------------------------
 
-! Prerequisite: Get your ssh-key added to our server at gardr.org.
+## Current Deployment / validator.gardr.org production
 
-As the setup is just a dokku container, you can also SSH into git.gardr.org and run dokku CLI, ref https://github.com/progrium/dokku. Added a couple of dokku-plugins for rebuild and supervisord, but they are not needed.
+! Prerequisite: Get your ssh-key added to our server at admin@git.gardr.org.
 
-Add dokku as remote to validator-web git-repo on your computer:
-    `git remote add dokku@git.gardr.org:validator`
-Push to dokku:
-    `git push dokku master`
+As the setup is Ubuntu with Dokku, you can SSH into git.gardr.org and use the dokku CLI, ref https://github.com/progrium/dokku. Added a couple of Dokku-plugins for rebuild and supervisord, but they are not needed.
 
-# Direct SSH-access:
-Redeploy via dokku
-    `dokku rebuild:all`
-Run command via dokku, e.g.
-    `dokku run validator ls -lha`
 
-# Accessing docker instance
+ * Add dokku as remote to validator-web git-repo on your computer:
 
-Either via shell or `dokku run validator $(CMD)`
+        git remote add dokku@git.gardr.org:validator
 
-To access the docker instance via ssh, first access gardr.org, then:
-    `docker ps`
-Get containerId and insert in next command where "my_container_id":
-    `PID=$(docker inspect --format '{{.State.Pid}}' my_container_id)`
-nsenter will give you direct shell access to the running docker container:
-    `nsenter --target $PID --mount --uts --ipc --net --pid`
+
+ * Push to dokku:
+
+        git push dokku master
+
+
+### Direct SSH-access:
+
+* Redeploy via dokku:
+
+        dokku rebuild:all
+
+
+* Run command via dokku, e.g:
+
+        dokku run validator ls -lha
+
+
+### Debugging / Accessing docker instance directly
+
+* To access the docker instance via ssh, first access gardr.org, then:
+
+        docker ps
+
+* Get containerId and insert in next command where "my_container_id":
+
+        PID=$(docker inspect --format '{{.State.Pid}}' my_container_id)
+
+* `nsenter` will give you direct shell access to the running docker container:
+
+        nsenter --target $PID --mount --uts --ipc --net --pid
+
 
 * Application code will then be located in `/app` folder.
 * Application specific logs in `/app/logs`.
