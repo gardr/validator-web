@@ -85,30 +85,31 @@ As the setup is Ubuntu with Dokku, you can SSH into git.gardr.org and use the do
 
 ### Direct SSH-access:
 
-* Redeploy via dokku:
+Redeploy via dokku:
 
         dokku rebuild:all
 
 
-* Run command via dokku, e.g:
+Run command via dokku, e.g:
 
         dokku run validator ls -lha
 
 
 ### Debugging / Accessing docker instance directly
 
-* To access the docker instance via ssh, first access gardr.org, then:
+To access the docker instance via ssh, first access gardr.org, then:
 
         docker ps
 
-* Get containerId and insert in next command where "my_container_id":
+Get containerId and insert in next command where "my_container_id":
 
         PID=$(docker inspect --format '{{.State.Pid}}' my_container_id)
 
-* `nsenter` will give you direct shell access to the running docker container:
+`nsenter` will give you direct shell access to the running docker container:
 
         nsenter --target $PID --mount --uts --ipc --net --pid
 
+------------------------------------------------------------------------------
 
 * Application code will then be located in `/app` folder.
 * Application specific logs in `/app/logs`.
@@ -116,4 +117,6 @@ As the setup is Ubuntu with Dokku, you can SSH into git.gardr.org and use the do
     * If database needs to be deleted, just remove this folder or bump the application version in package.json.
 * PhantomJS files wil output in tempoary directory, names if local in app directory `phantom_output_files_$(version)_$(enviroment)`.
     * Phantom output directory might contain `debug-input-$(timestamp).json`, and `output-$(timestamp).json` as well as screenshots named `$(width)x$(height)_$(timestamp).png`.
+
+------------------------------------------------------------------------------
 
