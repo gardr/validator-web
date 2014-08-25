@@ -27,5 +27,10 @@
     {{#errors}}
         <br />
         <p>-&gt; {{message}}</p>
+        {{#lastLine}}<p>Line: {{.}}</p>{{/lastLine}}
+        {{#lastColumn}}<p>Column: {{.}}</p>{{/lastColumn}}
+        {{#extract}}
+            <pre><code>{{.}}</code></pre>
+        {{/extract}}
     {{/errors}}
 </div>
