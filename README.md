@@ -19,12 +19,11 @@ The validator takes _input_ as a _scripturl_ or _zipfile_, _html,css and javascr
 It uses phantomJS as a browser, loads in a shim on top of the PhantomJS api, runs for a 10 seconds after all hooks have been innjected and data colelcted.
 After phantomjs run, the preoprocessors and validators/rules runs in a series to generate a report(info, warn, debug, error...).
 
-
 #### Installation instructions
 
 Install depedencies and package validator with package gardr(abit funky)
 
-    $ npm install && npm run build
+    $ npm install
 
 Run tests
 
@@ -64,3 +63,37 @@ YES, pull requests with tests. Be sure to create a issue and let us know you are
 ##### Alternatives
 
 (please let us know of alternatives to this project)
+
+### Current Deployment / validator.gardr.org production
+
+! Prerequisite: Get your ssh-key added to our server at gardr.org.
+
+As the setup is just a dokku container, you can also SSH into git.gardr.org and run dokku CLI, ref https://github.com/progrium/dokku. Added a couple of dokku-plugins for rebuild and supervisord, but they are not needed.
+
+Add dokku as remote to validator-web git-repo on your computer:
+    `git remote add dokku@git.gardr.org:validator`
+Push to dokku:
+    `git push dokku master`
+
+# Direct SSH-access:
+Redeploy via dokku
+    `dokku rebuild:all`
+Run command via dokku, e.g.
+    `dokku run validator ls -lha`
+
+# Accessing docker instance
+
+Either via shell or `dokku run validator $(CMD)`
+
+To access the docker instance via ssh, first access gardr.org, then:
+    `docker ps`
+Get containerId and insert in next command where "my_container_id":
+    `PID=$(docker inspect --format '{{.State.Pid}}' my_container_id)`
+nsenter will give you direct shell access to the running docker container:
+    `nsenter --target $PID --mount --uts --ipc --net --pid`
+
+* Application code will then be located in `/app` folder.
+* Application specific logs in `/app/logs`.
+* Leveldb are in same folder prefixed with `result-db-$(version)-$(enviroment)`
+* PhantomJS files wil output in tempoary directory, names if local in app directory `phantom_output_files_$(version)_$(enviroment)`. Phantom output directory might have `debug-input-$(timestamp).json`, and `output-$(timestamp).json` as well as screenshots named `$(width)x$(height)_$(timestamp).png`.
+
