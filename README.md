@@ -94,6 +94,8 @@ nsenter will give you direct shell access to the running docker container:
 
 * Application code will then be located in `/app` folder.
 * Application specific logs in `/app/logs`.
-* Leveldb are in same folder prefixed with `result-db-$(version)-$(enviroment)`
-* PhantomJS files wil output in tempoary directory, names if local in app directory `phantom_output_files_$(version)_$(enviroment)`. Phantom output directory might have `debug-input-$(timestamp).json`, and `output-$(timestamp).json` as well as screenshots named `$(width)x$(height)_$(timestamp).png`.
+* Leveldb are in same folder prefixed with `result-db-$(version)-$(enviroment)`.
+    * If database needs to be deleted, just remove this folder or bump the application version in package.json.
+* PhantomJS files wil output in tempoary directory, names if local in app directory `phantom_output_files_$(version)_$(enviroment)`.
+    * Phantom output directory might contain `debug-input-$(timestamp).json`, and `output-$(timestamp).json` as well as screenshots named `$(width)x$(height)_$(timestamp).png`.
 
