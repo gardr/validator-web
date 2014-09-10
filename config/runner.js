@@ -19,7 +19,7 @@ module.exports = function(conf) {
         };
     }
 
-    base = 'http://127.0.0.1:'+conf.get('port');
+    base = 'http://localhost:'+conf.get('port');
     return {
         parentUrl: base+'/preview/parent.html?ts='+Date.now()+'&g='+version,
         iframeUrl: base+'/preview/built/iframe.html?ts='+Date.now()+'&g='+version,
