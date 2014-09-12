@@ -1,6 +1,8 @@
 garðr-validator-web
 =============
 
+[![Build Status](https://semaphoreapp.com/api/v1/projects/6e85fd6c-c736-4c53-9f5d-10aa35fddfaa/247454/badge.png)](https://semaphoreapp.com/gardr/validator-web)
+
 [![Build Status](https://travis-ci.org/gardr/validator-web.png)](https://travis-ci.org/gardr/validator-web)
 [![Build Status](https://drone.io/github.com/gardr/validator-web/status.png)](https://drone.io/github.com/gardr/validator-web/latest)
 [![Coverage Status](https://coveralls.io/repos/gardr/validator-web/badge.png)](https://coveralls.io/r/gardr/validator-web)
@@ -119,4 +121,3 @@ Get containerId and insert in next command where "my_container_id":
     * Phantom output directory might contain `debug-input-$(timestamp).json`, and `output-$(timestamp).json` as well as screenshots named `$(width)x$(height)_$(timestamp).png`.
 
 ------------------------------------------------------------------------------
-
