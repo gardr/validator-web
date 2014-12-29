@@ -5,36 +5,39 @@ var Hapi        = require('hapi');
 var config      = require('./lib/config.js');
 
 var serverOptions = {
-    views: {
-        basePath: __dirname,
-        path: 'templates',
-        engines: {
-            html: require('handlebars')
-        },
-        layout: true,
-        partialsPath: 'templates/partials',
-        isCached: !development
-    },
-    payload: {
-        uploads: config.get('tmpDir')
-    },
-    cache: require('catbox-memory'),
-    labels: ['web'],
-    load: {
-        sampleInterval: 500
-    },
-    debug: {
+    'cache': require('catbox-memory'),
+    'load': {},
+    'debug': {
         request: ['error']
     }
 };
 
-var server = new Hapi.Server('0.0.0.0', config.get('port'), serverOptions);
+if (config.get('env') === 'production') {
+    serverOptions.load.sampleInterval = 500;
+}
+
+var server = new Hapi.Server(serverOptions);
+
+server.connection({
+    'port': config.get('port')
+});
+
+server.views({
+    'relativeTo': __dirname,
+    'path': 'templates',
+    'engines': {
+        html: require('handlebars')
+    },
+    'layout': true,
+    'partialsPath': 'templates/partials',
+    'isCached': !development
+});
 
 server.state('session', {
-    ttl: 24 * 60 * 60 * 1000,
-    isSecure: false,
-    path: '/',
-    encoding: 'base64json'
+    'ttl': 24 * 60 * 60 * 1000,
+    'isSecure': false,
+    'path': '/',
+    'encoding': 'base64json'
 });
 
 server.route(require('./lib/routes/frontpage.js'));
@@ -46,10 +49,10 @@ server.route(require('./lib/routes/validate.js'));
 server.route(require('./lib/routes/result.js'));
 server.route(require('./lib/routes/static.js').routes);
 server.route({
-    method: 'GET',
-    path: '/status',
-    config: {
-        handler: function (request, reply) {
+    'method': 'GET',
+    'path': '/status',
+    'config': {
+        'handler': function (request, reply) {
             var hasSomeLoad = server.load.eventLoopDelay < 10;
             var healthStatus = hasSomeLoad ? 'ok' : 'load';
 
