@@ -1,16 +1,17 @@
 module.exports = [{
-    'name': 'Schibsted 2015',
+    'name': 'schibsted-2015',
+    'title': 'Schibsted 2015',
     'logo': 'http://www.schibsted.com/Global/LogoTypes/Logos%202014/SMG_Small_2014_RGB.png',
     'meta': ['mobile', 'tablet', 'desktop'],
     'sites': [{
         'name': 'FINN.no',
-        'logo': 'finn.png'
+        'logo': 'http://nyapp.finn.no/assets/logo.png'
     }, {
         'name': 'VG',
-        'logo': 'vg.png'
+        'logo': 'http://1.vgc.no/vgnett-prod/img/vgLogoMobile.png'
     }, {
         'name': 'Storby',
-        'logo': 'storby.png'
+        'logo': 'http://www.storbyinfo.no/wp-content/uploads/2013/11/logo.png'
     }],
     'subFormats': {
         'non-strict': {
@@ -80,6 +81,3 @@ module.exports = [{
         'height': 500
     }]
 }];
-
-
-

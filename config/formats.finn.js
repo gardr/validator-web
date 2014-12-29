@@ -1,5 +1,5 @@
 module.exports = [{
-    'name': 'FINN',
+    'name': 'FINN 2014',
     'logo': 'http://nyapp.finn.no/assets/logo.png',
     'meta': ['mobile', 'tablet', 'desktop'],
     'subFormats': {
