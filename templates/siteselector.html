@@ -3,16 +3,25 @@
     {{#formats}}
     <a href="{{base}}formats/{{name}}/" class="list-group-item">
         {{#logo}}
-            <img src="{{.}}" alt="{{name}}" height="50" />
+            <img src="{{.}}" alt="{{name}}" height="40" />
         {{/logo}}
 
-        {{title}}{{^title}}{{name}}{{/title}}
-        {{#meta}}
-            <span class="meta-{{.}}" title="{{.}}">{{.}}</span>
-        {{/meta}}
+
+
+        {{#sites}}
+            <span style="margin:5px 0;" class="pull-right" >
+                <img style="margin-left:10px;max-width:175px;max-height:30px;" src="{{logo}}" title="{{title}}{{name}}"></img>
+            </span>
+        {{/sites}}
+        {{^sites}}
+            <br />
+            {{title}}{{^title}}{{name}}{{/title}}
+        {{/sites}}
+
+
     </a>
     {{/formats}}
     <a href="{{newFormatUrl}}" taget="_blank" class="list-group-item text-center selected">
-       Add another format?
+       Add another format? <small>(required github user)</small>
     </a>
 </div>

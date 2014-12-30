@@ -2,7 +2,8 @@ var domready = require('domready');
 var events = require('dom-events');
 var getManager = require('gardr-host');
 
-var addClass = require('./lib/classes.js').addClass;
+var klass = require('./lib/classes.js');
+var addClass = klass.addClass;
 
 domready(function () {
 
@@ -15,6 +16,7 @@ domready(function () {
     // initToggleAdvanced();
     initReplayBannerControllers();
     initPreview(options);
+    expandableFormats();
 });
 
 var expandable = require('./lib/expandable.js');
@@ -24,6 +26,22 @@ function initExpandables(){
         return;
     }
     expandable(buttons);
+}
+
+function expandableFormats() {
+    var els = document.querySelectorAll('.expand-button');
+
+    function handler(e) {
+        if (e.currentTarget.parentNode.nextElementSibling) {
+            klass.toggleClass(e.currentTarget.parentNode.nextElementSibling, 'hidden');
+        }
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    Array.prototype.slice.call(els).forEach(function(el){
+        events.on(el, 'click', handler);
+    });
 }
 
 

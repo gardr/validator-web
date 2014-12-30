@@ -1,6 +1,6 @@
 module.exports = [{
     'name': 'inma',
-    'title': 'Industry standard – HTML Responsive ads',
+    'title': 'Industry standard - HTML Responsive ads',
     'logo': 'http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/092011/inma_green.gif',
     'meta': ['mobile'],
     'config': {
@@ -22,6 +22,6 @@ module.exports = [{
     }]
 }];
 
-['finn', 'vg', 'storby'].forEach(function(key){
+['schibsted'/*, 'finn', 'vg', 'storby'*/].forEach(function(key){
     module.exports.push.apply(module.exports, require('./formats.' + key + '.js'))
 });

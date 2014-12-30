@@ -1,12 +1,22 @@
 <h1>Select <small>size / format</small> <span class="pull-right">{{formatId}}</span></h1>
+
 <div class="list-group">
     {{#formats}}
         <a href="{{link}}" class="list-group-item" title="{{description}}">
-            <strong>{{title}}</strong>
-            {{#description}}
-                <p>{{.}}</p>
-            {{/description}}
-            {{#isMultipleFormat}}
+            <div>{{description}} (<small><strong>{{title}}</strong></small>)
+
+                <button class="btn btn-default btn-xs pull-right expand-button">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+
+                {{#format.excludeSite}}
+                    <small class="pull-right">(except {{.}})</small>
+                {{/format.excludeSite}}
+            </div>
+
+            <div class="hidden expand-area">
+                <br />
+                {{#isMultipleFormat}}
                 <div class="wrap-format" style="width:{{width}};height:{{height}};">
 
                     <div class="wrap-format-inner2" style="width:{{width2}};height:{{height2}}">
@@ -16,15 +26,22 @@
                         <h2>{{title1}}</h2>
                     </div>
                     <h4>Viewport</h3>
-                </div>
-            {{/isMultipleFormat}}
+                    </div>
+                    {{/isMultipleFormat}}
 
-            {{^isMultipleFormat}}
-                <div class="wrap-format" style="width:{{width1}};height:{{height1}};" >
-                    <br />
-                    <h1 class="text-center" style="margin-top:{{topMargin}};">{{title}}</h1>
-                </div>
-            {{/isMultipleFormat}}
+                    {{^isMultipleFormat}}
+                    <div class="wrap-format" style="width:{{width1}};height:{{height1}};" >
+                        <br />
+                        <h1 class="text-center" style="margin-top:{{topMargin}};">{{title}}</h1>
+                    </div>
+                    {{/isMultipleFormat}}
+            </div>
         </a>
     {{/formats}}
+</div>
+<div class="text-center">
+    {{#sites}}
+        <img style="max-width:155px;max-height:75px;" src="{{logo}}" title="{{name}}"></img>
+        &nbsp;
+    {{/sites}}
 </div>
