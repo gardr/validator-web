@@ -2,7 +2,7 @@ var logo = 'http://1.vgc.no/vgnett-prod/img/vgLogoMobile.png';
 
 module.exports = [{
     'name': 'VG Mobil',
-    'title': 'VG Mobil 2014',
+    'title': 'VG Mobil',
     'logo': logo,
     'meta': ['mobile'],
     'config': {
@@ -25,7 +25,7 @@ module.exports = [{
     }]
 }, {
     'name': 'VG Tablet',
-    'title': 'VG Tablet 2014',
+    'title': 'VG Tablet',
     'logo': logo,
     'meta': ['tablet'],
     'config': {

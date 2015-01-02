@@ -1,7 +1,7 @@
 var logo = "http://www.storbyinfo.no/wp-content/uploads/2013/11/logo.png";
 module.exports = [{
         "name": "storby-mobil",
-        "title": "Storby Mobil 2014",
+        "title": "Storby Mobil",
         "logo": logo,
         "meta": [
             "mobile"
