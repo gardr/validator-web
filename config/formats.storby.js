@@ -54,5 +54,12 @@ module.exports = [{
         },
         'width': 320,
         'height': 250
+    }, {
+        'viewport': {
+            width: 580,
+            height: 500
+        },
+        'width': 580,
+        'height': 500
     }]
 }];
