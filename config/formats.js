@@ -22,6 +22,6 @@ module.exports = [{
     }]
 }];
 
-['schibsted'/*, 'finn'*/,'vg', 'storby'].forEach(function(key){
+['schibsted'/*, 'finn'*/,'vg', 'storby', 'amedia'].forEach(function(key){
     module.exports.push.apply(module.exports, require('./formats.' + key + '.js'))
 });
