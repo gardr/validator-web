@@ -3,14 +3,14 @@
     {{#formats}}
     <a href="{{base}}formats/{{name}}/" class="list-group-item">
         {{#logo}}
-            <img src="{{.}}" alt="{{name}}" height="40" />
+            <img src="{{.}}" alt="{{name}}" style="max-height:40px;max-width:50%;" />
         {{/logo}}
 
 
 
         {{#sites}}
             <span style="margin:5px 0;" class="pull-right" >
-                <img style="margin-left:10px;max-width:175px;max-height:30px;" src="{{logo}}" title="{{title}}{{name}}"></img>
+                <img style="margin-left:10px;max-width:100%;max-height:20px;" src="{{logo}}" title="{{title}}{{name}}"></img>
             </span>
         {{/sites}}
         {{^sites}}
