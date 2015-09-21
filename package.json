@@ -16,8 +16,7 @@
     "test": "NODE_ENV=test ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
   },
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "node": "0.10.x"
   },
   "repository": {
     "type": "git",
@@ -59,7 +58,7 @@
     "mkdirp": "^0.5.0",
     "moment": "^2.7.0",
     "node-uuid": "^1.4.1",
-    "phantomjs2": "^2.0.0",
+    "phantomjs2": "pocketjoso/phantomjs2",
     "request": "^2.36.0",
     "uglify-js": "^2.4.14",
     "winston": "^0.7.3"
