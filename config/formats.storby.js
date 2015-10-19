@@ -12,6 +12,11 @@ module.exports = [{
             }
         }
     },
+    'config': {
+        adops: {
+            flatZIP: true
+        }
+    },
     'formats': [{
         'viewport': {
             width: 980,

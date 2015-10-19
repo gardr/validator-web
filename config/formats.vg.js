@@ -6,6 +6,9 @@ module.exports = [{
     'logo': logo,
     'meta': ['tablet'],
     'config': {
+        adops: {
+            flatZIP: true
+        },
         'sizes': {
             thresholdBytes: 150000,
             maxRequests: {
