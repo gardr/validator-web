@@ -19,7 +19,14 @@ module.exports = function(conf) {
         };
     }
 
-    base = 'http://127.0.0.1:'+conf.get('port');
+    if (process.env.HOST_BASE) {
+        var port = conf.get('port');
+        base = process.env.HOST_BASE + (port !== 80 ? ':' + port : '');
+    } else {
+        base = 'http://127.0.0.1:'+conf.get('port');
+    }
+
+
     return {
         parentUrl: base+'/preview/parent.html?ts='+Date.now()+'&g='+version,
         iframeUrl: base+'/preview/built/iframe.html?ts='+Date.now()+'&g='+version,
