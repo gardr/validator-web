@@ -9,10 +9,6 @@ module.exports = [{
             maxRequests: {
                 style: 1
             }
-        },
-        'gardr': {
-            // apparently, enforceSpec only turns off the check for window.open for links, so we turn that one off
-            enforceSpec: false
         }
     },
     'formats': [{

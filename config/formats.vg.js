@@ -14,9 +14,6 @@ module.exports = [{
             maxRequests: {
                 style: 1
             }
-        },
-        'gardr': {
-            enforceSpec: false
         }
     },
     'formats': [{
