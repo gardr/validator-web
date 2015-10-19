@@ -5,12 +5,19 @@
         {{#logo}}
             <img src="{{.}}" alt="{{name}}" style="max-height:40px;max-width:50%;" />
         {{/logo}}
-
-
+        {{^logo}}
+            {{{svg}}}
+        {{/logo}}
 
         {{#sites}}
             <span style="margin:5px 0;" class="pull-right" >
-                <img style="margin-left:10px;max-width:100%;max-height:20px;" src="{{logo}}" title="{{title}}{{name}}"></img>
+                {{#logo}}
+                    <img style="margin-left:10px;max-width:100%;max-height:20px;" src="{{.}}" title="{{title}}{{name}}"></img>
+                {{/logo}}
+                {{^logo}}
+                    <span style="margin-left:10px;max-width:100%;max-height:20px;">{{{svg}}}</span>
+                {{/logo}}
+
             </span>
         {{/sites}}
         {{^sites}}

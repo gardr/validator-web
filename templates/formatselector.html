@@ -41,7 +41,12 @@
 </div>
 <div class="text-center">
     {{#sites}}
-        <img style="max-width:155px;max-height:75px;" src="{{logo}}" title="{{name}}"></img>
+        {{#logo}}
+            <img style="max-width:155px;max-height:75px;" src="{{.}}" title="{{name}}"></img>
+        {{/logo}}
+        {{^logo}}
+            {{{svg}}}
+        {{/logo}}
         &nbsp;
     {{/sites}}
 </div>
