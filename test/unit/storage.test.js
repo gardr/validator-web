@@ -13,7 +13,7 @@ describe('Storage', function(){
         var key = 'TESTKEY-'+Date.now();
         var val = 'TESTVALUE-'+Date.now();
         storage.set(key, {someValue: val}, function(err){
-            expect(err).to.be.a('undefined');
+            expect(err).to.not.be.ok();
             storage.get(key, function(err, value){
                 expect(err).to.equal(null);
                 expect(value.someValue).to.equal(val);

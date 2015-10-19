@@ -16,7 +16,7 @@
     "test": "NODE_ENV=test ./node_modules/.bin/mocha test/**/*.test.js --reporter list"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "4.2.x"
   },
   "repository": {
     "type": "git",
@@ -53,10 +53,10 @@
     "hoek": "^2.3.0",
     "joi": "^4.6.1",
     "less": "^1.7.2",
-    "level-jobs": "^0.4.2",
-    "level-sublevel": "^5.2.0",
-    "leveldown": "^0.10.2",
-    "levelup": "^0.18.3",
+    "level-jobs": "^0.5.1",
+    "level-sublevel": "~6.4.6",
+    "leveldown": "^1.4.1",
+    "levelup": "^1.2.1",
     "lodash": "^2.4.1",
     "mkdirp": "^0.5.0",
     "moment": "^2.7.0",
