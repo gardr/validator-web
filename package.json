@@ -1,6 +1,6 @@
 {
   "name": "gardr-validator-web",
-  "version": "0.7.4",
+  "version": "0.8.0",
   "description": "The Web ui for the garðr validator",
   "main": "server.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "url": "https://github.com/gardr/validator/issues"
   },
   "optionalDependencies": {
-      "phantomjs2": "pocketjoso/phantomjs2"
+    "phantomjs2": "pocketjoso/phantomjs2"
   },
   "dependencies": {
     "async": "^0.9.0",
@@ -66,14 +66,14 @@
     "winston": "^0.7.3"
   },
   "devDependencies": {
-    "proxyquire": "^1.0.1",
-    "watchify": "^0.10.2",
-    "nodemon": "^1.2.0",
-    "mock-fs": "^2.3.1",
-    "mocha": "^1.20.1",
     "expect.js": "^0.3.1",
     "level-cache": "^0.1.0",
-    "memdown": "^0.10.1",
-    "underscore": "^1.6.0"
+    "memdown": "^1.1.0",
+    "mocha": "^2.3.3",
+    "mock-fs": "^3.4.0",
+    "nodemon": "^1.7.1",
+    "proxyquire": "^1.7.2",
+    "underscore": "^1.8.3",
+    "watchify": "^3.4.0"
   }
 }
