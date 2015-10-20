@@ -2,5 +2,4 @@ before_script:
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 language: node_js
 node_js:
-  - "0.10"
-  - "4.2.x"
+  - "4"
