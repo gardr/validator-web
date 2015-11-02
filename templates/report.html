@@ -70,6 +70,10 @@
 
     <div class="tab-content" data-tab="tab-code">
         <form action="/validate" method="POST" class="form" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-lg" value="Run again" />
+            </div>
+            
             <input type="hidden" name="formatId"     value="{{format.id}}" />
             <input type="hidden" name="formatSubId"  value="{{format.subId}}" />
             <input type="hidden" name="formatIndex"  value="{{format.index}}" />
