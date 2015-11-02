@@ -31,7 +31,7 @@
     "url": "https://github.com/gardr/validator/issues"
   },
   "optionalDependencies": {
-    "phantomjs2": "pocketjoso/phantomjs2"
+    "phantomjs2": "sveisvei/phantomjs2"
   },
   "dependencies": {
     "async": "^0.9.0",
