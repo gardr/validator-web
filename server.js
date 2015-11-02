@@ -25,6 +25,11 @@ var serverOptions = {
     },
     debug: {
         request: ['error']
+    },
+    state: {
+        cookies: {
+            failAction: 'ignore'
+        }
     }
 };
 
@@ -34,7 +39,8 @@ server.state('session', {
     ttl: 24 * 60 * 60 * 1000,
     isSecure: false,
     path: '/',
-    encoding: 'base64json'
+    encoding: 'base64json',
+
 });
 
 server.route(require('./lib/routes/frontpage.js'));
