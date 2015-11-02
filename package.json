@@ -31,6 +31,7 @@
     "url": "https://github.com/gardr/validator/issues"
   },
   "optionalDependencies": {
+    "phantomjs2": "sveisvei/phantomjs2"
   },
   "dependencies": {
     "async": "^0.9.0",
